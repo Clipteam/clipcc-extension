@@ -1,0 +1,9 @@
+{
+  "name": "clipcc-extension",
+  "version": "0.1.0",
+  "description": "ClipCC extension development kit",
+  "main": "src/index.js",
+  "repository": "https://github.com/Clipteam/clipcc-extension.git",
+  "author": "Clip Team",
+  "license": "MIT"
+}
