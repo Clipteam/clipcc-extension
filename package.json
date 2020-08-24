@@ -2,8 +2,21 @@
   "name": "clipcc-extension",
   "version": "0.1.0",
   "description": "ClipCC extension development kit",
-  "main": "src/index.js",
+  "main": "./dist/node/clipcc-extension.js",
   "repository": "https://github.com/Clipteam/clipcc-extension.git",
   "author": "Clip Team",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --progress --colors --bail"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "expose-loader": "^1.0.0",
+    "lodash.defaultsdeep": "^4.6.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
 }

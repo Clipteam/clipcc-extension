@@ -47,20 +47,14 @@ const ArgumentType = {
     COLOR: 4
 };
 
-const api = require('./interface');
-
 class Extension {
-    constructor() {
-        // INIT MEMBER VARIABLE
-        this.extensionId = '';
+    constructor(api) {
+        this.api = api;
     }
-    onInit() {
+    init() {
         // INIT YOUR EXTENSION
     }
-    onPostInit() {
-        // COMMUNITE WITH OTHER EXTENSIONS
-    }
-    onUninit() {
+    uninit() {
         // UNINIT YOUR EXTENSION
     }
 
@@ -69,7 +63,7 @@ class Extension {
      * @param {Category} category - Category meta data
      */
     addCategory(category) {
-        api.addCategory(Object.assign({}, category, {
+        this.api.addCategory(Object.assign({}, category, {
             categoryId: this.extensionId + '.' + category.categoryId
         }));
     }
@@ -79,7 +73,7 @@ class Extension {
      * @param {string} categoryId - Category id
      */
     removeCategory(categoryId) {
-        api.removeCategory(categoryId);
+        this.api.removeCategory(categoryId);
     }
 
     /**
@@ -87,7 +81,7 @@ class Extension {
      * @param {Block} block - Block meta data
      */
     addBlock(block) {
-        api.addBlock(Object.assign({}, block, {
+        this.api.addBlock(Object.assign({}, block, {
             opcode: this.extensionId + '.' + block.opcode
         }));
     }
@@ -97,7 +91,7 @@ class Extension {
      * @param {string} opcode - Block opcode
      */
     removeBlock(opcode) {
-        api.removeBlock(opcode);
+        this.api.removeBlock(opcode);
     }
 }
 

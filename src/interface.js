@@ -1,25 +1,28 @@
 // interface.js
 
-const hasInit = false;
+let hasInit = false;
 
-let addCategory = (category) => {};
-let removeCategory = (categoryId) => {};
-let addBlock = (block) => {};
-let removeBlock = (blockId) => {};
-
-function initExtensionAPI (api) {
-    if (hasInit) return;
-    hasInit = true;
-    if (api.addBlock) addBlock = api.addBlock;
-    if (api.removeBlock) removeBlock = api.removeBlock;
-    if (api.addCategory) addCategory = api.addCategory;
-    if (api.removeCategory) removeCategory = api.removeCategory;
+const uninitedApi = () => {
+    console.log('Used uninited Api');
 }
 
-module.exports = {
-    initExtensionAPI,
-    addCategory,
-    removeCategory,
-    addBlock,
-    removeBlock
-};
+class ExtensionAPI {
+    constructor() {
+        this.addCategory = (category) => uninitedApi();
+        this.removeCategory = (categoryId) => uninitedApi();
+        this.addBlock = (block) => uninitedApi();
+        this.removeBlock = (blockId) => uninitedApi();
+    }
+
+    initExtensionAPI(api) {
+        console.log('Init API');
+        if (hasInit) return;
+        hasInit = true;
+        if (api.addBlock) this.addBlock = api.addBlock;
+        if (api.removeBlock) this.removeBlock = api.removeBlock;
+        if (api.addCategory) this.addCategory = api.addCategory;
+        if (api.removeCategory) this.removeCategory = api.removeCategory;
+    }
+}
+
+module.exports = ExtensionAPI;
