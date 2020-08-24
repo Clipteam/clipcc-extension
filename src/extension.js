@@ -24,10 +24,10 @@
  * @property {string} color - rgb color like #rrggbb
  */
 
- /**
-  * Block types
-  * @enum {number}
-  */
+/**
+ * Block types
+ * @enum {number}
+ */
 const BlockType = {
     COMMAND: 1,
     REPORTER: 2,

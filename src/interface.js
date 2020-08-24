@@ -8,20 +8,18 @@ const uninitedApi = () => {
 
 class ExtensionAPI {
     constructor() {
-        this.addCategory = (category) => uninitedApi();
-        this.removeCategory = (categoryId) => uninitedApi();
-        this.addBlock = (block) => uninitedApi();
-        this.removeBlock = (blockId) => uninitedApi();
+        this.api = null;
+        this.addCategory = (category) => this.api.addCategory(category);
+        this.removeCategory = (categoryId) => this.api.removeCategory(categoryId);
+        this.addBlock = (block) => this.api.addBlock(block);
+        this.removeBlock = (blockId) => this.api.removeBlock(blockId);
     }
 
     initExtensionAPI(api) {
-        console.log('Init API');
+        console.log('Init API', api);
         if (hasInit) return;
         hasInit = true;
-        if (api.addBlock) this.addBlock = api.addBlock;
-        if (api.removeBlock) this.removeBlock = api.removeBlock;
-        if (api.addCategory) this.addCategory = api.addCategory;
-        if (api.removeCategory) this.removeCategory = api.removeCategory;
+        this.api = api;
     }
 }
 
