@@ -7,11 +7,18 @@
  */
 
 /**
+ * @typedef {object} Message
+ * Message
+ * @property {string} id - id
+ * @property {string} default - default
+ */
+
+/**
  * @typedef {object} Block
  * Block meta data
  * @property {string} opcode - opcode
  * @property {BlockType} type - type
- * @property {string} msgid - l10n message id
+ * @property {string} msg - l10n message
  * @property {string} categoryId - category id
  * @property {function} func - function
  */
@@ -20,7 +27,7 @@
  * @typedef {object} Category
  * Category meta data
  * @property {string} categoryId - category id
- * @property {string} msgid - l10n message id
+ * @property {string} messageId - l10n message id
  * @property {string} color - rgb color like #rrggbb
  */
 
