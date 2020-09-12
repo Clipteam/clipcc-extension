@@ -1,6 +1,7 @@
 // index.js
 
 const extension = require('./extension');
+const CompatibleExtension = require('./compatible_extension');
 const ExtensionAPI = require('./interface');
 
 class SampleExtension extends extension.Extension {
@@ -23,7 +24,7 @@ class SampleExtension extends extension.Extension {
             argument: {
                 ARG1: {
                     type: extension.ArgumentType.STRING,
-                    default: 'aaa'
+                    //default: 'aaa'
                 },
                 ARG2: {
                     type: extension.ArgumentType.STRING,
@@ -64,6 +65,7 @@ class SampleExtension extends extension.Extension {
 
 module.exports = {
     ...extension,
+    CompatibleExtension,
     SampleExtension,
     ExtensionAPI
 };
