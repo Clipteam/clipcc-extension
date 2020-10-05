@@ -64,42 +64,6 @@ class Extension {
     uninit() {
         // UNINIT YOUR EXTENSION
     }
-
-    /**
-     * Add a category
-     * @param {Category} category - Category meta data
-     */
-    addCategory(category) {
-        this.api.addCategory(Object.assign({}, category, {
-            categoryId: this.extensionId + '.' + category.categoryId
-        }));
-    }
-
-    /**
-     * Remove a category
-     * @param {string} categoryId - Category id
-     */
-    removeCategory(categoryId) {
-        this.api.removeCategory(categoryId);
-    }
-
-    /**
-     * Add a block
-     * @param {Block} block - Block meta data
-     */
-    addBlock(block) {
-        this.api.addBlock(Object.assign({}, block, {
-            opcode: this.extensionId + '.' + block.opcode
-        }));
-    }
-
-    /**
-     * Remove a block
-     * @param {string} opcode - Block opcode
-     */
-    removeBlock(opcode) {
-        this.api.removeBlock(opcode);
-    }
 }
 
 module.exports = {

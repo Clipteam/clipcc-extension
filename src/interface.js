@@ -1,26 +1,31 @@
 // interface.js
 
 let hasInit = false;
+let apiInstance = null;
 
-const uninitedApi = () => {
-    console.log('Used uninited Api');
+const apiUnknown = () => {
+    console.log('Used registed Api');
 }
 
-class ExtensionAPI {
-    constructor() {
-        this.api = null;
-        this.addCategory = (category) => this.api.addCategory(category);
-        this.removeCategory = (categoryId) => this.api.removeCategory(categoryId);
-        this.addBlock = (block) => this.api.addBlock(block);
-        this.removeBlock = (blockId) => this.api.removeBlock(blockId);
-    }
+const addCategory = categoryInfo => apiInstance.addCategory(categoryInfo);
 
-    initExtensionAPI(api) {
-        console.log('Init API', api);
-        if (hasInit) return;
-        hasInit = true;
-        this.api = api;
-    }
+const removeCategory = categoryId => apiInstance.removeCategory(categoryId);
+
+const addBlock = blockInfo => apiInstance.addBlock(blockInfo);
+
+const removeBlock = blockOpcode => apiInstance.removeBlock(blockOpcode);
+
+function registExtensionAPI(api) {
+    console.log('Init API', api);
+    if (hasInit) return;
+    apiInstance = api;
+    hasInit = true;
 }
 
-module.exports = ExtensionAPI;
+module.exports = {
+    addCategory,
+    removeCategory,
+    addBlock,
+    removeBlock,
+    registExtensionAPI
+};
