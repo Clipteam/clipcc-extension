@@ -1,11 +1,9 @@
-// index.js
-
-const extension = require('./extension');
+const Extension = require('./extension');
 const CompatibleExtension = require('./compatible-extension');
-const ExtensionAPI = require('./interface');
+const API = require('./api');
 
 module.exports = {
-    ...extension,
+    Extension,
     CompatibleExtension,
-    ...ExtensionAPI
+    ...API
 };

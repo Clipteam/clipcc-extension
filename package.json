@@ -7,13 +7,15 @@
   "author": "Clip Team",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --progress --colors --bail"
+    "build": "webpack --progress --colors --bail",
+    "jsdoc": "jsdoc -c jsdoc.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
     "@babel/preset-env": "^7.11.0",
     "babel-loader": "^8.1.0",
     "expose-loader": "^1.0.0",
+    "jsdoc": "^3.6.6",
     "lodash.defaultsdeep": "^4.6.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.44.1",
