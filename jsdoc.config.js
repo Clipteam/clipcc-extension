@@ -1,13 +1,11 @@
 module.exports = {
-    plugins: [
-        'plugins/markdown',
-        'plugins/summarize'
-    ],
     source: {
         include: ['src']
     },
     opts: {
-        'destination': 'docs',
-        'recurse': true,
-    }
+        destination: 'docs',
+        recurse: true,
+        template: 'node_modules/jsdoc-baseline'
+    },
+    'templates.baseline': 'baseline.config.json5'
 };

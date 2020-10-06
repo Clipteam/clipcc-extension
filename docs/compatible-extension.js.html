@@ -1,33 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: compatible-extension.js</title>
+<!doctype html>
+<html>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+<head>
+  <meta name="generator" content="JSDoc 3.6.6">
+  <meta charset="utf-8">
+  <title>Source: compatible-extension.js</title>
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
+  <link href="css/baseline.css" rel="stylesheet">
 </head>
 
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Source: compatible-extension.js</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>const Extension = require('./extension');
-const API = require('./api');
+<body onload="prettyPrint()">
+  <nav id="jsdoc-navbar" role="navigation" class="jsdoc-navbar">
+    <div id="jsdoc-navbar-container">
+      <div id="jsdoc-navbar-content">
+        <a href="index.html" class="jsdoc-navbar-package-name">Home</a>
+      </div>
+    </div>
+  </nav>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-banner" role="banner">
+        </div>
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1>Source: compatible-extension.js</h1>
+          </header>
+          <article>
+            <pre class="prettyprint linenums"><code>const Extension &#x3D; require(&#x27;./extension&#x27;);
+const API &#x3D; require(&#x27;./api&#x27;);
 
 /**
  * Compatible extension interface with original Scratch.
@@ -40,16 +43,16 @@ class CompatibleExtension extends Extension {
      */
     constructor(instance) {
         super();
-        this.instance = instance;
+        this.instance &#x3D; instance;
     }
 
     /**
      * Initialize the extension.
      */
     init() {
-        const info = this.instance.getInfo();
-        this.extensionId = info.id;
-        const categoryId = this.extensionId + '.' + info.name;
+        const info &#x3D; this.instance.getInfo();
+        this.extensionId &#x3D; info.id;
+        const categoryId &#x3D; this.extensionId + &#x27;.&#x27; + info.name;
         API.addCategory({
             categoryId: categoryId,
             messageId: info.name,
@@ -57,15 +60,15 @@ class CompatibleExtension extends Extension {
         });
 
         for (let block of info.blocks) {
-            const argument = {};
+            const argument &#x3D; {};
             for (let argu in block.arguments) {
-                argument[argu] = {
+                argument[argu] &#x3D; {
                     type: this.getArgumentType(block.arguments[argu].type),
                     default: block.arguments[argu].defaultValue
                 };
             }
             API.addBlock({
-                opcode: this.extensionId + '.' + block.opcode,
+                opcode: this.extensionId + &#x27;.&#x27; + block.opcode,
                 type: this.getBlockType(block.blockType),
                 messageId: block.text,
                 categoryId: categoryId,
@@ -77,54 +80,54 @@ class CompatibleExtension extends Extension {
 
     getBlockType(blockType) {
         switch (blockType) {
-            case 'Boolean': return BlockType.BOOLEAN;
-            case 'button': return 0;
-            case 'command': return BlockType.COMMAND;
-            case 'conditional': return 0;
-            case 'event': return BlockType.HAT;
-            case 'hat': return BlockType.HAT;
-            case 'loop': return 0;
-            case 'reporter': return BlockType.REPORTER;
+            case &#x27;Boolean&#x27;: return BlockType.BOOLEAN;
+            case &#x27;button&#x27;: return 0;
+            case &#x27;command&#x27;: return BlockType.COMMAND;
+            case &#x27;conditional&#x27;: return 0;
+            case &#x27;event&#x27;: return BlockType.HAT;
+            case &#x27;hat&#x27;: return BlockType.HAT;
+            case &#x27;loop&#x27;: return 0;
+            case &#x27;reporter&#x27;: return BlockType.REPORTER;
             default: return 0;
         }
     }
     
     getArgumentType(arguType) {
         switch (arguType) {
-            case 'angle': return 0;
-            case 'Boolean': return ArgumentType.BOOLEAN;
-            case 'color': return ArgumentType.COLOR;
-            case 'number': return ArgumentType.NUMBER;
-            case 'string': return ArgumentType.STRING;
-            case 'matrix': return 0;
-            case 'note': return 0;
-            case 'image': return 0;
+            case &#x27;angle&#x27;: return 0;
+            case &#x27;Boolean&#x27;: return ArgumentType.BOOLEAN;
+            case &#x27;color&#x27;: return ArgumentType.COLOR;
+            case &#x27;number&#x27;: return ArgumentType.NUMBER;
+            case &#x27;string&#x27;: return ArgumentType.STRING;
+            case &#x27;matrix&#x27;: return 0;
+            case &#x27;note&#x27;: return 0;
+            case &#x27;image&#x27;: return 0;
             default: return 0;
         }
     }
 }
 
-module.exports = CompatibleExtension;
+module.exports &#x3D; CompatibleExtension;
 </code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CompatibleExtension.html">CompatibleExtension</a></li><li><a href="Extension.html">Extension</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addBlock">addBlock</a></li><li><a href="global.html#addCategory">addCategory</a></li><li><a href="global.html#ArgumentType">ArgumentType</a></li><li><a href="global.html#BlockType">BlockType</a></li><li><a href="global.html#registExtensionAPI">registExtensionAPI</a></li><li><a href="global.html#removeBlock">removeBlock</a></li><li><a href="global.html#removeCategory">removeCategory</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Oct 06 2020 01:32:53 GMT+0800 (China Standard Time)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
+          </article>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+  <footer id="jsdoc-footer" class="jsdoc-footer">
+    <div id="jsdoc-footer-container">
+      <p>
+        Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> 3.6.6 on October 6, 2020.
+      </p>
+    </div>
+  </footer>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/tree.jquery.js"></script>
+  <script src="scripts/prettify.js"></script>
+  <script src="scripts/jsdoc-toc.js"></script>
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/scrollanchor.js"></script>
 </body>
+
 </html>

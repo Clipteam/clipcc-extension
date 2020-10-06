@@ -16,6 +16,7 @@
     "babel-loader": "^8.1.0",
     "expose-loader": "^1.0.0",
     "jsdoc": "^3.6.6",
+    "jsdoc-baseline": "^0.1.5",
     "lodash.defaultsdeep": "^4.6.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.44.1",
