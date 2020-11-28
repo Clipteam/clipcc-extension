@@ -1,35 +1,50 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta name="generator" content="JSDoc 3.6.6">
-  <meta charset="utf-8">
-  <title>Source: type.js</title>
-  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
-  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
-  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
-  <link href="css/baseline.css" rel="stylesheet">
+    
+    <meta charset="utf-8">
+    <title>type.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<body>
 
-<body onload="prettyPrint()">
-  <nav id="jsdoc-navbar" role="navigation" class="jsdoc-navbar">
-    <div id="jsdoc-navbar-container">
-      <div id="jsdoc-navbar-content">
-        <a href="index.html" class="jsdoc-navbar-package-name">Home</a>
-      </div>
-    </div>
-  </nav>
-  <div id="jsdoc-body-container">
-    <div id="jsdoc-content">
-      <div id="jsdoc-content-container">
-        <div id="jsdoc-banner" role="banner">
-        </div>
-        <div id="jsdoc-main" role="main">
-          <header class="page-header">
-            <h1>Source: type.js</h1>
-          </header>
-          <article>
-            <pre class="prettyprint linenums"><code>/**
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/ClipTeam/clipcc-extension" target="_blank" class="menu-item" id="github_link" >Github Repo</a></h2><h3>Modules</h3><ul><li><a href="module-API.html">API</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-API.html#~addBlock">addBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~addCategory">addCategory</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~registExtensionAPI">registExtensionAPI</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeBlock">removeBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeCategory">removeCategory</a></li></ul></li><li><a href="module-Type.html">Type</a></li></ul><h3>Classes</h3><ul><li><a href="CompatibleExtension.html">CompatibleExtension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#uninit">uninit</a></li></ul></li><li><a href="Extension.html">Extension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Extension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="Extension.html#uninit">uninit</a></li></ul></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-getting_started.html">Getting Started</a></li><li><a href="tutorial-installation.html">Installation</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">type.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * Define types used by clipcc-extension.
  * @module Type
  */
@@ -80,7 +95,7 @@
  * @readonly
  * @enum {number}
  */
-const BlockType &#x3D; {
+const BlockType = {
     /** A general command block */
     COMMAND: 1,
     /** A block which returns a number or string */
@@ -98,7 +113,7 @@ const BlockType &#x3D; {
  * @readonly
  * @enum {number}
  */
-const ArgumentType &#x3D; {
+const ArgumentType = {
     /** Number */
     NUMBER: 1,
     /** String */
@@ -124,59 +139,65 @@ const ArgumentType &#x3D; {
  * @readonly
  * @enum {Shadow|boolean}
  */
-const ShadowType &#x3D; {
+const ShadowType = {
     NO_SHADOW: false,
     ANGLE: {
-        type: &#x27;math_angle&#x27;,
-        fieldName: &#x27;NUM&#x27;
+        type: 'math_angle',
+        fieldName: 'NUM'
     },
     COLOR: {
-        type: &#x27;colour_picker&#x27;,
-        fieldName: &#x27;COLOUR&#x27;
+        type: 'colour_picker',
+        fieldName: 'COLOUR'
     },
     NUMBER: {
-        type: &#x27;math_number&#x27;,
-        fieldName: &#x27;NUM&#x27;
+        type: 'math_number',
+        fieldName: 'NUM'
     },
     STRING: {
-        type: &#x27;text&#x27;,
-        fieldName: &#x27;TEXT&#x27;
+        type: 'text',
+        fieldName: 'TEXT'
     },
     MATRIX: {
-        type: &#x27;matrix&#x27;,
-        fieldName: &#x27;MATRIX&#x27;
+        type: 'matrix',
+        fieldName: 'MATRIX'
     },
     NOTE: {
-        type: &#x27;note&#x27;,
-        fieldName: &#x27;NOTE&#x27;
+        type: 'note',
+        fieldName: 'NOTE'
     }
 };
 
-module.exports &#x3D; {
+module.exports = {
     BlockType,
     ArgumentType,
     ShadowType
 }
 </code></pre>
-          </article>
-        </div>
-      </div>
-      <nav id="jsdoc-toc-nav" role="navigation"></nav>
-    </div>
-  </div>
-  <footer id="jsdoc-footer" class="jsdoc-footer">
-    <div id="jsdoc-footer-container">
-      <p>
-        Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> 3.6.6 on October 7, 2020.
-      </p>
-    </div>
-  </footer>
-  <script src="scripts/jquery.min.js"></script>
-  <script src="scripts/tree.jquery.js"></script>
-  <script src="scripts/prettify.js"></script>
-  <script src="scripts/jsdoc-toc.js"></script>
-  <script src="scripts/linenumber.js"></script>
-  <script src="scripts/scrollanchor.js"></script>
-</body>
+        </article>
+    </section>
 
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Sat Nov 28 2020 18:59:58 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
 </html>

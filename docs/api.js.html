@@ -1,65 +1,80 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta name="generator" content="JSDoc 3.6.6">
-  <meta charset="utf-8">
-  <title>Source: api.js</title>
-  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
-  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
-  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
-  <link href="css/baseline.css" rel="stylesheet">
+    
+    <meta charset="utf-8">
+    <title>api.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<body>
 
-<body onload="prettyPrint()">
-  <nav id="jsdoc-navbar" role="navigation" class="jsdoc-navbar">
-    <div id="jsdoc-navbar-container">
-      <div id="jsdoc-navbar-content">
-        <a href="index.html" class="jsdoc-navbar-package-name">Home</a>
-      </div>
-    </div>
-  </nav>
-  <div id="jsdoc-body-container">
-    <div id="jsdoc-content">
-      <div id="jsdoc-content-container">
-        <div id="jsdoc-banner" role="banner">
-        </div>
-        <div id="jsdoc-main" role="main">
-          <header class="page-header">
-            <h1>Source: api.js</h1>
-          </header>
-          <article>
-            <pre class="prettyprint linenums"><code>/**
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/ClipTeam/clipcc-extension" target="_blank" class="menu-item" id="github_link" >Github Repo</a></h2><h3>Modules</h3><ul><li><a href="module-API.html">API</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-API.html#~addBlock">addBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~addCategory">addCategory</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~registExtensionAPI">registExtensionAPI</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeBlock">removeBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeCategory">removeCategory</a></li></ul></li><li><a href="module-Type.html">Type</a></li></ul><h3>Classes</h3><ul><li><a href="CompatibleExtension.html">CompatibleExtension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#uninit">uninit</a></li></ul></li><li><a href="Extension.html">Extension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Extension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="Extension.html#uninit">uninit</a></li></ul></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-getting_started.html">Getting Started</a></li><li><a href="tutorial-installation.html">Installation</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">api.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * Define APIs.
  * @module API
  */
 
-let hasInit &#x3D; false;
-let apiInstance &#x3D; null;
+let hasInit = false;
+let apiInstance = null;
 
 /**
  * Add a category from proptype.
  * @param {Category} categoryInfo - Category proptype. 
  */
-const addCategory &#x3D; categoryInfo &#x3D;&gt; apiInstance.addCategory(categoryInfo);
+const addCategory = categoryInfo => apiInstance.addCategory(categoryInfo);
 
 /**
  * Remove a category from id.
  * @param {string} categoryId - Category id.
  */
-const removeCategory &#x3D; categoryId &#x3D;&gt; apiInstance.removeCategory(categoryId);
+const removeCategory = categoryId => apiInstance.removeCategory(categoryId);
 
 /**
  * Add a block from proptype.
  * @param {Block} blockInfo - Block proptype.
  */
-const addBlock &#x3D; blockInfo &#x3D;&gt; apiInstance.addBlock(blockInfo);
+const addBlock = blockInfo => apiInstance.addBlock(blockInfo);
 
 /**
  * Remove a block from opcode.
  * @param {string} blockOpcode - Block opcode.
  */
-const removeBlock &#x3D; blockOpcode &#x3D;&gt; apiInstance.removeBlock(blockOpcode);
+const removeBlock = blockOpcode => apiInstance.removeBlock(blockOpcode);
 
 /**
  * Regist an API.
@@ -67,13 +82,13 @@ const removeBlock &#x3D; blockOpcode &#x3D;&gt; apiInstance.removeBlock(blockOpc
  * @param {object} api - API object.
  */
 function registExtensionAPI(api) {
-    console.log(&#x27;Init API&#x27;, api);
+    console.log('Init API', api);
     if (hasInit) return;
-    apiInstance &#x3D; api;
-    hasInit &#x3D; true;
+    apiInstance = api;
+    hasInit = true;
 }
 
-module.exports &#x3D; {
+module.exports = {
     addCategory,
     removeCategory,
     addBlock,
@@ -81,25 +96,31 @@ module.exports &#x3D; {
     registExtensionAPI
 };
 </code></pre>
-          </article>
-        </div>
-      </div>
-      <nav id="jsdoc-toc-nav" role="navigation"></nav>
-    </div>
-  </div>
-  <footer id="jsdoc-footer" class="jsdoc-footer">
-    <div id="jsdoc-footer-container">
-      <p>
-        Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> 3.6.6 on October 7, 2020.
-      </p>
-    </div>
-  </footer>
-  <script src="scripts/jquery.min.js"></script>
-  <script src="scripts/tree.jquery.js"></script>
-  <script src="scripts/prettify.js"></script>
-  <script src="scripts/jsdoc-toc.js"></script>
-  <script src="scripts/linenumber.js"></script>
-  <script src="scripts/scrollanchor.js"></script>
-</body>
+        </article>
+    </section>
 
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Sat Nov 28 2020 18:59:58 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
 </html>

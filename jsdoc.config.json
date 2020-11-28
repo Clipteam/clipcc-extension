@@ -1,0 +1,36 @@
+{
+    "opts": {
+        "destination": "docs",
+        "encoding": "utf8",
+        "readme": "README.md",
+        "recurse": true,
+        "template": "node_modules/docdash",
+        "tutorials": "tutorials"
+    },
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "source": {
+        "include": "src"
+    },
+    "tags": {
+        "allowUnknownTags": false
+    },
+    "docdash": {
+        "collapse": true,
+        "menu": {
+            "Github Repo": {
+                "href": "https://github.com/ClipTeam/clipcc-extension",
+                "target": "_blank",
+                "class": "menu-item",
+                "id": "github_link"
+            }
+        },
+        "sectionOrder": [
+            "Modules", "Classes", "Interfaces", "Externals",
+            "Events", "Namespaces", "Mixins", "Tutorials"
+        ],
+        "search": true,
+        "sort": true
+    }
+}
