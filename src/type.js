@@ -125,4 +125,4 @@ module.exports = {
     BlockType,
     ArgumentType,
     ShadowType
-}
+};

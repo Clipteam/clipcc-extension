@@ -36,7 +36,6 @@ const removeBlock = blockOpcode => apiInstance.removeBlock(blockOpcode);
  * @param {object} api - API object.
  */
 function registExtensionAPI(api) {
-    console.log('Init API', api);
     if (hasInit) return;
     apiInstance = api;
     hasInit = true;
