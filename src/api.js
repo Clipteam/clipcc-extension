@@ -51,5 +51,6 @@ module.exports = {
     removeCategory,
     addBlock,
     removeBlock,
+    refreshBlocks,
     registExtensionAPI
 };
