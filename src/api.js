@@ -31,6 +31,11 @@ const addBlock = blockInfo => apiInstance.addBlock(blockInfo);
 const removeBlock = blockOpcode => apiInstance.removeBlock(blockOpcode);
 
 /**
+ * Refresh all blocks
+ */
+ const refreshBlocks =  apiInstance.refreshBlocks();
+
+/**
  * Regist an API.
  * [Dangerous] You should not call this function in your extension.
  * @param {object} api - API object.
