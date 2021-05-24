@@ -7,6 +7,11 @@ let hasInit = false;
 let apiInstance = null;
 
 /**
+ * the VM of clipcc.
+ */
+const virtualMachine = apiInstance.vm;
+
+/**
  * Add a category from proptype.
  * @param {Category} categoryInfo - Category proptype. 
  */
@@ -31,11 +36,6 @@ const addBlock = blockInfo => apiInstance.addBlock(blockInfo);
 const removeBlock = blockOpcode => apiInstance.removeBlock(blockOpcode);
 
 /**
- * Refresh all blocks
- */
- const refreshBlocks =  apiInstance.refreshBlocks();
-
-/**
  * Regist an API.
  * [Dangerous] You should not call this function in your extension.
  * @param {object} api - API object.
@@ -47,10 +47,10 @@ function registExtensionAPI(api) {
 }
 
 module.exports = {
+	virtualMachine,
     addCategory,
     removeCategory,
     addBlock,
     removeBlock,
-    refreshBlocks,
     registExtensionAPI
 };
