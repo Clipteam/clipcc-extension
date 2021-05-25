@@ -42,7 +42,6 @@ function registExtensionAPI(api) {
 }
 
 module.exports = {
-	getVM,
     addCategory,
     removeCategory,
     addBlock,
