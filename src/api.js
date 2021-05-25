@@ -7,11 +7,6 @@ let hasInit = false;
 let apiInstance = null;
 
 /**
- * the VM of clipcc.
- */
-const virtualMachine = apiInstance.vm;
-
-/**
  * Add a category from proptype.
  * @param {Category} categoryInfo - Category proptype. 
  */
@@ -47,7 +42,7 @@ function registExtensionAPI(api) {
 }
 
 module.exports = {
-	virtualMachine,
+	getVM,
     addCategory,
     removeCategory,
     addBlock,
