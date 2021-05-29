@@ -1,4 +1,4 @@
-[Chinese version]()https://github.com/Clipteam/clipcc-extension/blob/master/README_CN.md
+[Chinese version](https://github.com/Clipteam/clipcc-extension/blob/master/README_CN.md)
 # ClipCC Extension
 
 `clipcc-extension` is an API for writing ClipCC extensions.
@@ -10,7 +10,7 @@ ClipCC3 Extension is a ClipCC3 feature under development that allows users to fr
 Please note! Before you start learning to develop extensions, please note that **ClipCC3 extensions are still in development** and there may be major changes to existing extension APIs that may cause extensions to fail before the official release of the feature. This tutorial will use the ClipCC3 extension API as of May 20 for demonstration purposes.
 ## Environmental requirements
 You need to install NodeJS and npm beforehand (you can also use yarn instead), in order to save space not to describe the installation method in detail, please check the tutorial through the search engine itself.
-## 建立一个新项目
+## Make an new project
 For project management purposes, please go to your working folder first and then run the following commands in order:
 ``` bash
 npm -g install clipcc-extension-cli # can also be replaced with yarn global add clipcc-extension-cli
