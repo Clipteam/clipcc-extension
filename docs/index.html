@@ -29,7 +29,7 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/ClipTeam/clipcc-extension" target="_blank" class="menu-item" id="github_link" >Github Repo</a></h2><h3>Modules</h3><ul><li><a href="module-API.html">API</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-API.html#~addBlock">addBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~addCategory">addCategory</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~registExtensionAPI">registExtensionAPI</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeBlock">removeBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeCategory">removeCategory</a></li></ul></li><li><a href="module-Type.html">Type</a></li></ul><h3>Classes</h3><ul><li><a href="CompatibleExtension.html">CompatibleExtension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#uninit">uninit</a></li></ul></li><li><a href="Extension.html">Extension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Extension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="Extension.html#uninit">uninit</a></li></ul></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-getting_started.html">Getting Started</a></li><li><a href="tutorial-installation.html">Installation</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/ClipTeam/clipcc-extension" target="_blank" class="menu-item" id="github_link" >Github Repo</a></h2><h3>Modules</h3><ul><li><a href="module-API.html">API</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-API.html#~addBlock">addBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~addCategory">addCategory</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~registExtensionAPI">registExtensionAPI</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeBlock">removeBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeCategory">removeCategory</a></li></ul></li><li><a href="module-Type.html">Type</a></li></ul><h3>Classes</h3><ul><li><a href="CompatibleExtension.html">CompatibleExtension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#uninit">uninit</a></li></ul></li><li><a href="Extension.html">Extension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Extension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="Extension.html#uninit">uninit</a></li></ul></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-installation.html">Installation</a></li></ul>
 </nav>
 
 <div id="main">
@@ -59,31 +59,32 @@
 
 
     <section class="readme usertext">
-        <article><h1>ClipCC Extension</h1>
-<p><code>clipcc-extension</code> 是一个用于编写 ClipCC 扩展的API。</p>
-<h2>什么是ClipCC3 扩展？</h2>
-<p>ClipCC3 扩展是正在开发中的ClipCC3功能，他允许用户能够自由的为ClipCC3添加新的功能（包括但不限于新模块，新外观）。
+        <article><p><a href="https://github.com/Clipteam/clipcc-extension/blob/master/README_CN.md">Chinese version</a></p>
+<h1>ClipCC Extension</h1>
+<p><code>clipcc-extension</code> is an API for writing ClipCC extensions.</p>
+<h2>What is ClipCC3 extension?</h2>
+<p>ClipCC3 Extension is a ClipCC3 feature under development that allows users to freely add new features to ClipCC3 (including but not limited to new modules, new look and feel).
 <img src="https://i.niupic.com/images/2021/05/20/9i1I.jpg" alt=""></p>
 <!--more-->
-<h2>在开始之前</h2>
-<p>请注意！在开始学习开发扩展之前，请注意<strong>ClipCC3 扩展功能仍处于开发阶段</strong>，在正式发布该功能之前已有扩展API可能会出现大的改动造成扩展失效。本教程将使用截至5月20日的ClipCC3 扩展API进行演示。</p>
-<h2>环境要求</h2>
-<p>您需要事先安装好NodeJS与npm（也可以使用yarn代替），为了节省篇幅不详细叙述安装方法，请通过搜索引擎自行查询教程。</p>
-<h2>建立一个新项目</h2>
-<p>为了方便项目管理，请您先进入您的工作文件夹再按顺序运行以下命令：</p>
-<pre class="prettyprint source lang-bash"><code>npm -g install clipcc-extension-cli # 也可替换为yarn global add clipcc-extension-cli
-mkdir example-extension # example-extension可换为自己的扩展项目名
+<h2>Before the begining</h2>
+<p>Please note! Before you start learning to develop extensions, please note that <strong>ClipCC3 extensions are still in development</strong> and there may be major changes to existing extension APIs that may cause extensions to fail before the official release of the feature. This tutorial will use the ClipCC3 extension API as of May 20 for demonstration purposes.</p>
+<h2>Environmental requirements</h2>
+<p>You need to install NodeJS and npm beforehand (you can also use yarn instead), in order to save space not to describe the installation method in detail, please check the tutorial through the search engine itself.</p>
+<h2>Make an new project</h2>
+<p>For project management purposes, please go to your working folder first and then run the following commands in order:</p>
+<pre class="prettyprint source lang-bash"><code>npm -g install clipcc-extension-cli # can also be replaced with yarn global add clipcc-extension-cli
+mkdir example-extension # example-extension can also be replaced with your extension name
 cd example-extension
-npm init # 也可替换为yarn init
+npm init # can also be replaced with yarn init
 ccext-cli -g
-npm install # 也可替换为yarn
+npm install # can also be replaced with yarn
 </code></pre>
-<p>在运行完毕之后，您的文件夹内容应该是这样的：</p>
+<p>After running, the contents of your folder should look like this:</p>
 <pre class="prettyprint source"><code>/src
 package.json
 webpack.config.js
 </code></pre>
-<p>其中，扩展项目的核心代码都存储在src文件夹下面，文件夹内容应该是这样的（locales文件夹不存在很正常，请自行建立该文件夹以附属文件）：</p>
+<p>Among them, the core code of the extension project are stored under the src folder, the contents of the folder should look like this (it is normal that the locales folder does not exist, please create the folder yourself to attach files)</p>
 <pre class="prettyprint source"><code>assets/
 - icon.jpg
 - inset_icon.svg
@@ -93,9 +94,9 @@ locales/
 index.js
 info.json
 </code></pre>
-<p>其中locales目录用于存放不同语言下模块的样式，assets用于存放插件资源，index.js为注册模块/实现功能的主要文件，info.json则是插件信息。</p>
-<h2>编写一个最简单的扩展</h2>
-<p>首先请先打开src/info.json，填写如下内容：</p>
+<p>The locales directory is used to store the style of modules in different languages, assets is used to store the plugin resources, index.js is the main file for registering modules/realizing functions, and info.json is the plugin information.</p>
+<h2>Writing an extension</h2>
+<p>First of all, please open src/info.json and fill in the following content:</p>
 <pre class="prettyprint source lang-json"><code>{
     &quot;id&quot;: &quot;your.extension.id&quot;,
     &quot;author&quot;: &quot;Your Name&quot;,
@@ -104,7 +105,7 @@ info.json
     &quot;inset_icon&quot;: &quot;assets/inset_icon.svg&quot;
 }
 </code></pre>
-<p>然后打开src/index.js，填写如下内容：</p>
+<p>Then open src/index.js and fill in the following content.</p>
 <pre class="prettyprint source lang-javascript"><code>const ClipCC = require('clipcc-extension');
 
 class ExampleExtension extends ClipCC.Extension {
@@ -152,7 +153,7 @@ class ExampleExtension extends ClipCC.Extension {
 
 module.exports = ExampleExtension;
 </code></pre>
-<p>然后打开src/locales/en.json与src/locales/zh-cn.json，分别填写</p>
+<p>Then open src/locales/en.json and src/locales/zh-cn.json and fill in them:</p>
 <pre class="prettyprint source lang-json"><code>{
     &quot;your.extension.id.name&quot;: &quot;Example&quot;,
     &quot;your.extension.id.category.name&quot;: &quot;Example&quot;,
@@ -171,14 +172,14 @@ module.exports = ExampleExtension;
 }
 
 </code></pre>
-<p>编写完毕之后，在项目顶层文件夹执行<code>npm run build</code>，生成的插件可以在 dist/ 下找到，之后直接导入ClipCC即可使用。
+<p>After writing, run <code>npm run build</code> in the project top-level folder, the generated plugins can be found under dist/, and then directly imported into ClipCC to use.
 <img src="https://i.niupic.com/images/2021/05/20/9i21.jpg" alt=""></p>
-<h2>最后</h2>
-<p>以上则是一个最简单的ClipCC插件示例，以下内容可能对你的进一步编写有帮助：
-ClipCC扩展文档：<a href="https://clipteam.github.io/clipcc-extension/">点这里</a>
-ClipCC本地存储扩展代码：<a href="https://github.com/Clipteam/clipcc-extension-local-storage">点这里</a>
-ClipCC JavaScript扩展代码：<a href="https://github.com/SinanGentoo/clipcc-extension-javascript">点这里</a>
-ClipCC 官方交流QQ群：959825608</p></article>
+<h2>Lastly</h2>
+<p>The above is a sample of the simplest ClipCC plugin, the following may be useful for your further writing.
+ClipCC extension documentation: <a href="https://clipteam.github.io/clipcc-extension/">click here</a>
+ClipCC local storage extension code: <a href="https://github.com/Clipteam/clipcc-extension-local-storage">click here</a>
+ClipCC JavaScript extension code: <a href="https://github.com/SinanGentoo/clipcc-extension-javascript">click here</a>
+ClipCC official exchange QQ group: 959825608</p></article>
     </section>
 
 
@@ -193,7 +194,7 @@ ClipCC 官方交流QQ群：959825608</p></article>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Tue May 25 2021 18:53:21 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Sat May 29 2021 10:41:52 GMT+0800 (中国标准时间) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

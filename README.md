@@ -128,5 +128,3 @@ ClipCC extension documentation: [click here](https://clipteam.github.io/clipcc-e
 ClipCC local storage extension code: [click here](https://github.com/Clipteam/clipcc-extension-local-storage)
 ClipCC JavaScript extension code: [click here](https://github.com/SinanGentoo/clipcc-extension-javascript)
 ClipCC official exchange QQ group: 959825608
-
-Translated with www.DeepL.com/Translator (free version)
