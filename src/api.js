@@ -44,15 +44,22 @@ const getPlaygroundData = () => apiInstance.getPlaygroundData();
 const loadProject = (input, extensionCallback) => apiInstance.loadProject(input, extensionCallback);
 
 /**
-*  [Dangerous] Get runtime of vitrual machine.
+* Get blockly.
+* [Dangerous] You should not call this function in your extension.
+*/
+const getBlockly = () => apiInstance.getBlockly();
+
+/**
+* Get runtime of vitrual machine.
+* [Dangerous] You should not call this function in your extension.
 */
 const getRuntime = () => apiInstance.getRuntime();
 
 /**
- * Regist an API.
- * [Dangerous] You should not call this function in your extension.
- * @param {object} api - API object.
- */
+* Regist an API.
+* [Dangerous] You should not call this function in your extension.
+* @param {object} api - API object.
+*/
 function registExtensionAPI(api) {
     if (hasInit) return;
     apiInstance = api;
@@ -67,5 +74,6 @@ module.exports = {
     getPlaygroundData,
     loadProject,
     getRuntime,
+    getBlockly,
     registExtensionAPI
 };
