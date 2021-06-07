@@ -50,7 +50,7 @@ const loadProject = (input, extensionCallback) => apiInstance.loadProject(input,
 let blockly = null;
 
 /**
-* Get vitrual machine of ClipCC.
+* Get the vitrual machine of ClipCC.
 * [Dangerous] You should not call this function in your extension.
 */
 let virtualMachine = null;
@@ -63,7 +63,7 @@ let virtualMachine = null;
 function registExtensionAPI(api) {
     if (hasInit) return;
     apiInstance = api;
-    blockly = apiInstance.ClipCCBlocks;
+    blockly = apiInstance.blockly;
     virtualMachine = apiInstance.vm;
     hasInit = true;
 }
