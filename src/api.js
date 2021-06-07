@@ -33,11 +33,6 @@ const removeBlock = blockOpcode => apiInstance.removeBlock(blockOpcode);
 /**
 *  Get data for playground.
 */
-const updateWorkspace = () => apiInstance.updateWorkspace();
-
-/**
-*  Get data for playground.
-*/
 const getPlaygroundData = () => apiInstance.getPlaygroundData();
 
 /**
@@ -49,16 +44,16 @@ const getPlaygroundData = () => apiInstance.getPlaygroundData();
 const loadProject = (input, extensionCallback) => apiInstance.loadProject(input, extensionCallback);
 
 /**
-* Get blockly.
+* Get the blockly.
 * [Dangerous] You should not call this function in your extension.
 */
-const getBlockly = () => apiInstance.getBlockly();
+let blockly = null;
 
 /**
-* Get runtime of vitrual machine.
+* Get vitrual machine of ClipCC.
 * [Dangerous] You should not call this function in your extension.
 */
-const getRuntime = () => apiInstance.getRuntime();
+let virtualMachine = null;
 
 /**
 * Regist an API.
@@ -68,6 +63,8 @@ const getRuntime = () => apiInstance.getRuntime();
 function registExtensionAPI(api) {
     if (hasInit) return;
     apiInstance = api;
+    blockly = apiInstance.ClipCCBlocks;
+    virtualMachine = apiInstance.vm;
     hasInit = true;
 }
 
@@ -76,10 +73,9 @@ module.exports = {
     removeCategory,
     addBlock,
     removeBlock,
-    updateWorkspace,
     getPlaygroundData,
     loadProject,
-    getRuntime,
-    getBlockly,
+    virtualMachine,
+    blockly,
     registExtensionAPI
 };
