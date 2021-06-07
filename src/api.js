@@ -31,6 +31,24 @@ const addBlock = blockInfo => apiInstance.addBlock(blockInfo);
 const removeBlock = blockOpcode => apiInstance.removeBlock(blockOpcode);
 
 /**
+*  Get data for playground.
+*/
+const getPlaygroundData = () => apiInstance.getPlaygroundData();
+
+/**
+* Load a Scratch project from a .sb, .sb2, .sb3 or json string.
+* @param {string | object} input A json string, object, or ArrayBuffer representing the project to load.
+* @param {function} extensionCallback A function to deal with extension list.
+* @return {!Promise} Promise that resolves after targets are installed.
+*/
+const loadProject = (input, extensionCallback) => apiInstance.loadProject(input, extensionCallback);
+
+/**
+*  [Dangerous] Get runtime of vitrual machine.
+*/
+const getRuntime = () => apiInstance.getRuntime();
+
+/**
  * Regist an API.
  * [Dangerous] You should not call this function in your extension.
  * @param {object} api - API object.
@@ -46,5 +64,8 @@ module.exports = {
     removeCategory,
     addBlock,
     removeBlock,
+    getPlaygroundData,
+    loadProject,
+    getRuntime,
     registExtensionAPI
 };
