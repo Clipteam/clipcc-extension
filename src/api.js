@@ -33,6 +33,11 @@ const removeBlock = blockOpcode => apiInstance.removeBlock(blockOpcode);
 /**
 *  Get data for playground.
 */
+const updateWorkspace = () => apiInstance.updateWorkspace();
+
+/**
+*  Get data for playground.
+*/
 const getPlaygroundData = () => apiInstance.getPlaygroundData();
 
 /**
@@ -71,6 +76,7 @@ module.exports = {
     removeCategory,
     addBlock,
     removeBlock,
+    updateWorkspace,
     getPlaygroundData,
     loadProject,
     getRuntime,

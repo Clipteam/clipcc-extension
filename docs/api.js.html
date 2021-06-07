@@ -29,7 +29,7 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/ClipTeam/clipcc-extension" target="_blank" class="menu-item" id="github_link" >Github Repo</a></h2><h3>Modules</h3><ul><li><a href="module-API.html">API</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-API.html#~addBlock">addBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~addCategory">addCategory</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getPlaygroundData">getPlaygroundData</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getRuntime">getRuntime</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~loadProject">loadProject</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~registExtensionAPI">registExtensionAPI</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeBlock">removeBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeCategory">removeCategory</a></li></ul></li><li><a href="module-Type.html">Type</a></li></ul><h3>Classes</h3><ul><li><a href="CompatibleExtension.html">CompatibleExtension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#uninit">uninit</a></li></ul></li><li><a href="Extension.html">Extension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Extension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="Extension.html#uninit">uninit</a></li></ul></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-installation.html">Installation</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/ClipTeam/clipcc-extension" target="_blank" class="menu-item" id="github_link" >Github Repo</a></h2><h3>Modules</h3><ul><li><a href="module-API.html">API</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-API.html#~addBlock">addBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~addCategory">addCategory</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getBlockly">getBlockly</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getPlaygroundData">getPlaygroundData</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getRuntime">getRuntime</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~loadProject">loadProject</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~registExtensionAPI">registExtensionAPI</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeBlock">removeBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeCategory">removeCategory</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~updateWorkspace">updateWorkspace</a></li></ul></li><li><a href="module-Type.html">Type</a></li></ul><h3>Classes</h3><ul><li><a href="CompatibleExtension.html">CompatibleExtension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#uninit">uninit</a></li></ul></li><li><a href="Extension.html">Extension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Extension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="Extension.html#uninit">uninit</a></li></ul></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-installation.html">Installation</a></li></ul>
 </nav>
 
 <div id="main">
@@ -79,6 +79,11 @@ const removeBlock = blockOpcode => apiInstance.removeBlock(blockOpcode);
 /**
 *  Get data for playground.
 */
+const updateWorkspace = () => apiInstance.updateWorkspace();
+
+/**
+*  Get data for playground.
+*/
 const getPlaygroundData = () => apiInstance.getPlaygroundData();
 
 /**
@@ -90,15 +95,22 @@ const getPlaygroundData = () => apiInstance.getPlaygroundData();
 const loadProject = (input, extensionCallback) => apiInstance.loadProject(input, extensionCallback);
 
 /**
-*  [Dangerous] Get runtime of vitrual machine.
+* Get blockly.
+* [Dangerous] You should not call this function in your extension.
+*/
+const getBlockly = () => apiInstance.getBlockly();
+
+/**
+* Get runtime of vitrual machine.
+* [Dangerous] You should not call this function in your extension.
 */
 const getRuntime = () => apiInstance.getRuntime();
 
 /**
- * Regist an API.
- * [Dangerous] You should not call this function in your extension.
- * @param {object} api - API object.
- */
+* Regist an API.
+* [Dangerous] You should not call this function in your extension.
+* @param {object} api - API object.
+*/
 function registExtensionAPI(api) {
     if (hasInit) return;
     apiInstance = api;
@@ -110,9 +122,11 @@ module.exports = {
     removeCategory,
     addBlock,
     removeBlock,
+    updateWorkspace,
     getPlaygroundData,
     loadProject,
     getRuntime,
+    getBlockly,
     registExtensionAPI
 };
 </code></pre>
@@ -129,7 +143,7 @@ module.exports = {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Mon Jun 07 2021 09:49:47 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Mon Jun 07 2021 13:42:24 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
