@@ -47,13 +47,13 @@ const loadProject = (input, extensionCallback) => apiInstance.loadProject(input,
 * Get the blockly.
 * [Dangerous] You should not call this function in your extension.
 */
-let blockly = null;
+let blockly = null
 
 /**
-* Get the vitrual machine of ClipCC.
+* Get the virtual machine of ClipCC.
 * [Dangerous] You should not call this function in your extension.
 */
-let virtualMachine = null;
+let vm = null;
 
 /**
 * Regist an API.
@@ -61,10 +61,12 @@ let virtualMachine = null;
 * @param {object} api - API object.
 */
 function registExtensionAPI(api) {
+    // alert("嘿！开始注册")
     if (hasInit) return;
     apiInstance = api;
-    blockly = apiInstance.blockly;
-    virtualMachine = apiInstance.vm;
+    this.vm = apiInstance.vm;
+    this.blockly = apiInstance.blockly;
+    // console.log("Extension API注册成功！", this.blockly, this.virtualMachine); //DEBUG
     hasInit = true;
 }
 
@@ -75,7 +77,7 @@ module.exports = {
     removeBlock,
     getPlaygroundData,
     loadProject,
-    virtualMachine,
+    vm,
     blockly,
     registExtensionAPI
 };
