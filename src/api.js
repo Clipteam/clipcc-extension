@@ -44,6 +44,16 @@ const getPlaygroundData = () => apiInstance.vm.getPlaygroundData();
 const loadProject = (input, extensionCallback) => apiInstance.vm.loadProject(input, extensionCallback);
 
 /**
+* Return whether the editor is in the desktop environment.
+*/
+const isDesktop = () => apiInstance.gui.isDesktop();
+
+/**
+* Return whether the editor is loading.
+*/
+const isEditorLoading = () => apiInstance.gui.isEditorLoading();
+
+/**
 * Get the GUI.
 * [Dangerous] You should not call this function in your extension.
 */
@@ -70,7 +80,7 @@ function registExtensionAPI(api) {
     // alert("嘿！开始注册")
     if (hasInit) return;
     apiInstance = api;
-    this.gui = apiInstance.gui;
+    this.gui = apiInstance.gui.gui;
     this.vm = apiInstance.vm.vm;
     this.blockly = apiInstance.blocks;
     //console.log("丢一个apiInstance:", apiInstance);
