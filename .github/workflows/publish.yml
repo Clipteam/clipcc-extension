@@ -15,6 +15,7 @@ jobs:
           node-version: 14
           registry-url: https://registry.npmjs.org/
           always-auth: true
+      - run: yarn
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
