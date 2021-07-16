@@ -79,6 +79,25 @@ class ExtensionManager {
         }
         return result;
     }
+
+    emitEventToExtension(id, event, ...args) {
+        if (!this.instance.hasOwnProperty(id)) throw `Unavaliable extension id: ${id}`;
+        const func = this.instance[id][event];
+        if (typeof func === 'function') {
+            func(...args);
+        }
+    }
+
+    emitEvent(event, ...args) {
+        for (const key in this.load) {
+            if (this.load[key]) {
+                const func = this.instance[key][event];
+                if (typeof func === 'function') {
+                    func(...args);
+                }
+            }
+        }
+    }
 }
 
 const extensionManager = new ExtensionManager();
