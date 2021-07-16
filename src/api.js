@@ -53,7 +53,17 @@ const isDesktop = () => apiInstance.gui.isDesktop();
 */
 const isEditorLoading = () => apiInstance.gui.isEditorLoading();
 
-const migrateChangeBlock = (targets, srcBlockId, dstBlockId) => {};
+const migrateChangeBlock = (targets, srcBlockId, dstBlockId) => {
+    for (const target of targets) {
+        console.log(target.blocks._blocks);
+        for (const blockId in target.blocks._blocks) {
+            console.log(blockId);
+            if (target.blocks._blocks[blockId].opcode === srcBlockId) {
+                target.blocks._blocks[blockId].opcode = dstBlockId;
+            }
+        }
+    }
+};
 
 /**
 * Get the GUI.
@@ -97,6 +107,7 @@ module.exports = {
     removeBlock,
     getPlaygroundData,
     loadProject,
+    migrateChangeBlock,
     vm,
     blockly,
     registExtensionAPI
