@@ -53,6 +53,8 @@ const isDesktop = () => apiInstance.gui.isDesktop();
 */
 const isEditorLoading = () => apiInstance.gui.isEditorLoading();
 
+const migrateChangeBlock = (targets, srcBlockId, dstBlockId) => {};
+
 /**
 * Get the GUI.
 * [Dangerous] You should not call this function in your extension.
