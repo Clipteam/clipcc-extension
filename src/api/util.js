@@ -8,6 +8,9 @@ const globalFuncion = {};
  * @param {Function} func - Function instance.
  */
 const registerGlobalFunction = (name, func) => {
+    if (globalFuncion.hasOwnProperty(name)) {
+        throw 'Register an existed global function.';
+    }
     globalFuncion[name] = func;
 };
 
@@ -18,6 +21,9 @@ const registerGlobalFunction = (name, func) => {
  * @returns {any} - Result
  */
 const callGlobalFunction = (name, ...args) => {
+    if (!globalFuncion.hasOwnProperty(name)) {
+        throw 'Calling an unexisted global function.';
+    }
     return globalFuncion[name](...args);
 };
 
