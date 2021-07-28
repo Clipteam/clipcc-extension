@@ -89,14 +89,11 @@ let vm = null;
 * @param {object} api - API object.
 */
 function registExtensionAPI(api) {
-    // alert("嘿！开始注册")
     if (hasInit) return;
     apiInstance = api;
     this.gui = apiInstance.gui.gui;
     this.vm = apiInstance.vm.vm;
     this.blockly = apiInstance.blocks;
-    //console.log("丢一个apiInstance:", apiInstance);
-    //console.log("Extension API注册成功！", this.blockly, this.vm); //DEBUG
     hasInit = true;
 }
 

@@ -1,5 +1,5 @@
 const Extension = require('./extension');
-const API = require('./api');
+const API = require('./api/api');
 
 /**
  * Compatible extension interface with original Scratch.
