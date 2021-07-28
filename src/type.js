@@ -27,7 +27,7 @@
 
 /**
  * @typedef {object} Block
- * Block proptype.
+ * Block prototype.
  * @property {string} opcode - Opcode.
  * @property {BlockType} type - Block type.
  * @property {string} msg - Message id.
@@ -38,7 +38,7 @@
 
 /**
  * @typedef {object} Category
- * Category proptype.
+ * Category prototype.
  * @property {string} categoryId - Category id.
  * @property {string} messageId - Message id.
  * @property {string} color - Color #rrggbb.
