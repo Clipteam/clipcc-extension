@@ -33,6 +33,7 @@ class ExtensionManager {
     removeInstance(id) {
         if (this.instance.hasOwnProperty(id)) {
             delete this.info[id];
+            delete this.load[id];
             delete this.instance[id];
         }
     }
