@@ -22,9 +22,20 @@ const registerGlobalFunction = (name, func) => {
  */
 const callGlobalFunction = (name, ...args) => {
     if (!globalFuncion.hasOwnProperty(name)) {
-        throw 'Calling an unexisted global function.';
+        throw 'Call an unexisted global function.';
     }
     return globalFuncion[name](...args);
+};
+
+/**
+ * Unregister a global function.
+ * @param {string} name - Function name.
+ */
+const unregisterGlobalFunction = (name) => {
+    if (!globalFuncion.hasOwnProperty(name)) {
+        throw 'Try to unregister an unexisted global function.';
+    }
+    delete globalFuncion[name];
 };
 
 /**
@@ -47,6 +58,7 @@ const migrateChangeBlock = (targets, srcBlockId, dstBlockId) => {
 
 module.exports = {
     registerGlobalFunction,
+    unregisterGlobalFunction,
     callGlobalFunction,
     migrateChangeBlock
 };

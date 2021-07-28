@@ -63,7 +63,7 @@ ClipCC 扩展必须以 zip 格式打包为 `*.ccx` 文件。
 
 下面是一个基于 CommonJS 规范的扩展最小实现：
 
-```
+```javascript
 class HelloExtension {
     onInit() { /* ... */}
     onUninit() { /* ... */ }
@@ -105,6 +105,8 @@ class HelloExtension {
 ```
 
 **registerGlobalFunction(name, func)**：接受两个参数，分别表示全局函数名和函数对象，函数名推荐使用 `扩展名.函数名` 的形式，以防止与其他扩展的函数冲突。如果某个名称已经被占用了，那么后注册的函数不应当被载入，并抛出一个错误。
+
+**unregisterGlobalFunction(name)**：删除某个已经注册的全局函数，注意，你应当只删除自己注册的全局函数，否则行为未定义。在扩展被卸载后，该扩展注册的全局函数应当被删除。
 
 **callGlobalFunction(name, ...arg)**：接受一个函数名，后面跟随着参数列表，用来调用对应的函数。如果对应的函数不存在，则应当抛出一个错误。
 
