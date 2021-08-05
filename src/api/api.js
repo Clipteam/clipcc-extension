@@ -85,8 +85,6 @@ const isDesktop = () => instance.gui.isDesktop();
 const isEditorLoading = () => instance.gui.isEditorLoading();
 
 module.exports = {
-    vm,
-    blockly,
     registExtensionAPI,
     ...require('./util'),
     addCategory,
