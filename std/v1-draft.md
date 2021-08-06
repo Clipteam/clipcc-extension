@@ -161,14 +161,107 @@ class HelloExtension {
 }
 ```
 
-## 7 标准迁移和兼容性
+## 7 接口和定义
+
+### 7.1 Block
+
+Block 被定义为编辑器中的一个模块，原型如下所示：
+
+```typescript
+class BlockPrototype {
+    opcode: string;
+    type: BlockType;
+    msg: string;
+    categoryId: string;
+    func: Function;
+    param: ParameterPrototype[];
+}
+
+enum BlockType {
+    COMMAND, REPORTER, BOOLEAN, BRANCH, HAT
+}
+
+class ParameterPrototype {
+    type: ParameterType;
+    default: any;
+    shadow: ShadowPrototype;
+}
+
+enum ParameterType {
+    NUMBER, STRING, BOOLEAN, ANY,
+    COLOR
+}
+
+class ShadowPrototype {
+    type: string;
+    fieldName: string;
+}
+```
+
+```typescript
+function addBlock(block: BlockPrototype): void;
+```
+
+效果：将 `block` 添加到编辑器中。
+
+```typescript
+function removeBlock(opcode: string): void;
+```
+
+效果：从编辑器中删除 opcode 为 `opcode` 的 Block。
+
+### 7.2 Category
+
+Category 被定义为编辑器中的一个模块分类，原型如下所示：
+
+```typescript
+class CategoryPrototype {
+    categoryId: string;
+    messageId: string;
+    color: string;
+}
+```
+
+```typescript
+function addCategory(category: CategoryPrototype): void;
+```
+
+效果：将 `category` 添加到编辑器中。
+
+```typescript
+function removeCategory(categoryId: string): void;
+```
+
+效果：从编辑器中删除 id 为 `categoryId` 的 Category。
+
+### 7.3 Global Function
+
+Global Function 即全局函数。
+
+```typescript
+function registerGlobalFunction(name: string, func: Function): void;
+```
+
+效果：将函数 `func` 以 `name` 为名字注册为全局函数。
+
+```typescript
+function callGlobalFunction(name: string, ...args: any[]): any;
+```
+
+效果：调用全局函数 `name`，并把 `...args` 作为参数传入。
+返回：对应函数的返回值。
+
+## 8 标准迁移和兼容性
 
 这是第一个标准版本。
 
-## 8 鸣谢
+## 9 鸣谢
 
-感谢下面的人为 ClipCC 扩展的设计给出的宝贵意见（排名不分先后）：
+感谢下面的人为 ClipCC 扩展的设计给出的宝贵意见（排名按字母顺序）：
 - Alex Cui
 - SinanGentoo
-- SteveXMH
 - Sparrow He
+- SteveXMH
+
+格式参考：
+- ISO/IEC 14882:2020
