@@ -7,10 +7,10 @@ let hasInit = false;
 let instance = null;
 
 /**
-* Register an API.
-* [Dangerous] You should not call this function in your extension.
-* @param {object} api - API object.
-*/
+ * Register an API.
+ * [Dangerous] You should not call this function in your extension.
+ * @param {object} api - API object.
+ */
 function registExtensionAPI(api) {
     if (hasInit) return;
     instance = api;
@@ -37,7 +37,7 @@ const getBlockly = () => instance.blocks;
 
 /**
  * Add a category from prototype.
- * @param {Category} categoryInfo - Category prototype. 
+ * @param {CategoryPrototype} categoryInfo - Category prototype. 
  */
 const addCategory = categoryInfo => instance.vm.addCategory(categoryInfo);
 
@@ -49,7 +49,7 @@ const removeCategory = categoryId => instance.vm.removeCategory(categoryId);
 
 /**
  * Add a block from prototype.
- * @param {Block} blockInfo - Block prototype.
+ * @param {BlockPrototype} blockInfo - Block prototype.
  */
 const addBlock = blockInfo => instance.vm.addBlock(blockInfo);
 
@@ -67,7 +67,7 @@ const getPlaygroundData = () => instance.vm.getPlaygroundData();
 /**
  * Load a Scratch project from a .sb, .sb2, .sb3 or json string.
  * @param {string | object} input A json string, object, or ArrayBuffer representing the project to load.
- * @param {function} extensionCallback A function to deal with extension list.
+ * @param {Function} extensionCallback A function to deal with extension list.
  * @return {Promise} Promise that resolves after targets are installed.
  */
 const loadProject = (input, extensionCallback) => instance.vm.loadProject(input, extensionCallback);

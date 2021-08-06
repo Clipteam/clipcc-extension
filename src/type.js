@@ -4,15 +4,15 @@
  */
 
 /**
- * @typedef {object} Argument
+ * @typedef {object} ParameterPrototype
  * Argument meta data.
- * @property {ArgumentType} type - Argument type.
- * @property {string|number} default - Default value.
- * @property {Shadow} shadow - Shadow.
+ * @property {ParameterType} type - Argument type.
+ * @property {string | number} default - Default value.
+ * @property {ShadowPrototype} shadow - Shadow.
  */
 
 /**
- * @typedef {object} Shadow
+ * @typedef {object} ShadowPrototype
  * Shadow meta data.
  * @property {string} type - Shadow type.
  * @property {string} fieldName - Field name.
@@ -26,18 +26,18 @@
  */
 
 /**
- * @typedef {object} Block
+ * @typedef {object} BlockPrototype
  * Block prototype.
  * @property {string} opcode - Opcode.
  * @property {BlockType} type - Block type.
  * @property {string} msg - Message id.
  * @property {string} categoryId - Category id.
- * @property {function} func - Function.
- * @property {Argument[]} argument - Arguments.
+ * @property {Function} func - Function.
+ * @property {ParameterPrototype[]} argument - Arguments.
  */
 
 /**
- * @typedef {object} Category
+ * @typedef {object} CategoryPrototype
  * Category prototype.
  * @property {string} categoryId - Category id.
  * @property {string} messageId - Message id.
@@ -67,7 +67,7 @@ const BlockType = {
  * @readonly
  * @enum {number}
  */
-const ArgumentType = {
+const ParameterType = {
     /** Number */
     NUMBER: 1,
     /** String */
@@ -91,7 +91,7 @@ const ArgumentType = {
 /**
  * Shadow types.
  * @readonly
- * @enum {Shadow|boolean}
+ * @enum {ShadowPrototype | boolean}
  */
 const ShadowType = {
     NO_SHADOW: false,
@@ -123,6 +123,6 @@ const ShadowType = {
 
 module.exports = {
     BlockType,
-    ArgumentType,
+    ParameterType,
     ShadowType
 };
