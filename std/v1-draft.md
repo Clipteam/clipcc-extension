@@ -234,9 +234,9 @@ function removeCategory(categoryId: string): void;
 
 效果：从编辑器中删除 id 为 `categoryId` 的 Category。
 
-### 7.3 Global Function
+### 7.3 全局函数
 
-Global Function 即全局函数。
+全局函数可以在扩展之间被互相调用，达到扩展间交互的作用。
 
 ```typescript
 function registerGlobalFunction(name: string, func: Function): void;
@@ -245,11 +245,27 @@ function registerGlobalFunction(name: string, func: Function): void;
 效果：将函数 `func` 以 `name` 为名字注册为全局函数。
 
 ```typescript
+function unregisterGlobalFunction(name: string): void;
+```
+
+效果：删除名为 `name` 的全局函数。
+
+```typescript
 function callGlobalFunction(name: string, ...args: any[]): any;
 ```
 
 效果：调用全局函数 `name`，并把 `...args` 作为参数传入。
 返回：对应函数的返回值。
+
+### 7.4 编辑器实例
+
+扩展可以获取编辑器的一些实例，通过直接修改或调用实例的方式完成更为复杂的功能，但对于实例的所有操作的结果完全取决于编辑器的实现，其稳定性和可行性不被保证，我们也并不建议这样做。
+
+```typescript
+function getVmInstance(): Object;
+function getGuiInstance(): Object;
+function getBlockInstance(): Object;
+```
 
 ## 8 标准迁移和兼容性
 
