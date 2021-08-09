@@ -21,19 +21,19 @@ function registExtensionAPI(api) {
  * Get clipcc-vm instance.
  * @returns {ClipCCVM}
  */
-const getVM = () => instance.vm.vm;
+const getVmInstance = () => instance.vm.vm;
 
 /**
  * Get clipcc-gui instance.
  * @returns {ClipCCGUI}
  */
-const getGUI = () => instance.gui.gui;
+const getGuiInstance = () => instance.gui.gui;
 
 /**
  * Get clipcc-block instance.
  * @returns {ClipCCBlock}
  */
-const getBlockly = () => instance.blocks;
+const getBlockInstance = () => instance.blocks;
 
 /**
  * Add a category from prototype.
@@ -95,7 +95,7 @@ module.exports = {
     loadProject,
     isDesktop,
     isEditorLoading,
-    getVM,
-    getGUI,
-    getBlockly
+    getVmInstance,
+    getGuiInstance,
+    getBlockInstance
 };
