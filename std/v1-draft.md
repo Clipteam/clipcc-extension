@@ -257,7 +257,15 @@ function callGlobalFunction(name: string, ...args: any[]): any;
 效果：调用全局函数 `name`，并把 `...args` 作为参数传入。
 返回：对应函数的返回值。
 
-### 7.4 编辑器实例
+### 7.4 工具函数
+
+```typescript
+function migrateChangeBlock(targets: Object, srcBlockId: string, dstBlockId: string): void;
+```
+
+效果：将项目数据 `targets` 中全部的 opcode 为 `srcBlockId` 的 Block 的 opcode 替换为 `dstBlockId`。
+
+### 7.5 编辑器实例
 
 扩展可以获取编辑器的一些实例，通过直接修改或调用实例的方式完成更为复杂的功能，但对于实例的所有操作的结果完全取决于编辑器的实现，其稳定性和可行性不被保证，我们也并不建议这样做。
 
@@ -266,6 +274,31 @@ function getVmInstance(): Object;
 function getGuiInstance(): Object;
 function getBlockInstance(): Object;
 ```
+
+### 7.6 MigrationHelper
+
+MigrationHelper 是一个用以快捷构建迁移链和项目版本迁移的工具类。
+
+```typescript
+class MigrationHelper {
+    constructor(): void;
+    addVersionMigration(srcVer: string, dstVer: string, migrationScript: Function): void;
+    migrationFromVersion(srcVer: string, dstVer: string, projectData: Object): void;
+}
+```
+
+```typescript
+function addVersionMigration(srcVer: string, dstVer: string, migrationScript: Function): void;
+```
+
+效果：给当前的迁移链增加一个从 `srcVer` 到 `dstVer` 版本的迁移脚本，迁移时调用 `migrationScript` 以完成对项目的更改。
+
+```typescript
+function migrationFromVersion(srcVer: string, dstVer: string, projectData: Object): void;
+```
+
+备注：本函数暂时待定，之后会发生变更，请留意。
+效果：根据当前的迁移链，将项目 `projectData` 从版本 `srcVer` 迁移到 `dstVer`。迁移的方式是根据之前的构造的版本之间的迁移图，寻找一条最短路，并按序执行响应迁移脚本。
 
 ## 8 标准迁移和兼容性
 

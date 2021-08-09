@@ -1,6 +1,6 @@
 {
   "name": "clipcc-extension",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "ClipCC extension development kit",
   "main": "./dist/clipcc-extension.js",
   "repository": "https://github.com/Clipteam/clipcc-extension.git",
