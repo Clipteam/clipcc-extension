@@ -1,6 +1,6 @@
 // migration-helper.js
 
-const { Graph, DUPLICATED_EDGE } = require('./util/graph');
+const { Graph, ERROR_DUPLICATED_EDGE } = require('./util/graph');
 
 class MigrationHelper {
     constructor() {
@@ -12,14 +12,14 @@ class MigrationHelper {
             this.graph.addEdge(srcVer, dstVer, 1, migrationScript);
         }
         catch (err) {
-            if (err === DUPLICATED_EDGE) throw 'Duplicated version migration.';
+            if (err === ERROR_DUPLICATED_EDGE) throw 'Duplicated version migration.';
             else throw err;
         }
     }
 
     migrationFromVersion(srcVer, dstVer, projectData) {
         const path = this.graph.bfs(srcVer, dstVer);
-        if (path.length === 0) throw 'Valid migration path not found.';
+        if (path.length === 0) throw 'No valid migration path.';
         for (const step of path) {
             this.graph.edge[step.from][step.to].data(projectData);
         }

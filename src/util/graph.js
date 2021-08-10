@@ -1,6 +1,7 @@
 const clone = require('./clone');
 
-const DUPLICATED_EDGE = 0x90;
+const ERROR_DUPLICATED_EDGE = 0x90;
+const ERROR_NO_TOPO_ORDER = 0x91;
 
 const INF = 0x3f3f3f3f;
 
@@ -106,10 +107,10 @@ class Graph {
             }
         }
         if (res.length !== this.nodeCount) {
-            throw 'No topo order.'
+            throw ERROR_NO_TOPO_ORDER;
         }
         return res;
     }
 }
 
-module.exports = { Graph, DUPLICATED_EDGE };
+module.exports = { Graph, ERROR_DUPLICATED_EDGE, ERROR_NO_TOPO_ORDER };
