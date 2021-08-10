@@ -69,7 +69,7 @@ class Graph {
         const path = {};
         queue.push(from);
         while (queue.length > 0) {
-            const cur = queue.pop();
+            const cur = queue.shift();
             for (const node in this.edge[cur]) {
                 if (path[node]) continue;
                 path[node] = Object.assign([], path[cur]);

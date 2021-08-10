@@ -5,12 +5,14 @@ const INF = 0x3f3f3f3f;
 class Graph {
     constructor() {
         this.edge = {};
-        this.node = [];
+        //this.node = [];
+        this.node = {};
     }
 
     addNode(node) {
         if (!this.node.includes(node)) {
-            this.node.push(node);
+            //this.node.push(node);
+            this.node[node] = { in: 0, out: 0 };
             this.edge[node] = {};
         }
     }
@@ -20,11 +22,13 @@ class Graph {
         this.addNode(to);
         if (this.edge[from][to]) throw DUPLICATED_EDGE;
         this.edge[from][to] = { w, data };
+        ++this.node[from].out;
+        ++this.node[to].in;
     }
 
     dijkstra(from, to) {
         const tmp = {};
-        for (const node of this.node) {
+        for (const node in this.node) {
             tmp[node] = {
                 vis: false,
                 dis: this.edge[from].hasOwnProperty(node)
@@ -39,7 +43,7 @@ class Graph {
         let cnt = 1;
         while (cnt !== this.node.length) {
             let idx = null, min = INF;
-            for (const node of this.node) {
+            for (const node in this.node) {
                 if (!tmp[node].vis && tmp[node].dis < min) {
                     min = tmp[node].dis;
                     idx = node;
@@ -48,7 +52,7 @@ class Graph {
             if (idx === null) return [];
             tmp[idx].vis = true;
             ++cnt;
-            for (const node of this.node) {
+            for (const node in this.node) {
                 if (!tmp[node].vis && this.edge[idx].hasOwnProperty(node) &&
                     (tmp[idx].dis + this.edge[idx][node].w < tmp[node].dis)
                 ) {
@@ -67,7 +71,7 @@ class Graph {
         const path = {};
         queue.push(from);
         while (queue.length > 0) {
-            const cur = queue.pop();
+            const cur = queue.shift();
             for (const node in this.edge[cur]) {
                 if (path[node]) continue;
                 path[node] = Object.assign([], path[cur]);
