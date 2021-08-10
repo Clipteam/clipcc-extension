@@ -1,3 +1,5 @@
+const clone = require('./clone');
+
 const DUPLICATED_EDGE = 0x90;
 
 const INF = 0x3f3f3f3f;
@@ -7,13 +9,15 @@ class Graph {
         this.edge = {};
         //this.node = [];
         this.node = {};
+        this.nodeCount = 0;
     }
 
     addNode(node) {
-        if (!this.node.includes(node)) {
+        if (!this.node.hasOwnProperty(node)) {
             //this.node.push(node);
             this.node[node] = { in: 0, out: 0 };
             this.edge[node] = {};
+            ++this.nodeCount;
         }
     }
 
@@ -80,6 +84,31 @@ class Graph {
             }
         }
         return path[to] || [];
+    }
+
+    topo() {
+        const queue = [];
+        const res = [];
+        const nodeClone = clone(this.node);
+        for (const node in nodeClone) {
+            if (nodeClone[node].in === 0) {
+                queue.push(node);
+            }
+        }
+        while (queue.length > 0) {
+            const cur = queue.shift();
+            res.push(cur);
+            for (const node in this.edge[cur]) {
+                --nodeClone[node].in;
+                if (nodeClone[node].in === 0) {
+                    queue.push(node);
+                }
+            }
+        }
+        if (res.length !== this.nodeCount) {
+            throw 'No topo order.'
+        }
+        return res;
     }
 }
 
