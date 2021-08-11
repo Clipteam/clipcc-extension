@@ -30,7 +30,9 @@ class ExtensionManager {
      */
     addInstance(id, info, instance) {
         if (this.instance.hasOwnProperty(id)) return;
-        this.info[id] = info;
+        this.info[id] = Object.assign({
+            dependency: {}
+        }, info);
         this.load[id] = loadMode.UNLOAD;
         this.instance[id] = instance;
     }
@@ -201,7 +203,8 @@ class ExtensionManager {
      */
     getExtensionUnloadOrder(extensions) {
         const graph = new Graph();
-        for (const extension in extensions) {
+        for (const extension of extensions) {
+            console.log('test2', this.load[extension]);
             if (this.load.hasOwnProperty(extension) && this.load[extension]) {
                 this._checkExtensionUnloadingOrderById(extension, graph);
             }
@@ -215,6 +218,10 @@ class ExtensionManager {
      * @param {Graph} graph - Unlaod order.
      */
     _checkExtensionUnloadingOrderById(extensionId, graph) {
+        console.log('test1', extensionId);
+        if (!graph.hasNode(extensionId)) {
+            graph.addNode(extensionId);
+        }
         for (const extension in this.load) {
             if (this.load[extension]) {
                 if (this.info[extension].dependency.hasOwnProperty(extensionId)) {
