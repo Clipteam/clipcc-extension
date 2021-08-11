@@ -12,6 +12,9 @@ const loadMode = {
     PASSIVE_LOAD: 2
 };
 
+const ERROR_UNAVAILABLE_EXTENSION = 0x90;
+const ERROR_CIRCULAR_REQUIREMENT = 0x91;
+
 /**
  * Extension manager.
  */
@@ -204,7 +207,6 @@ class ExtensionManager {
     getExtensionUnloadOrder(extensions) {
         const graph = new Graph();
         for (const extension of extensions) {
-            console.log('test2', this.load[extension]);
             if (this.load.hasOwnProperty(extension) && this.load[extension]) {
                 this._checkExtensionUnloadingOrderById(extension, graph);
             }
@@ -217,17 +219,24 @@ class ExtensionManager {
      * @param {string} extensionId - Extension ID.
      * @param {Graph} graph - Unlaod order.
      */
-    _checkExtensionUnloadingOrderById(extensionId, graph) {
-        console.log('test1', extensionId);
+    _checkExtensionUnloadingOrderById(extensionId, graph, last) {
         if (!graph.hasNode(extensionId)) {
             graph.addNode(extensionId);
         }
         for (const extension in this.load) {
+            if (extension === last) continue;
             if (this.load[extension]) {
                 if (this.info[extension].dependency.hasOwnProperty(extensionId)) {
                     graph.addEdge(extension, extensionId);
-                    this._checkExtensionUnloadingOrderById(extension, graph);
+                    this._checkExtensionUnloadingOrderById(extension, graph, extensionId);
                 }
+            }
+        }
+        for (const dependency in this.info[extensionId].dependency) {
+            if (dependency === last) continue;
+            if (this.load[dependency] === loadMode.PASSIVE_LOAD) {
+                graph.addEdge(extensionId, dependency);
+                this._checkExtensionUnloadingOrderById(dependency, graph, extensionId);
             }
         }
     }

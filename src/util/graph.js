@@ -29,7 +29,7 @@ class Graph {
     addEdge(from, to, w, data) {
         this.addNode(from);
         this.addNode(to);
-        if (this.edge[from][to]) throw DUPLICATED_EDGE;
+        if (this.edge[from][to]) throw ERROR_DUPLICATED_EDGE;
         this.edge[from][to] = { w, data };
         ++this.node[from].out;
         ++this.node[to].in;
