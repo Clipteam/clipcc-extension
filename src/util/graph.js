@@ -22,6 +22,10 @@ class Graph {
         }
     }
 
+    hasNode(node) {
+        return this.node.hasOwnProperty(node);
+    }
+
     addEdge(from, to, w, data) {
         this.addNode(from);
         this.addNode(to);
