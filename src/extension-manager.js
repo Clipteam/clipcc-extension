@@ -270,4 +270,9 @@ class ExtensionManager {
 
 const extensionManager = new ExtensionManager();
 
-module.exports = extensionManager;
+module.exports = {
+    ExtensionManager,
+    extensionManager,
+    ERROR_UNAVAILABLE_EXTENSION,
+    ERROR_CIRCULAR_REQUIREMENT
+};
