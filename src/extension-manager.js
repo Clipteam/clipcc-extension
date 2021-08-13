@@ -103,7 +103,7 @@ class ExtensionManager {
     loadExtensionsWithMode(extensions, vmCallback) {
         for (const extension of extensions) {
             if (!this.getLoadStatus(extension.id)) {
-                if (this.info[extension.id].api === undefined) {
+                if (!this.info[extension.id].api) { // undefined, null or 0
                     vmCallback(extension.id);
                 }
                 else {
