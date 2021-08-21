@@ -50,7 +50,7 @@ class Graph {
         tmp[from].vis = false;
 
         let cnt = 1;
-        while (cnt !== this.node.length) {
+        while (cnt !== this.nodeCount) {
             let idx = null, min = INF;
             for (const node in this.node) {
                 if (!tmp[node].vis && tmp[node].dis < min) {

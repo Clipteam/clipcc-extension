@@ -9,7 +9,8 @@
   "scripts": {
     "prepublishOnly": "NODE_ENV=production yarn run build",
     "build": "rimraf dist && mkdirp dist && webpack --progress --colors --bail",
-    "jsdoc": "rimraf docs && jsdoc -c jsdoc.config.json"
+    "jsdoc": "rimraf docs && jsdoc -c jsdoc.config.json",
+    "test": "node test/index.js"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
