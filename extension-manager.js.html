@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>extension-manager.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/ClipTeam/clipcc-extension" target="_blank" class="menu-item" id="github_link" >Github Repo</a></h2><h3>Modules</h3><ul><li><a href="module-API.html">API</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-API.html#~addBlock">addBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~addCategory">addCategory</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getBlockInstance">getBlockInstance</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getGuiInstance">getGuiInstance</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getPlaygroundData">getPlaygroundData</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getVmInstance">getVmInstance</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~isDesktop">isDesktop</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~isEditorLoading">isEditorLoading</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~loadProject">loadProject</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~registExtensionAPI">registExtensionAPI</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeBlock">removeBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeCategory">removeCategory</a></li></ul></li><li><a href="module-Manager.html">Manager</a></li><li><a href="module-Type.html">Type</a></li></ul><h3>Classes</h3><ul><li><a href="CompatibleExtension.html">CompatibleExtension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#beforeProjectLoad">beforeProjectLoad</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#beforeProjectSave">beforeProjectSave</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#onInit">onInit</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#onUninit">onUninit</a></li></ul></li><li><a href="Extension.html">Extension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Extension.html#beforeProjectLoad">beforeProjectLoad</a></li><li data-type='method' style='display: none;'><a href="Extension.html#beforeProjectSave">beforeProjectSave</a></li><li data-type='method' style='display: none;'><a href="Extension.html#onInit">onInit</a></li><li data-type='method' style='display: none;'><a href="Extension.html#onUninit">onUninit</a></li></ul></li><li><a href="module-Manager-ExtensionManager.html">ExtensionManager</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#_checkExtensionLoadingOrderById">_checkExtensionLoadingOrderById</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#_checkExtensionUnloadingOrderById">_checkExtensionUnloadingOrderById</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#addInstance">addInstance</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#exist">exist</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#getExtensionLoadOrder">getExtensionLoadOrder</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#getExtensionUnloadOrder">getExtensionUnloadOrder</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#getInfo">getInfo</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#getInstance">getInstance</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#loadExtensionsWithMode">loadExtensionsWithMode</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#removeInstance">removeInstance</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#unloadExtensions">unloadExtensions</a></li></ul></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-installation.html">Installation</a></li></ul><h3>Global</h3><ul><li><a href="global.html#callGlobalFunction">callGlobalFunction</a></li><li><a href="global.html#migrateChangeBlock">migrateChangeBlock</a></li><li><a href="global.html#registerGlobalFunction">registerGlobalFunction</a></li><li><a href="global.html#unregisterGlobalFunction">unregisterGlobalFunction</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">extension-manager.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Extension manager.
+ * @module Manager
+ */
+
+const { Graph, ERROR_DUPLICATED_EDGE, ERROR_NO_TOPO_ORDER } = require('./util/graph');
+const { matchVersion } = require('./util/version');
+
+const loadMode = {
+    UNLOAD: 0,
+    INITIATIVE_LOAD: 1,
+    PASSIVE_LOAD: 2
+};
+
+const ERROR_UNAVAILABLE_EXTENSION = 0x90;
+const ERROR_CIRCULAR_REQUIREMENT = 0x91;
+
+/**
+ * Extension manager.
+ */
+class ExtensionManager {
+    constructor() {
+        this.info = {};
+        this.instance = {};
+        this.load = {};
+    }
+
+    /**
+     * Add an extension.
+     * @param {string} id - Extension id.
+     * @param {ExtensionInfo} info - Extension info.
+     * @param {Extension} instance - Extension instance.
+     */
+    addInstance(id, info, instance) {
+        if (this.instance.hasOwnProperty(id)) return;
+        this.info[id] = Object.assign({
+            dependency: {}
+        }, info);
+        this.load[id] = loadMode.UNLOAD;
+        this.instance[id] = instance;
+    }
+
+    /**
+     * Remove an extension.
+     * @param {string} id - Extension id.
+     */
+    removeInstance(id) {
+        if (this.instance.hasOwnProperty(id)) {
+            delete this.info[id];
+            delete this.load[id];
+            delete this.instance[id];
+        }
+    }
+
+    /**
+     * Get an extension instance.
+     * @param {string} id - Extension id.
+     * @returns {Extension} - Extension instance.
+     */
+    getInstance(id) {
+        return this.instance[id];
+    }
+    
+    /**
+     * Get an extension info.
+     * @param {string} id - Extension id.
+     * @returns {ExtensionInfo} - Extension info.
+     */
+    getInfo(id) {
+        console.log(this.info)
+        return this.info[id];
+    }
+
+    /**
+     * Check if an extension existed.
+     * @param {string} id - Extension id.
+     */
+    exist(id) {
+        return this.instance.hasOwnProperty(id);
+    }
+
+    setLoadStatus(id, loadStatus) {
+        this.load[id] = loadStatus;
+    }
+
+    getLoadStatus(id) {
+        return this.load[id];
+    }
+
+    getLoadedExtensions() {
+        const result = [];
+        for (const key in this.load) {
+            if (this.load[key]) result.push(key);
+        }
+        return result;
+    }
+
+    /**
+     * Load all the extensions given.
+     * @param {Object[]} extensions - The list of extension ID.
+     * @param {Function} vmCallback - Load vm extension.
+     */
+    loadExtensionsWithMode(extensions, vmCallback) {
+        for (const extension of extensions) {
+            if (!this.getLoadStatus(extension.id)) {
+                if (!this.info[extension.id].api) { // undefined, null or 0
+                    vmCallback(extension.id);
+                }
+                else {
+                    this.instance[extension.id].onInit();
+                }
+                this.setLoadStatus(extension.id, extension.mode);
+            }
+            
+        }
+    }
+
+    /**
+     * Unload all the extensions given.
+     * @param {string[]} extensions - The list of extension ID.
+     */
+    unloadExtensions(extensions) {
+        for (const extension of extensions) {
+            if (this.getLoadStatus(extension)) {
+                this.instance[extension].onUninit();
+                this.setLoadStatus(extension, loadMode.UNLOAD);
+            }
+        }
+    }
+
+    /**
+     * Get the correct loading order.
+     * @param {string[]} extensions - The list of extension ID.
+     * @returns {Object[]}
+     */
+    getExtensionLoadOrder(extensions) {
+        const graph = new Graph();
+        for (const extensionId of extensions) {
+            if (!this.info.hasOwnProperty(extensionId)) {
+                console.error(`Unavailable extension: ${extensionId}`);
+                throw ERROR_UNAVAILABLE_EXTENSION;
+            }
+            this._checkExtensionLoadingOrderById(extensionId, [], graph);
+        }
+        return graph.topo().map(id => ({
+            id: id,
+            mode: extensions.includes(id) ? loadMode.INITIATIVE_LOAD : loadMode.PASSIVE_LOAD
+        }));
+    }
+
+    _findIdInList(id, list) {
+        for (const i in list) {
+            if (list[i].id == id) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Get loading order of the extension with given id.
+     * @param {string} extensionId - The extension id.
+     * @param {Object[]} requireStack - Require stack.
+     * @param {Graph} graph - Load order.
+     */
+    _checkExtensionLoadingOrderById(extensionId, requireStack, graph) {
+        requireStack.push({
+            id: extensionId,
+            version: this.info[extensionId].version
+        });
+        if (!graph.hasNode(extensionId)) {
+            graph.addNode(extensionId);
+        }
+        for (const dependency in this.info[extensionId].dependency) {
+            if (!this.info.hasOwnProperty(dependency)) {
+                console.error(`Unavailable extension: ${dependency}`);
+                this._printRequireStack(requireStack);
+                throw ERROR_UNAVAILABLE_EXTENSION;
+            }
+            if (this._findIdInList(dependency, requireStack) >= 0) {
+                console.error(`Circular requirement: ${dependency}`);
+                this._printRequireStack(requireStack);
+                throw ERROR_CIRCULAR_REQUIREMENT;
+            }
+            const targetVersion = this.info[extensionId].dependency[dependency];
+            if (matchVersion(this.info[dependency].version, targetVersion)) {
+                graph.addEdge(dependency, extensionId);
+                this._checkExtensionLoadingOrderById(dependency, requireStack, graph);
+                /*if (!this._findIdInList(dependency, result)) {
+                    result.unshift({ id: dependency, mode: loadMode.PASSIVE_LOAD });
+                    this._checkExtensionLoadingOrderById(dependency, requireStack, result);
+                }*/
+            }
+            else {
+                console.error(`Unmatched version: ${extensionId}(${targetVersion}), got ${this.info[dependency].version}`);
+                this._printRequireStack(requireStack);
+                throw ERROR_UNAVAILABLE_EXTENSION;
+            }
+        }
+        requireStack.pop();
+    }
+    
+    /**
+     * Get the correct unloading order.
+     * @param {string[]} extensions - The list of extension ID.
+     */
+    getExtensionUnloadOrder(extensions) {
+        const graph = new Graph();
+        for (const extension of extensions) {
+            if (this.load.hasOwnProperty(extension) &amp;&amp; this.load[extension]) {
+                this._checkExtensionUnloadingOrderById(extension, graph);
+            }
+        }
+        return graph.topo();
+    }
+    
+    /**
+     * Get unloading order of the extension with given id.
+     * @param {string} extensionId - Extension ID.
+     * @param {Graph} graph - Unlaod order.
+     */
+    _checkExtensionUnloadingOrderById(extensionId, graph, last) {
+        if (!graph.hasNode(extensionId)) {
+            graph.addNode(extensionId);
+        }
+        for (const extension in this.load) {
+            if (extension === last) continue;
+            if (this.load[extension]) {
+                if (this.info[extension].dependency.hasOwnProperty(extensionId)) {
+                    graph.addEdge(extension, extensionId);
+                    this._checkExtensionUnloadingOrderById(extension, graph, extensionId);
+                }
+            }
+        }
+        for (const dependency in this.info[extensionId].dependency) {
+            if (dependency === last) continue;
+            if (this.load[dependency] === loadMode.PASSIVE_LOAD) {
+                graph.addEdge(extensionId, dependency);
+                this._checkExtensionUnloadingOrderById(dependency, graph, extensionId);
+            }
+        }
+    }
+
+    _printRequireStack(requireStack) {
+        while (requireStack.length > 0) {
+            const item = requireStack.pop();
+            console.error(`    required by ${item.id}(${item.version})`);
+        }
+    }
+
+    emitEventToExtension(id, event, ...args) {
+        if (!this.instance.hasOwnProperty(id)) throw `Unavaliable extension id: ${id}`;
+        const func = this.instance[id][event];
+        if (typeof func === 'function') {
+            func(...args);
+        }
+    }
+
+    emitEvent(event, ...args) {
+        for (const key in this.load) {
+            if (this.load[key]) {
+                const func = this.instance[key][event];
+                if (typeof func === 'function') {
+                    func(...args);
+                }
+            }
+        }
+    }
+}
+
+const extensionManager = new ExtensionManager();
+
+module.exports = {
+    ExtensionManager,
+    extensionManager,
+    ERROR_UNAVAILABLE_EXTENSION,
+    ERROR_CIRCULAR_REQUIREMENT
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Sun Aug 22 2021 05:25:09 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>

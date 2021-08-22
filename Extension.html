@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Extension - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/ClipTeam/clipcc-extension" target="_blank" class="menu-item" id="github_link" >Github Repo</a></h2><h3>Modules</h3><ul><li><a href="module-API.html">API</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-API.html#~addBlock">addBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~addCategory">addCategory</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getBlockInstance">getBlockInstance</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getGuiInstance">getGuiInstance</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getPlaygroundData">getPlaygroundData</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~getVmInstance">getVmInstance</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~isDesktop">isDesktop</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~isEditorLoading">isEditorLoading</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~loadProject">loadProject</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~registExtensionAPI">registExtensionAPI</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeBlock">removeBlock</a></li><li data-type='method' style='display: none;'><a href="module-API.html#~removeCategory">removeCategory</a></li></ul></li><li><a href="module-Manager.html">Manager</a></li><li><a href="module-Type.html">Type</a></li></ul><h3>Classes</h3><ul><li><a href="CompatibleExtension.html">CompatibleExtension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#beforeProjectLoad">beforeProjectLoad</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#beforeProjectSave">beforeProjectSave</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#init">init</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#onInit">onInit</a></li><li data-type='method' style='display: none;'><a href="CompatibleExtension.html#onUninit">onUninit</a></li></ul></li><li><a href="Extension.html">Extension</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Extension.html#beforeProjectLoad">beforeProjectLoad</a></li><li data-type='method' style='display: none;'><a href="Extension.html#beforeProjectSave">beforeProjectSave</a></li><li data-type='method' style='display: none;'><a href="Extension.html#onInit">onInit</a></li><li data-type='method' style='display: none;'><a href="Extension.html#onUninit">onUninit</a></li></ul></li><li><a href="module-Manager-ExtensionManager.html">ExtensionManager</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#_checkExtensionLoadingOrderById">_checkExtensionLoadingOrderById</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#_checkExtensionUnloadingOrderById">_checkExtensionUnloadingOrderById</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#addInstance">addInstance</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#exist">exist</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#getExtensionLoadOrder">getExtensionLoadOrder</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#getExtensionUnloadOrder">getExtensionUnloadOrder</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#getInfo">getInfo</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#getInstance">getInstance</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#loadExtensionsWithMode">loadExtensionsWithMode</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#removeInstance">removeInstance</a></li><li data-type='method' style='display: none;'><a href="module-Manager-ExtensionManager.html#unloadExtensions">unloadExtensions</a></li></ul></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-installation.html">Installation</a></li></ul><h3>Global</h3><ul><li><a href="global.html#callGlobalFunction">callGlobalFunction</a></li><li><a href="global.html#migrateChangeBlock">migrateChangeBlock</a></li><li><a href="global.html#registerGlobalFunction">registerGlobalFunction</a></li><li><a href="global.html#unregisterGlobalFunction">unregisterGlobalFunction</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Extension</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        Extension
+        </h2>
+        
+            <div class="class-description usertext"><p>Extension base class.</p></div>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="Extension"><span class="type-signature"></span>new Extension<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="extension.js.html">extension.js</a>, <a href="extension.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="beforeProjectLoad"><span class="type-signature"></span>beforeProjectLoad<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="extension.js.html">extension.js</a>, <a href="extension.js.html#line31">line 31</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Before load the project.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="beforeProjectSave"><span class="type-signature"></span>beforeProjectSave<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="extension.js.html">extension.js</a>, <a href="extension.js.html#line36">line 36</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Before save the project.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="onInit"><span class="type-signature"></span>onInit<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="extension.js.html">extension.js</a>, <a href="extension.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Initialize the extension.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="onUninit"><span class="type-signature"></span>onUninit<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="extension.js.html">extension.js</a>, <a href="extension.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Uninitialize the extension.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Sun Aug 22 2021 05:25:09 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>
