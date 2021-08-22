@@ -1,3 +1,4 @@
+[Chinese version](https://github.com/Clipteam/clipcc-extension/blob/master/README_CN.md)
 # ClipCC Extension Writing Guide
 
 #### Please note! Before you start learning to develop extensions, the ClipCC extensions **are still in development** and there may be major changes to the existing extension API that may cause the extension to fail before the official release of the feature. This tutorial will use the ClipCC extension API as of August 22nd for demonstration purposes.
