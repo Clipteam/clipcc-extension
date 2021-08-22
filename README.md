@@ -69,7 +69,7 @@ class ExampleExtension extends ClipCC.Extension {
             categoryId: 'clipteam.example.category',
             argument: {
                 VALUE: {
-                    type: ClipCC.Type.ArgumentType.STRING,
+                    type: ClipCC.Type.ParameterType.STRING,
                     default: 'Hello World!'
                 }
             },
