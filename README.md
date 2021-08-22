@@ -44,7 +44,6 @@ assets/
 - inset_icon.svg
 locales/
 - en.json
-- en-cn.json
 index.js
 info.json
 ```
@@ -102,7 +101,7 @@ class ExampleExtension extends ClipCC.Extension {
 module.exports = ExampleExtension;
 ```
 
-Then open src/locales/en.json and src/locales/zh-cn.json and fill in
+Then open src/locales/en.json and fill in
 
 ```json
 {
@@ -111,17 +110,6 @@ Then open src/locales/en.json and src/locales/zh-cn.json and fill in
     "clipteam.example.description": "ClipCC example extension,
     "clipteam.example.return.message": "return [VALUE]",
     "clipteam.example.message": "Hello World!"
-}
-
-```
-
-```json
-{
-    "clipteam.example.name": "Example",
-    "clipteam.example.category.message": "example",
-    "clipteam.example.description": "ClipCC example extension." ,
-    "clipteam.example.return.message": "Return [VALUE]",
-    "clipteam.example.helloworld.message": "Hello World!"
 }
 
 ```
