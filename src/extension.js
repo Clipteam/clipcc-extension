@@ -26,9 +26,14 @@ class Extension {
     onUninit() {}
 
     /**
-     * Migrate the project.
+     * Before load the project.
      */
-    onMigration() {}
+    beforeProjectLoad() {}
+
+    /**
+     * Before save the project.
+     */
+     beforeProjectSave() {}
 }
 
 module.exports = Extension;
