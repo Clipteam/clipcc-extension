@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>compatible-extension.js - Documentation</title>
+    <title>api/api.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,7 +34,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">compatible-extension.js</h1>
+    <h1 class="page-title">api/api.js</h1>
     
 
     
@@ -44,85 +44,107 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Extension = require('./extension');
-const API = require('./api/api');
+            <pre class="prettyprint source linenums"><code>/**
+ * Define APIs.
+ * @module API
+ */
+
+let hasInit = false;
+let instance = null;
 
 /**
- * Compatible extension interface with original Scratch.
- * @extends Extension
+ * Register an API.
+ * [Dangerous] You should not call this function in your extension.
+ * @param {object} api - API object.
  */
-class CompatibleExtension extends Extension {
-    /**
-     * Create a compatible extension.
-     * @param {object} instance - Extension instance.
-     */
-    constructor(instance) {
-        super();
-        this.instance = instance;
-    }
-
-    /**
-     * Initialize the extension.
-     */
-    init() {
-        const info = this.instance.getInfo();
-        this.extensionId = info.id;
-        const categoryId = this.extensionId + '.' + info.name;
-        API.addCategory({
-            categoryId: categoryId,
-            messageId: info.name,
-            color: info.color1
-        });
-
-        for (let block of info.blocks) {
-            const argument = {};
-            for (let argu in block.arguments) {
-                argument[argu] = {
-                    type: this.getArgumentType(block.arguments[argu].type),
-                    default: block.arguments[argu].defaultValue
-                };
-            }
-            API.addBlock({
-                opcode: this.extensionId + '.' + block.opcode,
-                type: this.getBlockType(block.blockType),
-                messageId: block.text,
-                categoryId: categoryId,
-                function: this.instance[block.opcode],
-                argument: argument
-            });
-        }
-    }
-
-    getBlockType(blockType) {
-        switch (blockType) {
-            case 'Boolean': return BlockType.BOOLEAN;
-            case 'button': return 0;
-            case 'command': return BlockType.COMMAND;
-            case 'conditional': return 0;
-            case 'event': return BlockType.HAT;
-            case 'hat': return BlockType.HAT;
-            case 'loop': return 0;
-            case 'reporter': return BlockType.REPORTER;
-            default: return 0;
-        }
-    }
-    
-    getArgumentType(arguType) {
-        switch (arguType) {
-            case 'angle': return 0;
-            case 'Boolean': return ArgumentType.BOOLEAN;
-            case 'color': return ArgumentType.COLOR;
-            case 'number': return ArgumentType.NUMBER;
-            case 'string': return ArgumentType.STRING;
-            case 'matrix': return 0;
-            case 'note': return 0;
-            case 'image': return 0;
-            default: return 0;
-        }
-    }
+function registExtensionAPI(api) {
+    if (hasInit) return;
+    instance = api;
+    hasInit = true;
 }
 
-module.exports = CompatibleExtension;
+/**
+ * Get clipcc-vm instance.
+ * @returns {ClipCCVM}
+ */
+const getVmInstance = () => instance.vm.vm;
+
+/**
+ * Get clipcc-gui instance.
+ * @returns {ClipCCGUI}
+ */
+const getGuiInstance = () => instance.gui.gui;
+
+/**
+ * Get clipcc-block instance.
+ * @returns {ClipCCBlock}
+ */
+const getBlockInstance = () => instance.blocks;
+
+/**
+ * Add a category from prototype.
+ * @param {CategoryPrototype} categoryInfo - Category prototype. 
+ */
+const addCategory = categoryInfo => instance.vm.addCategory(categoryInfo);
+
+/**
+ * Remove a category by id.
+ * @param {string} categoryId - Category id.
+ */
+const removeCategory = categoryId => instance.vm.removeCategory(categoryId);
+
+/**
+ * Add a block from prototype.
+ * @param {BlockPrototype} blockInfo - Block prototype.
+ */
+const addBlock = blockInfo => instance.vm.addBlock(blockInfo);
+
+/**
+ * Remove a block by opcode.
+ * @param {string} blockOpcode - Block opcode.
+ */
+const removeBlock = blockOpcode => instance.vm.removeBlock(blockOpcode);
+
+/**
+ *  Get data for playground.
+ */
+const getPlaygroundData = () => instance.vm.getPlaygroundData();
+
+/**
+ * Load a Scratch project from a .sb, .sb2, .sb3 or json string.
+ * @param {string | object} input A json string, object, or ArrayBuffer representing the project to load.
+ * @param {Function} extensionCallback A function to deal with extension list.
+ * @return {Promise} Promise that resolves after targets are installed.
+ */
+const loadProject = (input, extensionCallback) => instance.vm.loadProject(input, extensionCallback);
+
+/**
+ * Return whether the editor is in the desktop environment.
+ * @return {boolean}
+ */
+const isDesktop = () => instance.gui.isDesktop();
+
+/**
+ * Return whether the editor is loading.
+ * @return {boolean}
+ */
+const isEditorLoading = () => instance.gui.isEditorLoading();
+
+module.exports = {
+    registExtensionAPI,
+    ...require('./util'),
+    addCategory,
+    removeCategory,
+    addBlock,
+    removeBlock,
+    getPlaygroundData,
+    loadProject,
+    isDesktop,
+    isEditorLoading,
+    getVmInstance,
+    getGuiInstance,
+    getBlockInstance
+};
 </code></pre>
         </article>
     </section>

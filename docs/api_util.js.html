@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>compatible-extension.js - Documentation</title>
+    <title>api/util.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,7 +34,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">compatible-extension.js</h1>
+    <h1 class="page-title">api/util.js</h1>
     
 
     
@@ -44,85 +44,70 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Extension = require('./extension');
-const API = require('./api/api');
+            <pre class="prettyprint source linenums"><code>// Utils
+
+const globalFuncion = {};
 
 /**
- * Compatible extension interface with original Scratch.
- * @extends Extension
+ * Register a global function.
+ * @param {string} name - Function name.
+ * @param {Function} func - Function instance.
  */
-class CompatibleExtension extends Extension {
-    /**
-     * Create a compatible extension.
-     * @param {object} instance - Extension instance.
-     */
-    constructor(instance) {
-        super();
-        this.instance = instance;
+const registerGlobalFunction = (name, func) => {
+    if (globalFuncion.hasOwnProperty(name)) {
+        throw 'Register an existed global function.';
     }
+    globalFuncion[name] = func;
+};
 
-    /**
-     * Initialize the extension.
-     */
-    init() {
-        const info = this.instance.getInfo();
-        this.extensionId = info.id;
-        const categoryId = this.extensionId + '.' + info.name;
-        API.addCategory({
-            categoryId: categoryId,
-            messageId: info.name,
-            color: info.color1
-        });
+/**
+ * Call a registered global function.
+ * @param {string} name - Function name.
+ * @param {...any} args - Arguments.
+ * @returns {any} - Result
+ */
+const callGlobalFunction = (name, ...args) => {
+    if (!globalFuncion.hasOwnProperty(name)) {
+        throw 'Call an unexisted global function.';
+    }
+    return globalFuncion[name](...args);
+};
 
-        for (let block of info.blocks) {
-            const argument = {};
-            for (let argu in block.arguments) {
-                argument[argu] = {
-                    type: this.getArgumentType(block.arguments[argu].type),
-                    default: block.arguments[argu].defaultValue
-                };
+/**
+ * Unregister a global function.
+ * @param {string} name - Function name.
+ */
+const unregisterGlobalFunction = (name) => {
+    if (!globalFuncion.hasOwnProperty(name)) {
+        throw 'Try to unregister an unexisted global function.';
+    }
+    delete globalFuncion[name];
+};
+
+/**
+ * Change a block to another.
+ * @param {any} targets - Scratch project JSON.
+ * @param {string} srcBlockId - Source block ID.
+ * @param {string} dstBlockId - Destination block ID.
+ */
+const migrateChangeBlock = (targets, srcBlockId, dstBlockId) => {
+    for (const target of targets) {
+        console.log(target.blocks._blocks);
+        for (const blockId in target.blocks._blocks) {
+            console.log(blockId);
+            if (target.blocks._blocks[blockId].opcode === srcBlockId) {
+                target.blocks._blocks[blockId].opcode = dstBlockId;
             }
-            API.addBlock({
-                opcode: this.extensionId + '.' + block.opcode,
-                type: this.getBlockType(block.blockType),
-                messageId: block.text,
-                categoryId: categoryId,
-                function: this.instance[block.opcode],
-                argument: argument
-            });
         }
     }
+};
 
-    getBlockType(blockType) {
-        switch (blockType) {
-            case 'Boolean': return BlockType.BOOLEAN;
-            case 'button': return 0;
-            case 'command': return BlockType.COMMAND;
-            case 'conditional': return 0;
-            case 'event': return BlockType.HAT;
-            case 'hat': return BlockType.HAT;
-            case 'loop': return 0;
-            case 'reporter': return BlockType.REPORTER;
-            default: return 0;
-        }
-    }
-    
-    getArgumentType(arguType) {
-        switch (arguType) {
-            case 'angle': return 0;
-            case 'Boolean': return ArgumentType.BOOLEAN;
-            case 'color': return ArgumentType.COLOR;
-            case 'number': return ArgumentType.NUMBER;
-            case 'string': return ArgumentType.STRING;
-            case 'matrix': return 0;
-            case 'note': return 0;
-            case 'image': return 0;
-            default: return 0;
-        }
-    }
-}
-
-module.exports = CompatibleExtension;
+module.exports = {
+    registerGlobalFunction,
+    unregisterGlobalFunction,
+    callGlobalFunction,
+    migrateChangeBlock
+};
 </code></pre>
         </article>
     </section>
