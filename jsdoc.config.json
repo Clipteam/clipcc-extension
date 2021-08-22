@@ -1,6 +1,6 @@
 {
     "opts": {
-        "destination": "docs",
+        "destination": "doc",
         "encoding": "utf8",
         "readme": "README.md",
         "recurse": true,
