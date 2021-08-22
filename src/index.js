@@ -2,8 +2,8 @@ const Extension = require('./extension');
 const CompatibleExtension = require('./compatible-extension');
 const MigrationHelper = require('./migration-helper');
 const { ExtensionManager, extensionManager } = require('./extension-manager');
-const API = require('./api/api');
-const Type = require('./type');
+const api = require('./api/api');
+const type = require('./type');
 
 module.exports = {
     Extension,
@@ -11,6 +11,6 @@ module.exports = {
     MigrationHelper,
     ExtensionManager,
     extensionManager,
-    API,
-    Type
+    api,
+    type
 };

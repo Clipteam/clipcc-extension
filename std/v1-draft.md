@@ -197,13 +197,13 @@ class HelloExtension {
 Block 被定义为编辑器中的一个模块，原型如下所示：
 
 ```typescript
-class BlockPrototype {
+interface BlockPrototype {
     opcode: string;
     type: BlockType;
-    msg: string;
+    messageId: string;
     categoryId: string;
     func: Function;
-    param: ParameterPrototype[];
+    param: { [key: string]: ParameterPrototype };
 }
 
 enum BlockType {

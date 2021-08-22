@@ -18,7 +18,7 @@ class CompatibleExtension extends Extension {
     /**
      * Initialize the extension.
      */
-    init() {
+    onInit() {
         const info = this.instance.getInfo();
         this.extensionId = info.id;
         const categoryId = this.extensionId + '.' + info.name;

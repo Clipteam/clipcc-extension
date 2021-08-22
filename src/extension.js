@@ -33,7 +33,7 @@ class Extension {
     /**
      * Before save the project.
      */
-     beforeProjectSave() {}
+    beforeProjectSave() {}
 }
 
 module.exports = Extension;
