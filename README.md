@@ -1,70 +1,72 @@
-[Chinese version](https://github.com/Clipteam/clipcc-extension/blob/master/README_CN.md)
-# ClipCC Extension
+# ClipCC Extension Writing Guide
 
-`clipcc-extension` is an API for writing ClipCC extensions.
-## What is ClipCC3 extension?
-ClipCC3 Extension is a ClipCC3 feature under development that allows users to freely add new features to ClipCC3 (including but not limited to new modules, new look and feel).
-![](https://i.niupic.com/images/2021/05/20/9i1I.jpg)
-<!--more-->
-## Before the begining
-Please note! Before you start learning to develop extensions, please note that **ClipCC3 extensions are still in development** and there may be major changes to existing extension APIs that may cause extensions to fail before the official release of the feature. This tutorial will use the ClipCC3 extension API as of May 20 for demonstration purposes.
-## Environmental requirements
-You need to install NodeJS and npm beforehand (you can also use yarn instead), in order to save space not to describe the installation method in detail, please check the tutorial through the search engine itself.
-## Make an new project
-For project management purposes, please go to your working folder first and then run the following commands in order:
-``` bash
-npm -g install clipcc-extension-cli # can also be replaced with yarn global add clipcc-extension-cli
-mkdir example-extension # example-extension can also be replaced with your extension name
+#### Please note! Before you start learning to develop extensions, the ClipCC extensions **are still in development** and there may be major changes to the existing extension API that may cause the extension to fail before the official release of the feature. This tutorial will use the ClipCC extension API as of August 22nd for demonstration purposes.
+
+## Preparation
+
+1. you need a computer with acceptable performance. for device safety, please do not developing by smartphone🤔.
+2. you need to install Node.js and npm (you can also use yarn instead).
+
+## Create a new project
+
+To make it easier to write the extension, please go to your working folder and then run the following commands in order.
+
+```shell
+npm -g install clipcc-extension-cli # You can also replace it with yarn global add clipcc-extension-cli
+mkdir example-extension # example-extension can be replaced with the name of your own extension project
 cd example-extension
 npm init # can also be replaced with yarn init
-ccext-cli -g
-npm install # can also be replaced with yarn
+ccext-cli
 ```
-After running, the contents of your folder should look like this:
+
+In the last step, the ClipCC extension development scaffold will ask questions about the extension information, so please answer them one by one, as shown in the figure.
+
+![Image loading...](https://s3.jpg.cm/2021/08/22/IbEeHG.png)
+
+After answering the questions, the scaffold will automatically install the dependencies and wait for the installation to complete before creating a new ClipCC extension project.
+
+## Write an extension
+
+After running, the contents of your folder should look like this.
+
 ```
 /src
 package.json
 webpack.config.js
 ```
-Among them, the core code of the extension project are stored under the src folder, the contents of the folder should look like this (it is normal that the locales folder does not exist, please create the folder yourself to attach files)
+
+Where the core code of the extension is stored under the src folder, the contents of the folder should look like this (it's normal that the locales folder doesn't exist, so please create it yourself to attach files)
+
 ```
 assets/
 - icon.jpg
 - inset_icon.svg
 locales/
 - en.json
-- zh-cn.json
+- en-cn.json
 index.js
 info.json
 ```
-The locales directory is used to store the style of modules in different languages, assets is used to store the plugin resources, index.js is the main file for registering modules/realizing functions, and info.json is the plugin information.
-## Writing an extension
-First of all, please open src/info.json and fill in the following content:
-```json
-{
-    "id": "your.extension.id",
-    "author": "Your Name",
-    "version": "1.0.0",
-    "icon": "assets/icon.jpg",
-    "inset_icon": "assets/inset_icon.svg"
-}
-```
-Then open src/index.js and fill in the following content.
+
+The locales directory is used to store the style of the module in different languages, assets is used to store the plugin resources, index.js is the main file to register the module/implement the function, and info.json is the plugin information.
+
+First, open src/index.js and fill in the following content.
+
 ```javascript
 const ClipCC = require('clipcc-extension');
 
 class ExampleExtension extends ClipCC.Extension {
-    init() {
+    onInit() {
         ClipCC.API.addCategory({
-            categoryId: 'your.extension.id.category',
-            messageId: 'your.extension.id.category.name',
+            categoryId: 'clipteam.example.category',
+            messageId: 'clipteam.example.category.category',
             color: '#339900'
         });
         ClipCC.API.addBlock({
-            opcode: 'your.extension.id.return',
+            opcode: 'clipteam.example.return',
             type: ClipCC.Type.BlockType.REPORTER,
-            messageId: 'your.extension.id.return',
-            categoryId: 'your.extension.id.category',
+            messageId: 'clipteam.example.return.message',
+            categoryId: 'clipteam.example.category',
             argument: {
                 VALUE: {
                     type: ClipCC.Type.ArgumentType.STRING,
@@ -74,16 +76,16 @@ class ExampleExtension extends ClipCC.Extension {
             function: args => this.ReturnValue(args.VALUE)
         });
         ClipCC.API.addBlock({
-            opcode: 'your.extension.id.helloworld',
+            opcode: 'clipteam.example.helloworld',
             type: ClipCC.Type.BlockType.COMMAND,
-            messageId: 'your.extension.id.helloworld',
-            categoryId: 'your.extension.id.category',
+            messageId: 'clipteam.example.helloworld.message',
+            categoryId: 'clipteam.example.category',
             function: args => this.HelloWorld()
         });
     }
 
-    uninit() {
-        ClipCC.API.removeCategory('your.extension.id.category');
+    onUninit() {
+        ClipCC.API.removeCategory('clipteam.example.category');
     }
     
     ReturnValue(VALUE) {
@@ -98,33 +100,39 @@ class ExampleExtension extends ClipCC.Extension {
 
 module.exports = ExampleExtension;
 ```
-Then open src/locales/en.json and src/locales/zh-cn.json and fill in them:
+
+Then open src/locales/en.json and src/locales/zh-cn.json and fill in
+
 ```json
 {
-    "your.extension.id.name": "Example",
-    "your.extension.id.category.name": "Example",
-    "your.extension.id.description": "ClipCC example extension.",
-    "your.extension.id.return": "return [VALUE]",
-    "your.extension.id.helloworld": "Hello World!"
+    "clipteam.example.name": "Example",
+    "clipteam.example.category.message": "Example",
+    "clipteam.example.description": "ClipCC example extension,
+    "clipteam.example.return.message": "return [VALUE]",
+    "clipteam.example.message": "Hello World!"
 }
 
 ```
 
 ```json
 {
-    "your.extension.id.name": "示例",
-    "your.extension.id.category.name": "示例",
-    "your.extension.id.description": "ClipCC示例扩展.",
-    "your.extension.id.return": "返回 [VALUE]",
-    "your.extension.id.helloworld": "Hello World!"
+    "clipteam.example.name": "Example",
+    "clipteam.example.category.message": "example",
+    "clipteam.example.description": "ClipCC example extension." ,
+    "clipteam.example.return.message": "Return [VALUE]",
+    "clipteam.example.helloworld.message": "Hello World!"
 }
 
 ```
-After writing, run ``npm run build`` in the project top-level folder, the generated plugins can be found under dist/, and then directly imported into ClipCC to use.
-![](https://i.niupic.com/images/2021/05/20/9i21.jpg)
-## Lastly
-The above is a sample of the simplest ClipCC plugin, the following may be useful for your further writing.
+
+After writing, run ``npm run build`` in the project top-level folder and the generated plugin can be found under dist/. Afterwards, import the generated plugin directly into ClipCC 3.1 and it will work as follows.
+
+![image loading...](https://s3.jpg.cm/2021/08/22/IbEuKQ.png)
+
+## Finally
+
+The above is an example of the simplest ClipCC plugin, the following may be useful for your further development.
+
 ClipCC extension documentation: [click here](https://clipteam.github.io/clipcc-extension/)
-ClipCC local storage extension code: [click here](https://github.com/Clipteam/clipcc-extension-local-storage)
-ClipCC JavaScript extension code: [click here](https://github.com/SinanGentoo/clipcc-extension-javascript)
-ClipCC official exchange QQ group: 959825608
+
+ClipCC QQ group: 959825608
