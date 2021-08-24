@@ -1,6 +1,6 @@
 # ClipCC 扩展编写指南
 
-#### 请注意！在开始学习开发扩展之前，请注意 ClipCC 扩展功能**仍处于开发阶段**，在正式发布该功能之前已有扩展 API 可能会出现大的改动造成扩展失效。本教程将使用截至8月22日的 ClipCC 扩展 API 进行演示。
+#### 请注意！在开始学习开发扩展之前，请注意 ClipCC 扩展功能**仍处于开发阶段**，在正式发布该功能之前已有扩展 API 可能会出现大的改动造成扩展失效。本教程将使用截至8月24日的 ClipCC 扩展 API 进行演示。
 
 ## 准备
 
@@ -19,7 +19,7 @@ npm init # 也可替换为yarn init
 ccext-cli
 ```
 
-在最后一步，ClipCC 扩展开发脚手架将会询问有关扩展信息的问题，请逐个回答即可，如图：
+在最后一步，ClipCC 扩展开发脚手架将会询问有关扩展信息的问题。由于本文使用 JavaScript 作为插件编写示范，因此请在编写语言中选择 JavaScript 。如图：
 
 ![图片加载中...](https://s3.jpg.cm/2021/08/22/IbEeHG.png)
 
@@ -57,27 +57,27 @@ const ClipCC = require('clipcc-extension');
 
 class ExampleExtension extends ClipCC.Extension {
     onInit() {
-        ClipCC.API.addCategory({
+        ClipCC.api.addCategory({
             categoryId: 'clipteam.example.category',
             messageId: 'clipteam.example.category.category',
             color: '#339900'
         });
-        ClipCC.API.addBlock({
+        ClipCC.api.addBlock({
             opcode: 'clipteam.example.return',
-            type: ClipCC.Type.BlockType.REPORTER,
+            type: ClipCC.type.BlockType.REPORTER,
             messageId: 'clipteam.example.return.message',
             categoryId: 'clipteam.example.category',
-            argument: {
+            param: {
                 VALUE: {
-                    type: ClipCC.Type.ParameterType.STRING,
+                    type: ClipCC.type.ParameterType.STRING,
                     default: 'Hello World!'
                 }
             },
             function: args => this.ReturnValue(args.VALUE)
         });
-        ClipCC.API.addBlock({
+        ClipCC.api.addBlock({
             opcode: 'clipteam.example.helloworld',
-            type: ClipCC.Type.BlockType.COMMAND,
+            type: ClipCC.type.BlockType.COMMAND,
             messageId: 'clipteam.example.helloworld.message',
             categoryId: 'clipteam.example.category',
             function: args => this.HelloWorld()
@@ -85,7 +85,7 @@ class ExampleExtension extends ClipCC.Extension {
     }
 
     onUninit() {
-        ClipCC.API.removeCategory('clipteam.example.category');
+        ClipCC.api.removeCategory('clipteam.example.category');
     }
     
     ReturnValue(VALUE) {
