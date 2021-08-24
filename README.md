@@ -1,7 +1,7 @@
 [Chinese version](https://github.com/Clipteam/clipcc-extension/blob/master/README_CN.md)
 # ClipCC Extension Writing Guide
 
-#### Please note! Before you start learning to develop extensions, the ClipCC extensions **are still in development** and there may be major changes to the existing extension API that may cause the extension to fail before the official release of the feature. This tutorial will use the ClipCC extension API as of August 22nd for demonstration purposes.
+#### Please note! Before you start learning to develop extensions, the ClipCC extensions **are still in development** and there may be major changes to the existing extension API that may cause the extension to fail before the official release of the feature. This tutorial will use the ClipCC extension API as of August 24th for demonstration purposes.
 
 ## Preparation
 
@@ -20,7 +20,7 @@ npm init # can also be replaced with yarn init
 ccext-cli
 ```
 
-In the last step, the ClipCC extension development scaffold will ask questions about the extension information, so please answer them one by one, as shown in the figure.
+In the last step, the ClipCC extension development scaffold will ask questions about the extension information. please note that we will use JavaScript for development, so please choose JavaScript as your programming language.
 
 ![Image loading...](https://s3.jpg.cm/2021/08/22/IbEeHG.png)
 
@@ -57,27 +57,27 @@ const ClipCC = require('clipcc-extension');
 
 class ExampleExtension extends ClipCC.Extension {
     onInit() {
-        ClipCC.API.addCategory({
+        ClipCC.api.addCategory({
             categoryId: 'clipteam.example.category',
             messageId: 'clipteam.example.category.category',
             color: '#339900'
         });
-        ClipCC.API.addBlock({
+        ClipCC.api.addBlock({
             opcode: 'clipteam.example.return',
-            type: ClipCC.Type.BlockType.REPORTER,
+            type: ClipCC.type.BlockType.REPORTER,
             messageId: 'clipteam.example.return.message',
             categoryId: 'clipteam.example.category',
             argument: {
                 VALUE: {
-                    type: ClipCC.Type.ParameterType.STRING,
+                    type: ClipCC.type.ParameterType.STRING,
                     default: 'Hello World!'
                 }
             },
             function: args => this.ReturnValue(args.VALUE)
         });
-        ClipCC.API.addBlock({
+        ClipCC.api.addBlock({
             opcode: 'clipteam.example.helloworld',
-            type: ClipCC.Type.BlockType.COMMAND,
+            type: ClipCC.type.BlockType.COMMAND,
             messageId: 'clipteam.example.helloworld.message',
             categoryId: 'clipteam.example.category',
             function: args => this.HelloWorld()
@@ -85,7 +85,7 @@ class ExampleExtension extends ClipCC.Extension {
     }
 
     onUninit() {
-        ClipCC.API.removeCategory('clipteam.example.category');
+        ClipCC.api.removeCategory('clipteam.example.category');
     }
     
     ReturnValue(VALUE) {
@@ -120,7 +120,7 @@ After writing, run ``npm run build`` in the project top-level folder and the gen
 
 ## Finally
 
-The above is an example of the simplest ClipCC plugin, the following may be useful for your further development.
+The above is an example of the tiny ClipCC extension, the following may be useful for your further development.
 
 ClipCC extension documentation: [click here](https://clipteam.github.io/clipcc-extension/)
 
