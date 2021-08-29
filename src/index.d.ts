@@ -48,8 +48,8 @@ declare module 'clipcc-extension' {
             type: BlockType,
             messageId: string,
             categoryId: string,
-            func: Function,
-            param: { [key: string]: ParameterPrototype }
+            function: Function,
+            param?: { [key: string]: ParameterPrototype }
         }
     
         export declare interface ParameterPrototype {
