@@ -173,14 +173,21 @@ class ExtensionManager {
         }
         for (const dependency in this.info[extensionId].dependency) {
             if (!this.info.hasOwnProperty(dependency)) {
-                console.error(`Unavailable extension: ${dependency}`);
-                this._printRequireStack(requireStack);
-                throw ERROR_UNAVAILABLE_EXTENSION;
+                //console.error(`Unavailable extension: ${dependency}`);
+                //this._printRequireStack(requireStack);
+                throw {
+                    code: ERROR_UNAVAILABLE_EXTENSION,
+                    extension: { [dependency]: this.info[extensionId].dependency[dependency] },
+                    requireStack
+                };
             }
             if (this._findIdInList(dependency, requireStack) >= 0) {
-                console.error(`Circular requirement: ${dependency}`);
-                this._printRequireStack(requireStack);
-                throw ERROR_CIRCULAR_REQUIREMENT;
+                //console.error(`Circular requirement: ${dependency}`);
+                //this._printRequireStack(requireStack);
+                throw {
+                    code: ERROR_CIRCULAR_REQUIREMENT,
+                    requireStack
+                };
             }
             const targetVersion = this.info[extensionId].dependency[dependency];
             if (matchVersion(this.info[dependency].version, targetVersion)) {
@@ -192,9 +199,13 @@ class ExtensionManager {
                 }*/
             }
             else {
-                console.error(`Unmatched version: ${extensionId}(${targetVersion}), got ${this.info[dependency].version}`);
-                this._printRequireStack(requireStack);
-                throw ERROR_UNAVAILABLE_EXTENSION;
+                //console.error(`Unmatched version: ${extensionId}(${targetVersion}), got ${this.info[dependency].version}`);
+                //this._printRequireStack(requireStack);
+                throw {
+                    code: ERROR_UNAVAILABLE_EXTENSION,
+                    extension: { [extensionId]: targetVersion },
+                    requireStack
+                };
             }
         }
         requireStack.pop();
@@ -241,7 +252,7 @@ class ExtensionManager {
         }
     }
 
-    _printRequireStack(requireStack) {
+    static _printRequireStack(requireStack) {
         while (requireStack.length > 0) {
             const item = requireStack.pop();
             console.error(`    required by ${item.id}(${item.version})`);
