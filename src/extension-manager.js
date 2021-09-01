@@ -138,7 +138,11 @@ class ExtensionManager {
         for (const extensionId of extensions) {
             if (!this.info.hasOwnProperty(extensionId)) {
                 console.error(`Unavailable extension: ${extensionId}`);
-                throw ERROR_UNAVAILABLE_EXTENSION;
+                throw {
+                    code: ERROR_UNAVAILABLE_EXTENSION,
+                    extension: [{ id: extensionId, version: '' }],
+                    requireStack: []
+                };
             }
             this._checkExtensionLoadingOrderById(extensionId, [], graph);
         }
@@ -177,7 +181,7 @@ class ExtensionManager {
                 //this._printRequireStack(requireStack);
                 throw {
                     code: ERROR_UNAVAILABLE_EXTENSION,
-                    extension: { [dependency]: this.info[extensionId].dependency[dependency] },
+                    extension: [{ id: dependency, version: this.info[extensionId].dependency[dependency] }],
                     requireStack
                 };
             }
@@ -203,7 +207,7 @@ class ExtensionManager {
                 //this._printRequireStack(requireStack);
                 throw {
                     code: ERROR_UNAVAILABLE_EXTENSION,
-                    extension: { [extensionId]: targetVersion },
+                    extension: [{ id: dependency, version: this.info[extensionId].dependency[dependency] }],
                     requireStack
                 };
             }
