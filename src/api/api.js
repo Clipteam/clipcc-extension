@@ -36,6 +36,18 @@ const getGuiInstance = () => instance.gui.gui;
 const getBlockInstance = () => instance.blocks;
 
 /**
+ * Get clipcc-render instance.
+ * @returns {ClipCCRender}
+ */
+const getRenderInstance = () => instance.vm.vm.renderer;
+
+/**
+ * Get stage canvas.
+ * @returns {HTMLCanvasElement}
+ */
+const getStageCanvas = () => instance.vm.vm.renderer.canvas;
+
+/**
  * Add a category from prototype.
  * @param {CategoryPrototype} categoryInfo - Category prototype. 
  */
@@ -97,5 +109,7 @@ module.exports = {
     isEditorLoading,
     getVmInstance,
     getGuiInstance,
-    getBlockInstance
+    getBlockInstance,
+    getRenderInstance,
+    getStageCanvas
 };

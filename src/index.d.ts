@@ -79,10 +79,16 @@ declare module 'clipcc-extension' {
         export declare function getVmInstance(): Object;
         export declare function getGuiInstance(): Object;
         export declare function getBlockInstance(): Object;
+        export declare function getStageCanvas(): HTMLCanvasElement;
         export declare function registerGlobalFunction(name: string, func: Function): void;
         export declare function unregisterGlobalFunction(name: string): void;
         export declare function callGlobalFunction(name: string, ...args: any[]): any;
         export declare function migrateChangeBlock(targets: Object, srcBlockId: string, dstBlockId: string): void;
+    }
+
+    export namespace error {
+        declare const ERROR_UNAVAILABLE_EXTENSION;
+        declare const ERROR_CIRCULAR_REQUIREMENT;
     }
 
     export declare class MigrationHelper {
