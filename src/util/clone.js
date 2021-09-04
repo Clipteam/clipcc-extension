@@ -1,5 +1,5 @@
 function clone(obj) {
-    let res = Array.isArray(obj) ? [] : {};
+    const res = Array.isArray(obj) ? [] : {};
     if (typeof obj !== 'object') {
         return obj;
     }

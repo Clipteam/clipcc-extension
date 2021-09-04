@@ -1,5 +1,6 @@
 const Extension = require('./extension');
 const API = require('./api/api');
+const type = require('./type');
 
 /**
  * Compatible extension interface with original Scratch.
@@ -28,9 +29,9 @@ class CompatibleExtension extends Extension {
             color: info.color1
         });
 
-        for (let block of info.blocks) {
+        for (const block of info.blocks) {
             const argument = {};
-            for (let argu in block.arguments) {
+            for (const argu in block.arguments) {
                 argument[argu] = {
                     type: this.getArgumentType(block.arguments[argu].type),
                     default: block.arguments[argu].defaultValue
@@ -49,25 +50,25 @@ class CompatibleExtension extends Extension {
 
     getBlockType(blockType) {
         switch (blockType) {
-            case 'Boolean': return BlockType.BOOLEAN;
+            case 'Boolean': return type.BlockType.BOOLEAN;
             case 'button': return 0;
-            case 'command': return BlockType.COMMAND;
+            case 'command': return type.BlockType.COMMAND;
             case 'conditional': return 0;
-            case 'event': return BlockType.HAT;
-            case 'hat': return BlockType.HAT;
+            case 'event': return type.BlockType.HAT;
+            case 'hat': return type.BlockType.HAT;
             case 'loop': return 0;
-            case 'reporter': return BlockType.REPORTER;
+            case 'reporter': return type.BlockType.REPORTER;
             default: return 0;
         }
     }
-    
+
     getArgumentType(arguType) {
         switch (arguType) {
             case 'angle': return 0;
-            case 'Boolean': return ArgumentType.BOOLEAN;
-            case 'color': return ArgumentType.COLOR;
-            case 'number': return ArgumentType.NUMBER;
-            case 'string': return ArgumentType.STRING;
+            case 'Boolean': return type.ParameterType.BOOLEAN;
+            case 'color': return type.ParameterType.COLOR;
+            case 'number': return type.ParameterType.NUMBER;
+            case 'string': return type.ParameterType.STRING;
             case 'matrix': return 0;
             case 'note': return 0;
             case 'image': return 0;

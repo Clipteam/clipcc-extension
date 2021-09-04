@@ -13,8 +13,6 @@
  * Extension base class.
  */
 class Extension {
-    constructor() {}
-
     /**
      * Initialize the extension.
      */

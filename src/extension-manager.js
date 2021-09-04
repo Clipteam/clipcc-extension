@@ -3,7 +3,7 @@
  * @module Manager
  */
 
-const { Graph, ERROR_DUPLICATED_EDGE, ERROR_NO_TOPO_ORDER } = require('./util/graph');
+const { Graph } = require('./util/graph');
 const { matchVersion } = require('./util/version');
 
 const loadMode = {
@@ -60,14 +60,14 @@ class ExtensionManager {
     getInstance(id) {
         return this.instance[id];
     }
-    
+
     /**
      * Get an extension info.
      * @param {string} id - Extension id.
      * @returns {ExtensionInfo} - Extension info.
      */
     getInfo(id) {
-        console.log(this.info)
+        console.log(this.info);
         return this.info[id];
     }
 
@@ -111,7 +111,6 @@ class ExtensionManager {
                 }
                 this.setLoadStatus(extension.id, extension.mode);
             }
-            
         }
     }
 
@@ -154,7 +153,7 @@ class ExtensionManager {
 
     _findIdInList(id, list) {
         for (const i in list) {
-            if (list[i].id == id) {
+            if (list[i].id === id) {
                 return i;
             }
         }
@@ -177,8 +176,8 @@ class ExtensionManager {
         }
         for (const dependency in this.info[extensionId].dependency) {
             if (!this.info.hasOwnProperty(dependency)) {
-                //console.error(`Unavailable extension: ${dependency}`);
-                //this._printRequireStack(requireStack);
+                // console.error(`Unavailable extension: ${dependency}`);
+                // this._printRequireStack(requireStack);
                 throw {
                     code: ERROR_UNAVAILABLE_EXTENSION,
                     extension: [{ id: dependency, version: this.info[extensionId].dependency[dependency] }],
@@ -186,8 +185,8 @@ class ExtensionManager {
                 };
             }
             if (this._findIdInList(dependency, requireStack) >= 0) {
-                //console.error(`Circular requirement: ${dependency}`);
-                //this._printRequireStack(requireStack);
+                // console.error(`Circular requirement: ${dependency}`);
+                // this._printRequireStack(requireStack);
                 throw {
                     code: ERROR_CIRCULAR_REQUIREMENT,
                     requireStack
@@ -197,14 +196,14 @@ class ExtensionManager {
             if (matchVersion(this.info[dependency].version, targetVersion)) {
                 graph.addEdge(dependency, extensionId);
                 this._checkExtensionLoadingOrderById(dependency, requireStack, graph);
-                /*if (!this._findIdInList(dependency, result)) {
+                /* if (!this._findIdInList(dependency, result)) {
                     result.unshift({ id: dependency, mode: loadMode.PASSIVE_LOAD });
                     this._checkExtensionLoadingOrderById(dependency, requireStack, result);
                 }*/
             }
             else {
-                //console.error(`Unmatched version: ${extensionId}(${targetVersion}), got ${this.info[dependency].version}`);
-                //this._printRequireStack(requireStack);
+                // console.error(`Unmatched version: ${extensionId}(${targetVersion}), got ${this.info[dependency].version}`);
+                // this._printRequireStack(requireStack);
                 throw {
                     code: ERROR_UNAVAILABLE_EXTENSION,
                     extension: [{ id: dependency, version: this.info[extensionId].dependency[dependency] }],
@@ -214,7 +213,7 @@ class ExtensionManager {
         }
         requireStack.pop();
     }
-    
+
     /**
      * Get the correct unloading order.
      * @param {string[]} extensions - The list of extension ID.
@@ -228,7 +227,7 @@ class ExtensionManager {
         }
         return graph.topo();
     }
-    
+
     /**
      * Get unloading order of the extension with given id.
      * @param {string} extensionId - Extension ID.

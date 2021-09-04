@@ -8,14 +8,14 @@ const INF = 0x3f3f3f3f;
 class Graph {
     constructor() {
         this.edge = {};
-        //this.node = [];
+        // this.node = [];
         this.node = {};
         this.nodeCount = 0;
     }
 
     addNode(node) {
         if (!this.node.hasOwnProperty(node)) {
-            //this.node.push(node);
+            // this.node.push(node);
             this.node[node] = { in: 0, out: 0 };
             this.edge[node] = {};
             ++this.nodeCount;
@@ -43,7 +43,7 @@ class Graph {
                 dis: this.edge[from].hasOwnProperty(node)
                     ? this.edge[from][node].w : INF,
                 path: this.edge[from].hasOwnProperty(node)
-                    ? [{from, to: node}] : []
+                    ? [{ from, to: node }] : []
             };
         }
         tmp[from].dis = 0;
@@ -51,7 +51,7 @@ class Graph {
 
         let cnt = 1;
         while (cnt !== this.nodeCount) {
-            let idx = null, min = INF;
+            let idx = null; let min = INF;
             for (const node in this.node) {
                 if (!tmp[node].vis && tmp[node].dis < min) {
                     min = tmp[node].dis;
@@ -66,7 +66,7 @@ class Graph {
                     (tmp[idx].dis + this.edge[idx][node].w < tmp[node].dis)
                 ) {
                     tmp[node].dis = tmp[idx].dis + this.edge[idx][node].w;
-                    tmp[node].path = Object.assign([], tmp[idx].path)
+                    tmp[node].path = Object.assign([], tmp[idx].path);
                     tmp[node].path.push({ from: idx, to: node });
                 }
             }

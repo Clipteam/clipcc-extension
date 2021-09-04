@@ -3,8 +3,8 @@ const clone = require('./clone');
 function compareParsedVersion(ver1, ver2) {
     const len = ver1.length > ver2.length ? ver1.length : ver2.length;
     for (let i = 0; i < len; ++i) {
-        const v1 = i < ver1.length ? (Number(ver1[i]) === NaN ? ver1[i] : Number(ver1[i])) : 0;
-        const v2 = i < ver2.length ? (Number(ver2[i]) === NaN ? ver2[i] : Number(ver2[i])) : 0;
+        const v1 = i < ver1.length ? Number.isNaN(Number(ver1[i]) ? ver1[i] : Number(ver1[i])) : 0;
+        const v2 = i < ver2.length ? Number.isNaN(Number(ver2[i]) ? ver2[i] : Number(ver2[i])) : 0;
         if (v1 < v2) return -1;
         if (v1 > v2) return 1;
     }
@@ -35,4 +35,4 @@ function matchVersion(ver, reg) {
 module.exports = {
     compareParsedVersion,
     matchVersion
-}
+};

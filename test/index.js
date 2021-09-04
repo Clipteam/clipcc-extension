@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const dir = path.dirname(__filename);
-const files = fs.readdirSync(dir)
-let total = 0, passed = 0;
+const files = fs.readdirSync(dir);
+let total = 0; let passed = 0;
 for (const file of files) {
     if (file === 'index.js') continue;
     console.log(`Running ${file} ...`);

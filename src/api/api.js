@@ -49,7 +49,7 @@ const getStageCanvas = () => instance.vm.vm.renderer.canvas;
 
 /**
  * Add a category from prototype.
- * @param {CategoryPrototype} categoryInfo - Category prototype. 
+ * @param {CategoryPrototype} categoryInfo - Category prototype.
  */
 const addCategory = categoryInfo => instance.vm.addCategory(categoryInfo);
 

@@ -24,7 +24,7 @@ assert.deepEqual(g1.bfs(5, 4), [
     { from: 1, to: 4 }
 ]);
 
-assert.deepEqual(g1.topo(), [ 5, 6, 7, 1, 2, 3, 4 ]);
+assert.deepEqual(g1.topo(), [5, 6, 7, 1, 2, 3, 4]);
 
 const g2 = new Graph();
 g2.addEdge(2, 4, 1);
