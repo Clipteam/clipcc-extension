@@ -7,18 +7,11 @@ const type = require('./type');
  * @extends Extension
  */
 class CompatibleExtension extends Extension {
-    /**
-     * Create a compatible extension.
-     * @param {object} instance - Extension instance.
-     */
     constructor(instance) {
         super();
         this.instance = instance;
     }
 
-    /**
-     * Initialize the extension.
-     */
     onInit() {
         const info = this.instance.getInfo();
         this.extensionId = info.id;

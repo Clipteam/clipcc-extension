@@ -1,7 +1,8 @@
-// migration-helper.js
-
 const { Graph, ERROR_DUPLICATED_EDGE } = require('./util/graph');
 
+/**
+ * Migration helper.
+ */
 class MigrationHelper {
     constructor() {
         this.graph = new Graph();

@@ -1,10 +1,6 @@
 /**
- * Define types used by clipcc-extension.
- * @module Type
- */
-
-/**
  * @typedef {object} ParameterPrototype
+ * @memberof type
  * Argument meta data.
  * @property {ParameterType} type - Argument type.
  * @property {string | number} default - Default value.
@@ -14,13 +10,15 @@
 /**
  * @typedef {object} ShadowPrototype
  * Shadow meta data.
+ * @memberof type
  * @property {string} type - Shadow type.
  * @property {string} fieldName - Field name.
  */
 
 /**
  * @typedef {object} Message
- * Message
+ * Message.
+ * @memberof type
  * @property {string} id - id
  * @property {string} default - default
  */
@@ -28,6 +26,7 @@
 /**
  * @typedef {object} BlockPrototype
  * Block prototype.
+ * @memberof type
  * @property {string} opcode - Opcode.
  * @property {BlockType} type - Block type.
  * @property {string} msg - Message id.
@@ -39,6 +38,7 @@
 /**
  * @typedef {object} CategoryPrototype
  * Category prototype.
+ * @memberof type
  * @property {string} categoryId - Category id.
  * @property {string} messageId - Message id.
  * @property {string} color - Color #rrggbb.
@@ -46,8 +46,9 @@
 
 /**
  * Block types.
- * @readonly
  * @enum {number}
+ * @memberof type
+ * @readonly
  */
 const BlockType = {
     /** A general command block */
@@ -64,8 +65,9 @@ const BlockType = {
 
 /**
  * Argument types.
- * @readonly
  * @enum {number}
+ * @memberof type
+ * @readonly
  */
 const ParameterType = {
     /** Number */
@@ -90,8 +92,9 @@ const ParameterType = {
 
 /**
  * Shadow types.
- * @readonly
  * @enum {ShadowPrototype | boolean}
+ * @memberof type
+ * @readonly
  */
 const ShadowType = {
     NO_SHADOW: false,

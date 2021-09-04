@@ -1,9 +1,8 @@
-// Utils
-
 const globalFuncion = {};
 
 /**
  * Register a global function.
+ * @memberof api
  * @param {string} name - Function name.
  * @param {Function} func - Function instance.
  */
@@ -16,6 +15,7 @@ const registerGlobalFunction = (name, func) => {
 
 /**
  * Call a registered global function.
+ * @memberof api
  * @param {string} name - Function name.
  * @param {...any} args - Arguments.
  * @returns {any} - Result
@@ -29,6 +29,7 @@ const callGlobalFunction = (name, ...args) => {
 
 /**
  * Unregister a global function.
+ * @memberof api
  * @param {string} name - Function name.
  */
 const unregisterGlobalFunction = (name) => {
@@ -40,6 +41,7 @@ const unregisterGlobalFunction = (name) => {
 
 /**
  * Change a block to another.
+ * @memberof api
  * @param {any} targets - Scratch project JSON.
  * @param {string} srcBlockId - Source block ID.
  * @param {string} dstBlockId - Destination block ID.

@@ -1,6 +1,7 @@
 /**
  * @typedef {object} ExtensionInfo
  * Extension info, defined in `info.json`.
+ * @memberof type
  * @property {string} id - ID.
  * @property {string} version - Version.
  * @property {string | string[]} author - Author(s).

@@ -1,18 +1,25 @@
-/**
- * Extension manager.
- * @module Manager
- */
-
 const { Graph } = require('./util/graph');
 const { matchVersion } = require('./util/version');
 
-const loadMode = {
+/**
+ * Load mode.
+ * @enum {number}
+ * @readonly
+ * @ignore
+ */
+const LoadMode = {
     UNLOAD: 0,
     INITIATIVE_LOAD: 1,
     PASSIVE_LOAD: 2
 };
 
+/**
+ * @memberof error
+ */
 const ERROR_UNAVAILABLE_EXTENSION = 0x90;
+/**
+ * @memberof error
+ */
 const ERROR_CIRCULAR_REQUIREMENT = 0x91;
 
 /**
@@ -36,7 +43,7 @@ class ExtensionManager {
         this.info[id] = Object.assign({
             dependency: {}
         }, info);
-        this.load[id] = loadMode.UNLOAD;
+        this.load[id] = LoadMode.UNLOAD;
         this.instance[id] = instance;
     }
 
@@ -122,7 +129,7 @@ class ExtensionManager {
         for (const extension of extensions) {
             if (this.getLoadStatus(extension)) {
                 this.instance[extension].onUninit();
-                this.setLoadStatus(extension, loadMode.UNLOAD);
+                this.setLoadStatus(extension, LoadMode.UNLOAD);
             }
         }
     }
@@ -147,7 +154,7 @@ class ExtensionManager {
         }
         return graph.topo().map(id => ({
             id: id,
-            mode: extensions.includes(id) ? loadMode.INITIATIVE_LOAD : loadMode.PASSIVE_LOAD
+            mode: extensions.includes(id) ? LoadMode.INITIATIVE_LOAD : LoadMode.PASSIVE_LOAD
         }));
     }
 
@@ -248,7 +255,7 @@ class ExtensionManager {
         }
         for (const dependency in this.info[extensionId].dependency) {
             if (dependency === last) continue;
-            if (this.load[dependency] === loadMode.PASSIVE_LOAD) {
+            if (this.load[dependency] === LoadMode.PASSIVE_LOAD) {
                 graph.addEdge(extensionId, dependency);
                 this._checkExtensionUnloadingOrderById(dependency, graph, extensionId);
             }
@@ -286,6 +293,7 @@ const extensionManager = new ExtensionManager();
 
 module.exports = {
     ExtensionManager,
+    LoadMode,
     extensionManager,
     ERROR_UNAVAILABLE_EXTENSION,
     ERROR_CIRCULAR_REQUIREMENT
