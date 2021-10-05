@@ -27,12 +27,12 @@ class Extension {
     /**
      * Before load the project.
      */
-    beforeProjectLoad() {}
+    beforeProjectLoad(data, extensions) {}
 
     /**
      * Before save the project.
      */
-    beforeProjectSave() {}
+    beforeProjectSave(data) {}
 }
 
 module.exports = Extension;

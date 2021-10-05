@@ -41,6 +41,7 @@ declare module 'clipcc-extension' {
             icon: string;
             inset_icon: string;
             api: number;
+            dependency: { [key: string]: string };
         }
 
         export declare interface BlockPrototype {
@@ -87,8 +88,8 @@ declare module 'clipcc-extension' {
     }
 
     export namespace error {
-        declare const ERROR_UNAVAILABLE_EXTENSION;
-        declare const ERROR_CIRCULAR_REQUIREMENT;
+        declare const ERROR_UNAVAILABLE_EXTENSION = 0x90;
+        declare const ERROR_CIRCULAR_REQUIREMENT = 0x91;
     }
 
     export declare class MigrationHelper {
@@ -98,10 +99,12 @@ declare module 'clipcc-extension' {
     }
 
     declare enum LoadMode {
-        UNLOAD = 0, INITIATIVE_LOAD = 1, PASSIVE_LOAD = 2
+        UNLOAD = 0,
+        INITIATIVE_LOAD = 1,
+        PASSIVE_LOAD = 2
     }
 
-    declare interface ExtensionWithLoadMode {
+    declare interface ExtensionLoadInfo {
         id: string;
         mode: LoadMode;
     }
@@ -116,9 +119,9 @@ declare module 'clipcc-extension' {
         setLoadStatus(id: string, loadStatus: boolean): void;
         getLoadStatus(id: string): boolean;
         getLoadedExtensions(): string[];
-        loadExtensionsWithMode(extensions: ExtensionWithLoadMode[], vmCallback: Function): void;
+        loadExtensionsWithMode(extensions: ExtensionLoadInfo[], vmCallback: Function): void;
         unloadExtensions(extensions: string[]);
-        getExtensionLoadOrder(extensions: string[]): ExtensionWithLoadMode[];
+        getExtensionLoadOrder(extensions: string[]): ExtensionLoadInfo[];
         getExtensionUnloadOrder(extensions: string[]): string[];
         emitEventToExtension(id: string, event: string, ...args: any[]): void;
         emitEvent(event: string, ...args: any[]): void;
@@ -130,8 +133,8 @@ declare module 'clipcc-extension' {
         constructor();
         onInit(): void;
         onUninit(): void;
-        beforeProjectLoad(data: any): void;
-        beforeProjectSave(): void;
+        beforeProjectLoad(data: any, extensions: any): void;
+        beforeProjectSave(data: any): void;
     }
 
     export declare class CompatibleExtension extends Extension {

@@ -1,10 +1,12 @@
 本文是 ClipCC 扩展标准（v1，草案）文档，所有扩展必须遵循本文档所规定内容。
 
+*请注意，本文档仍然属于草案，其中 API 可能在正式版中发生变动*
+
 ## 1 标准更新与适用版本
 
 |标准版本|API 版本|更新日期|状态|备注|
 |:-:|:-:|:-:|:-:|:-:|
-|v1|0.x|2021/7/17|草案||
+|v1|0.x|2021/10/5|草案||
 
 标准版本为扩展 API 遵循的标准，API 版本为对应的 clipcc-extension 包版本。
 
@@ -69,6 +71,8 @@ ClipCC 扩展必须以 zip 格式打包为 `*.ccx` 文件。
 在扩展文件内部根目录下的 `main.js` 为扩展的入口文件，在扩展被加载到编辑器时，该文件将被载入编辑器并执行。
 
 入口文件必须显式导出一个类，该类应当实现 `onInit` 和 `onUninit` 方法（但不是强制的），以响应加载和卸载事件。
+
+目前，扩展导出的类必须以 CommonJS 形式导出，即导出到 `module.exports`。
 
 下面是一个基于 CommonJS 规范的扩展最小实现：
 
@@ -304,7 +308,7 @@ function getGuiInstance(): Object;
 function getBlockInstance(): Object;
 ```
 
-### 7.6 舞台 Canvas
+### 7.6 舞台
 
 ```typescript
 function getStageCanvas(): HTMLCanvasElement;
