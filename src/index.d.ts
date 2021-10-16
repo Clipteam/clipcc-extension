@@ -124,6 +124,7 @@ declare module 'clipcc-extension' {
         getExtensionLoadOrder(extensions: string[]): ExtensionLoadInfo[];
         getExtensionUnloadOrder(extensions: string[]): string[];
         emitEventToExtension(id: string, event: string, ...args: any[]): void;
+        emitEventToAll(event: string, ...args): void;
         emitEvent(event: string, ...args: any[]): void;
     }
 

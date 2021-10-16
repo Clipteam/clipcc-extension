@@ -34,9 +34,9 @@ class ExtensionManager {
 
     /**
      * Add an extension.
-     * @param {string} id - Extension id.
-     * @param {ExtensionInfo} info - Extension info.
-     * @param {Extension} instance - Extension instance.
+     * @param {string} id Extension id.
+     * @param {ExtensionInfo} info Extension info.
+     * @param {Extension} instance Extension instance.
      */
     addInstance(id, info, instance) {
         if (this.instance.hasOwnProperty(id)) return;
@@ -49,7 +49,7 @@ class ExtensionManager {
 
     /**
      * Remove an extension.
-     * @param {string} id - Extension id.
+     * @param {string} id Extension id.
      */
     removeInstance(id) {
         if (this.instance.hasOwnProperty(id)) {
@@ -61,8 +61,8 @@ class ExtensionManager {
 
     /**
      * Get an extension instance.
-     * @param {string} id - Extension id.
-     * @returns {Extension} - Extension instance.
+     * @param {string} id Extension id.
+     * @returns {Extension} Extension instance.
      */
     getInstance(id) {
         return this.instance[id];
@@ -70,8 +70,8 @@ class ExtensionManager {
 
     /**
      * Get an extension info.
-     * @param {string} id - Extension id.
-     * @returns {ExtensionInfo} - Extension info.
+     * @param {string} id Extension id.
+     * @returns {ExtensionInfo} Extension info.
      */
     getInfo(id) {
         console.log(this.info);
@@ -94,18 +94,55 @@ class ExtensionManager {
         return this.load[id];
     }
 
+    /**
+     * Get loaded extendions.
+     * @returns {{[key: string]: string}} Object as { extension: version }
+     */
     getLoadedExtensions() {
+        const result = {};
+        for (const key in this.load) {
+            if (this.load[key]) {
+                result[key] = this.info[key].version;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Get loaded extendions.
+     * @returns {{id: string, version: string}[]}
+     */
+    getLoadedExtensionsList() {
         const result = [];
         for (const key in this.load) {
-            if (this.load[key]) result.push(key);
+            if (this.load[key]) {
+                result.push({
+                    id: key,
+                    version: this.info[key].version
+                });
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Get loaded extendions.
+     * @returns {string[]}
+     */
+    getLoadedExtensionsIdList() {
+        const result = [];
+        for (const key in this.load) {
+            if (this.load[key]) {
+                result.push(key);
+            }
         }
         return result;
     }
 
     /**
      * Load all the extensions given.
-     * @param {Object[]} extensions - The list of extension ID.
-     * @param {Function} vmCallback - Load vm extension.
+     * @param {Object[]} extensions The list of extension ID.
+     * @param {Function} vmCallback Load vm extension.
      */
     loadExtensionsWithMode(extensions, vmCallback) {
         for (const extension of extensions) {
@@ -123,12 +160,14 @@ class ExtensionManager {
 
     /**
      * Unload all the extensions given.
-     * @param {string[]} extensions - The list of extension ID.
+     * @param {string[]} extensions The list of extension ID.
      */
     unloadExtensions(extensions) {
         for (const extension of extensions) {
             if (this.getLoadStatus(extension)) {
-                this.instance[extension].onUninit();
+                if (this.info[extension.id].api) {
+                    this.instance[extension].onUninit();
+                }
                 this.setLoadStatus(extension, LoadMode.UNLOAD);
             }
         }
@@ -136,7 +175,7 @@ class ExtensionManager {
 
     /**
      * Get the correct loading order.
-     * @param {string[]} extensions - The list of extension ID.
+     * @param {string[]} extensions The list of extension ID.
      * @returns {Object[]}
      */
     getExtensionLoadOrder(extensions) {
@@ -146,7 +185,7 @@ class ExtensionManager {
                 console.error(`Unavailable extension: ${extensionId}`);
                 throw {
                     code: ERROR_UNAVAILABLE_EXTENSION,
-                    extension: [{ id: extensionId, version: '' }],
+                    extension: [{ id: extensionId, version: 'any' }],
                     requireStack: []
                 };
             }
@@ -169,9 +208,9 @@ class ExtensionManager {
 
     /**
      * Get loading order of the extension with given id.
-     * @param {string} extensionId - The extension id.
-     * @param {Object[]} requireStack - Require stack.
-     * @param {Graph} graph - Load order.
+     * @param {string} extensionId The extension id.
+     * @param {Object[]} requireStack Require stack.
+     * @param {Graph} graph Load order.
      */
     _checkExtensionLoadingOrderById(extensionId, requireStack, graph) {
         requireStack.push({
@@ -223,7 +262,7 @@ class ExtensionManager {
 
     /**
      * Get the correct unloading order.
-     * @param {string[]} extensions - The list of extension ID.
+     * @param {string[]} extensions The list of extension ID.
      */
     getExtensionUnloadOrder(extensions) {
         const graph = new Graph();
@@ -237,8 +276,8 @@ class ExtensionManager {
 
     /**
      * Get unloading order of the extension with given id.
-     * @param {string} extensionId - Extension ID.
-     * @param {Graph} graph - Unlaod order.
+     * @param {string} extensionId Extension ID.
+     * @param {Graph} graph Unlaod order.
      */
     _checkExtensionUnloadingOrderById(extensionId, graph, last) {
         if (!graph.hasNode(extensionId)) {
@@ -271,15 +310,27 @@ class ExtensionManager {
 
     emitEventToExtension(id, event, ...args) {
         if (!this.instance.hasOwnProperty(id)) throw `Unavaliable extension id: ${id}`;
-        const func = this.instance[id][event];
-        if (typeof func === 'function') {
-            func(...args);
+        if (this.instance[id]) {
+            const func = this.instance[id][event];
+            if (typeof func === 'function') {
+                func(...args);
+            }
+        }
+    }
+
+    emitEventToAll(event, ...args) {
+        for (const instance of this.instance) {
+            if (!instance) continue;
+            const func = instance[event];
+            if (typeof func === 'function') {
+                func(...args);
+            }
         }
     }
 
     emitEvent(event, ...args) {
         for (const key in this.load) {
-            if (this.load[key]) {
+            if (this.instance[key]) {
                 const func = this.instance[key][event];
                 if (typeof func === 'function') {
                     func(...args);
