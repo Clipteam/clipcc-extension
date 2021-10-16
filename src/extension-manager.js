@@ -319,9 +319,9 @@ class ExtensionManager {
     }
 
     emitEventToAll(event, ...args) {
-        for (const instance of this.instance) {
-            if (!instance) continue;
-            const func = instance[event];
+        for (const id in this.instance) {
+            if (!this.instance[id]) continue;
+            const func = this.instance[id][event];
             if (typeof func === 'function') {
                 func(...args);
             }
