@@ -165,7 +165,7 @@ class ExtensionManager {
     unloadExtensions(extensions) {
         for (const extension of extensions) {
             if (this.getLoadStatus(extension)) {
-                if (this.info[extension.id].api) {
+                if (this.info[extension].api) {
                     this.instance[extension].onUninit();
                 }
                 this.setLoadStatus(extension, LoadMode.UNLOAD);
