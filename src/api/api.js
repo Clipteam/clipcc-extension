@@ -21,6 +21,13 @@ function registExtensionAPI(api) {
 const getVmInstance = () => instance.vm.vm;
 
 /**
+ * Get clipcc-gui document.
+ * @memberof api
+ * @returns {Document}
+ */
+const getGuiDocument = () => instance.document;
+
+/**
  * Get clipcc-gui instance.
  * @memberof api
  * @returns {ClipCCGUI}
@@ -121,6 +128,7 @@ module.exports = {
     isDesktop,
     isEditorLoading,
     getVmInstance,
+    getGuiDocument,
     getGuiInstance,
     getBlockInstance,
     getRenderInstance,

@@ -78,6 +78,7 @@ declare module 'clipcc-extension' {
         export declare function addBlock(block: type.BlockPrototype): void;
         export declare function removeBlock(opcode: string): void;
         export declare function getVmInstance(): Object;
+        export declare function getGuiDocument(): Document;
         export declare function getGuiInstance(): Object;
         export declare function getBlockInstance(): Object;
         export declare function getStageCanvas(): HTMLCanvasElement;

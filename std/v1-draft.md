@@ -6,7 +6,7 @@
 
 |标准版本|API 版本|更新日期|状态|备注|
 |:-:|:-:|:-:|:-:|:-:|
-|v1|0.x|2021/10/16|草案||
+|v1|0.x|2021/11/8|草案||
 
 标准版本为扩展 API 遵循的标准，API 版本为对应的 clipcc-extension 包版本。
 
@@ -198,6 +198,8 @@ class HelloExtension {
 
 ## 7 接口和定义
 
+全部的 api 函数均被定义在 `api` 命名空间中。全部的类型均被定义在 `type` 命名空间中。
+
 ### 7.1 Block
 
 Block 被定义为编辑器中的一个模块，原型如下所示：
@@ -302,10 +304,11 @@ function migrateChangeBlock(targets: Object, srcBlockId: string, dstBlockId: str
 
 ### 7.5 编辑器实例
 
-扩展可以获取编辑器的一些实例，通过直接修改或调用实例的方式完成更为复杂的功能，但对于实例的所有操作的结果完全取决于编辑器的实现，其稳定性和可行性不被保证，我们也并不建议这样做。
+扩展可以获取编辑器的一些实例，通过直接修改或调用实例的方式完成更为复杂的功能，但对于实例的所有操作的结果完全取决于编辑器的实现，其稳定性和可行性不被保证，在版本间可能存在变动。
 
 ```typescript
 function getVmInstance(): Object;
+function getGuiDocument(): Document;
 function getGuiInstance(): Object;
 function getBlockInstance(): Object;
 ```
@@ -354,6 +357,3 @@ function migrationFromVersion(srcVer: string, dstVer: string, projectData: Objec
 - SinanGentoo
 - Sparrow He
 - SteveXMH
-
-格式参考：
-- ISO/IEC 14882:2020
