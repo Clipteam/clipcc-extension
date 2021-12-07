@@ -21,6 +21,13 @@ function registExtensionAPI(api) {
 const getVmInstance = () => instance.vm.vm;
 
 /**
+ * Get BlockUtility for compatibility with original blocks.
+ * @memberof api
+ * @returns {BlockUtility}
+ */
+ const getBlockUtil = () => instance.vm.getBlockUtility;
+
+/**
  * Get clipcc-gui document.
  * @memberof api
  * @returns {Document}
