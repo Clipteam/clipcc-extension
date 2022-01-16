@@ -28,6 +28,13 @@ const getVmInstance = () => instance.vm.vm;
 const getGuiDocument = () => instance.document;
 
 /**
+ * Get clipcc-gui window.
+ * @memberof api
+ * @returns {Window}
+ */
+const getGuiWindow = () => instance.window;
+
+/**
  * Get clipcc-gui instance.
  * @memberof api
  * @returns {ClipCCGUI}
@@ -129,6 +136,7 @@ module.exports = {
     isEditorLoading,
     getVmInstance,
     getGuiDocument,
+    getGuiWindow,
     getGuiInstance,
     getBlockInstance,
     getRenderInstance,
