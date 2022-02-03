@@ -311,6 +311,7 @@ function getVmInstance(): Object;
 function getGuiDocument(): Document;
 function getGuiInstance(): Object;
 function getBlockInstance(): Object;
+function getgetRenderInstance(): Object;
 ```
 
 ### 7.6 舞台
@@ -321,7 +322,13 @@ function getStageCanvas(): HTMLCanvasElement;
 
 效果：获取舞台 canvas 实例。请注意，如果对该 canvas 对象调用 `getContext` 方法，`contextType` 必须为 `webgl`。
 
-### 7.7 MigrationHelper
+### 7.7 本地接口
+扩展可以在本地编辑器下调用 Electron 和 fs 实例。
+```typescript
+function getFS(): Object;
+function getElectron(): Object;
+```
+### 7.8 MigrationHelper
 
 MigrationHelper 是一个用以快捷构建迁移链和项目版本迁移的工具类。
 
