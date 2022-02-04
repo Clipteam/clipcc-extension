@@ -116,24 +116,6 @@ const loadProject = (input, extensionCallback) => instance.vm.loadProject(input,
 const isDesktop = () => instance.gui.isDesktop();
 
 /**
- * Get the fs instance.
- * Only available in electron environment.
- * @memberof api
- * @ignore
- * @return {object}
- */
-const getFS = () => instance.nativeInstance.fs;
-
-/**
- * Get the electron instance.
- * Only available in electron environment.
- * @memberof api
- * @ignore
- * @return {object}
- */
-const getElectron = () => instance.nativeInstance.Electron;
-
-/**
  * Return whether the editor is loading.
  * @memberof api
  * @ignore
@@ -151,8 +133,6 @@ module.exports = {
     getPlaygroundData,
     loadProject,
     isDesktop,
-    getFS,
-    getElectron,
     isEditorLoading,
     getVmInstance,
     getGuiDocument,
