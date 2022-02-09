@@ -161,11 +161,15 @@ class ExtensionManager {
     /**
      * Unload all the extensions given.
      * @param {string[]} extensions The list of extension ID.
+     * @param {Function} vmCallback Unload vm extension.
      */
-    unloadExtensions(extensions) {
+    unloadExtensions(extensions, vmCallback) {
         for (const extension of extensions) {
             if (this.getLoadStatus(extension)) {
-                if (this.info[extension].api) {
+                if (!this.info[extension].api) {
+                    vmCallback(extension);
+                }
+                else {
                     this.instance[extension].onUninit();
                 }
                 this.setLoadStatus(extension, LoadMode.UNLOAD);
