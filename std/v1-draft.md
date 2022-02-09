@@ -208,10 +208,11 @@ Block 被定义为编辑器中的一个模块，原型如下所示：
 interface BlockPrototype {
     opcode: string;
     type: BlockType;
+    option: BlockOption;
     messageId: string;
     categoryId: string;
-    func: Function;
-    param: { [key: string]: ParameterPrototype };
+    function: Function;
+    param?: { [key: string]: ParameterPrototype };
 }
 
 enum BlockType {
@@ -225,13 +226,17 @@ class ParameterPrototype {
 }
 
 enum ParameterType {
-    NUMBER, STRING, BOOLEAN, ANY,
-    COLOR
+    NUMBER, STRING, BOOLEAN, ANY
 }
 
 class ShadowPrototype {
     type: string;
     fieldName: string;
+}
+
+class BlockOption {
+    terminal?: boolean;
+    monitor?: boolean;
 }
 ```
 
