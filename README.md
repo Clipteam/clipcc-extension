@@ -1,7 +1,7 @@
 [Chinese version](https://github.com/Clipteam/clipcc-extension/blob/master/README_CN.md)
 # ClipCC Extension Writing Guide
 
-#### Please note! Before you start learning to develop extensions, the ClipCC extensions **are still in development** and there may be major changes to the existing extension API that may cause the extension to fail before the official release of the feature. This tutorial will use the ClipCC extension API as of August 24th for demonstration purposes.
+This tutorial will illustrate the basic process of writing ClipCC extensions by demonstrating the writing of a simple extension. Please note! This document is time-sensitive, so there is no guarantee that the content is still relevant for the current version. Please see the documentation and jsdoc as final reference.
 
 ## Preparation
 
@@ -20,7 +20,7 @@ npm init # can also be replaced with yarn init
 ccext-cli
 ```
 
-In the last step, the ClipCC extension development scaffold will ask questions about the extension information. please note that we will use JavaScript for development, so please choose JavaScript as your programming language.
+In the last step, the ClipCC extension development scaffold will ask questions about the extension information. please note that we will use ``JavaScript(CommonJS)`` for development, so please choose JavaScript as your programming language.~~Although I prefer TypeScript~~
 
 ![Image loading...](https://s3.jpg.cm/2021/08/22/IbEeHG.png)
 
@@ -48,60 +48,55 @@ index.js
 info.json
 ```
 
-The locales directory is used to store the style of the module in different languages, assets is used to store the plugin resources, index.js is the main file to register the module/implement the function, and info.json is the plugin information.
+The locales directory is used to store the text of the block in different languages, assets is used to store the plugin resources, index.js is the main file to register the block/implement the function, and info.json is the plugin information.
 
 First, open src/index.js and fill in the following content.
 
 ```javascript
-const ClipCC = require('clipcc-extension');
-
-class ExampleExtension extends ClipCC.Extension {
+const {api, type, extension} = require('clipcc-extension');
+class ExampleExtension extends Extension {
     onInit() {
-        ClipCC.api.addCategory({
+        api.addCategory({
             categoryId: 'clipteam.example.category',
             messageId: 'clipteam.example.category.category',
             color: '#339900'
         });
-        ClipCC.api.addBlock({
+        api.addBlock({
             opcode: 'clipteam.example.return',
-            type: ClipCC.type.BlockType.REPORTER,
+            type: type.BlockType.REPORTER,
             messageId: 'clipteam.example.return.message',
             categoryId: 'clipteam.example.category',
-            argument: {
+            param: {
                 VALUE: {
-                    type: ClipCC.type.ParameterType.STRING,
+                    type: type.ParameterType.STRING,
                     default: 'Hello World!'
                 }
             },
             function: args => this.ReturnValue(args.VALUE)
         });
-        ClipCC.api.addBlock({
+        api.addBlock({
             opcode: 'clipteam.example.helloworld',
-            type: ClipCC.type.BlockType.COMMAND,
+            type: type.BlockType.COMMAND,
             messageId: 'clipteam.example.helloworld.message',
             categoryId: 'clipteam.example.category',
             function: args => this.HelloWorld()
         });
     }
-
     onUninit() {
-        ClipCC.api.removeCategory('clipteam.example.category');
+        api.removeCategory('clipteam.example.category');
     }
-    
     ReturnValue(VALUE) {
         return VALUE;
     }
-    
     HelloWorld() {
         console.log("Hello World!");
         alert("Hello World!");
     }
 }
-
 module.exports = ExampleExtension;
 ```
 
-Then open src/locales/en.json and fill in
+Then open locales/en.json and fill in
 
 ```json
 {
