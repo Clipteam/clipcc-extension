@@ -51,7 +51,7 @@ index.js
 info.json
 ```
 
-其中 locales 目录用于存放不同语言下模块的样式，assets 用于存放插件资源，index.js 为注册模块/实现功能的主要文件，info.json 则是插件信息。
+其中 locales 目录用于存放不同语言下积木的样式，assets 用于存放插件资源，index.js 为注册积木/实现功能的主要文件，info.json 则是插件信息。
 
 首先打开 src/index.js，填写如下内容：
 
