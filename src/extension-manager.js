@@ -97,12 +97,13 @@ class ExtensionManager {
 
     /**
      * Get loaded extendions.
+     * @param {boolean} optional If true, return not optional extensions only; otherwise return both.
      * @returns {{[key: string]: string}} Object as { extension: version }
      */
-    getLoadedExtensions() {
+    getLoadedExtensions(optional = false) {
         const result = {};
         for (const key in this.load) {
-            if (this.load[key]) {
+            if (this.load[key] && (optional || !this.info[key].optional)) {
                 result[key] = this.info[key].version;
             }
         }
@@ -111,12 +112,13 @@ class ExtensionManager {
 
     /**
      * Get loaded extendions.
+     * @param {boolean} optional If true, return not optional extensions only; otherwise return both.
      * @returns {{id: string, version: string}[]}
      */
-    getLoadedExtensionsList() {
+    getLoadedExtensionsList(optional = false) {
         const result = [];
         for (const key in this.load) {
-            if (this.load[key]) {
+            if (this.load[key] && (optional || !this.info[key].optional)) {
                 result.push({
                     id: key,
                     version: this.info[key].version
@@ -128,12 +130,13 @@ class ExtensionManager {
 
     /**
      * Get loaded extendions.
+     * @param {boolean} optional If true, return not optional extensions only; otherwise return both.
      * @returns {string[]}
      */
-    getLoadedExtensionsIdList() {
+    getLoadedExtensionsIdList(optional = false) {
         const result = [];
         for (const key in this.load) {
-            if (this.load[key]) {
+            if (this.load[key] && (optional || !this.info[key].optional)) {
                 result.push(key);
             }
         }
