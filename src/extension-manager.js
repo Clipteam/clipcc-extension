@@ -41,7 +41,8 @@ class ExtensionManager {
     addInstance(id, info, instance) {
         if (this.instance.hasOwnProperty(id)) return;
         this.info[id] = Object.assign({
-            dependency: {}
+            dependency: {},
+            optional: false
         }, info);
         this.load[id] = LoadMode.UNLOAD;
         this.instance[id] = instance;
