@@ -41,6 +41,7 @@ declare module 'clipcc-extension' {
             icon: string;
             inset_icon: string;
             api: number;
+            optional: boolean;
             dependency: { [key: string]: string };
         }
 
