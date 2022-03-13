@@ -199,11 +199,105 @@ class HelloExtension {
 }
 ```
 
-## 7 接口和定义
+## 7 设置项
+
+设置项被定义在扩展文件内部根目录下的 `settings.json` 文件中，用于添加设置项到编辑器。扩展的全部设置项在扩展被载入时就会添加到编辑器中，而不是启用时。即用户可以在扩展并没有被启用的时候修改该扩展的设置项。
+
+### 7.1 数据格式
+
+`settings.json` 文件使用键值对数组的形式定义设置项，具体格式如下所示：
+
+```json
+[
+    {
+        "id": "option1",
+        "type": "boolean",
+        "default": false
+    },
+    {
+        "id": "option2",
+        "type": "number",
+        "default": 0
+    }
+]
+```
+
+所有的设置项均以 `object` 形式定义，其最终在设置中的顺序与 `settings.json` 顺序一致，基本键值说明如下：
+
+**id**：设置项的 id，注意在扩展载入后，实际的 id 为你的扩展 id 加上设置项的 id，如上述 `option1` 的实际 id 为 `your.extension.id.option1`，其中 `your.extension.id` 是你的扩展 id，其被定义于 `info.json`。
+
+**type**：设置项类型，对应了在设置中的控件类型，具体取值见后。
+
+**default**：默认值，如果对应的控件是可输入的，那么默认值同时会作为该控件的 placeholder 属性。
+
+### 7.2 类型
+
+#### 7.2.1 boolean
+
+这个设置项是一个布尔类型，其值只能是 `true` 或者 `false`，对应的控件为 `Switch`。
+
+```json
+{
+    "id": "option",
+    "type": "boolean",
+    "default": false
+}
+```
+
+#### 7.2.2 number
+
+这个设置项是一个数字类型，对应的控件为 `Input`。
+
+```json
+{
+    "id": "option",
+    "type": "number",
+    "default": false,
+    "max": 20,
+    "min": 1,
+    "precision": 0
+}
+```
+
+**max**：（可选）限定数字的最大值。
+
+**min**：（可选）限定数字的最小值。
+
+**precision**：（可选）限定数字的小数点后位数，`0` 表示限定为整数。
+
+#### 7.2.3 selector
+
+这个设置项是一个字符串类型，对应的控件为 `Selector`
+
+```json
+{
+    "id": "option",
+    "type": "selector",
+    "default": "apple",
+    "items": ["apple", "boy", "cat", "dog"]
+}
+```
+
+**items**：设置选择器的全部选项。
+
+### 7.3 翻译
+
+设置项应当有翻译文本以及（可选的）帮助文本。如果一个设置项没有设置帮助文本的翻译，那么不会显示其帮助文本。
+
+```json
+{
+    "your.extension.id.settings.option1": "Option 1",
+    "your.extension.id.settings.option1.help": "Help message for option 1"
+}
+```
+
+如上述内容所示，设置项翻译的键应当为 `your.extension.id.settings` 加上设置项 id 的形式，对应的帮助文本的键应在其后面添加 `.help`。
+
+## 8 接口和定义
 
 全部的 api 函数均被定义在 `api` 命名空间中。全部的类型均被定义在 `type` 命名空间中。
 
-### 7.1 Block
+### 8.1 Block
 
 Block 被定义为编辑器中的一个模块，原型如下所示：
 
@@ -255,7 +349,7 @@ function removeBlock(opcode: string): void;
 
 效果：从编辑器中删除 opcode 为 `opcode` 的 Block。
 
-### 7.2 Category
+### 8.2 Category
 
 Category 被定义为编辑器中的一个模块分类，原型如下所示：
 
@@ -279,7 +373,7 @@ function removeCategory(categoryId: string): void;
 
 效果：从编辑器中删除 id 为 `categoryId` 的 Category。
 
-### 7.3 全局函数
+### 8.3 全局函数
 
 全局函数可以在扩展之间被互相调用，达到扩展间交互的作用。
 
@@ -302,7 +396,7 @@ function callGlobalFunction(name: string, ...args: any[]): any;
 效果：调用全局函数 `name`，并把 `...args` 作为参数传入。
 返回：对应函数的返回值。
 
-### 7.4 工具函数
+### 8.4 工具函数
 
 ```typescript
 function migrateChangeBlock(targets: Object, srcBlockId: string, dstBlockId: string): void;
@@ -310,7 +404,7 @@ function migrateChangeBlock(targets: Object, srcBlockId: string, dstBlockId: str
 
 效果：将项目数据 `targets` 中全部的 opcode 为 `srcBlockId` 的 Block 的 opcode 替换为 `dstBlockId`。
 
-### 7.5 编辑器实例
+### 8.5 编辑器实例
 
 扩展可以获取编辑器的一些实例，通过直接修改或调用实例的方式完成更为复杂的功能，但对于实例的所有操作的结果完全取决于编辑器的实现，其稳定性和可行性不被保证，在版本间可能存在变动。
 
@@ -321,7 +415,7 @@ function getGuiInstance(): Object;
 function getBlockInstance(): Object;
 ```
 
-### 7.6 舞台
+### 8.6 舞台
 
 ```typescript
 function getStageCanvas(): HTMLCanvasElement;
@@ -329,7 +423,7 @@ function getStageCanvas(): HTMLCanvasElement;
 
 效果：获取舞台 canvas 实例。请注意，如果对该 canvas 对象调用 `getContext` 方法，`contextType` 必须为 `webgl`。
 
-### 7.7 MigrationHelper
+### 8.7 MigrationHelper
 
 MigrationHelper 是一个用以快捷构建迁移链和项目版本迁移的工具类。
 
@@ -354,11 +448,11 @@ function migrationFromVersion(srcVer: string, dstVer: string, projectData: Objec
 备注：本函数暂时待定，之后会发生变更，请留意。
 效果：根据当前的迁移链，将项目 `projectData` 从版本 `srcVer` 迁移到 `dstVer`。迁移的方式是根据之前的构造的版本之间的迁移图，寻找一条最短路，并按序执行响应迁移脚本。
 
-## 8 标准迁移和兼容性
+## 9 标准迁移和兼容性
 
 这是第一个标准版本。
 
-## 9 鸣谢
+## 10 鸣谢
 
 感谢下面的人为 ClipCC 扩展的设计给出的宝贵意见（排名按字母顺序）：
 - Alex Cui

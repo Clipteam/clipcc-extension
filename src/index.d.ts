@@ -41,9 +41,33 @@ declare module 'clipcc-extension' {
             icon: string;
             inset_icon: string;
             api: number;
-            optional: boolean;
+            optional?: boolean;
             dependency: { [key: string]: string };
         }
+
+        export declare interface SettingsItemBoolean {
+            id: string;
+            type: "boolean";
+            default: boolean;
+        }
+
+        export declare interface SettingsItemNumber {
+            id: string;
+            type: "number";
+            default: number;
+            max?: number;
+            min?: number;
+            precision?: number;
+        }
+
+        export declare interface SettingsItemSelector {
+            id: string;
+            type: "selector";
+            default: string;
+            items: string[];
+        }
+
+        export type SettingsItem = SettingsItemBoolean | SettingsItemNumber | SettingsItemSelector;
 
         export declare interface BlockPrototype {
             opcode: string;
