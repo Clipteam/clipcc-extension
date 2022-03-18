@@ -224,11 +224,11 @@ class HelloExtension {
 
 所有的设置项均以 `object` 形式定义，其最终在设置中的顺序与 `settings.json` 顺序一致，基本键值说明如下：
 
-**id**：设置项的 id，注意在扩展载入后，实际的 id 为你的扩展 id 加上设置项的 id，如上述 `option1` 的实际 id 为 `your.extension.id.option1`，其中 `your.extension.id` 是你的扩展 id，其被定义于 `info.json`。
+**id**：设置项的 ID，注意在扩展载入后，实际的 ID 为你的扩展 ID 后加上设置项的 ID，如上述 `option1` 的实际 id 为 `your.extension.id.option1`，其中 `your.extension.id` 是你的扩展 ID，其被定义于 `info.json`。这确保了插件间的设置不会出现冲突。
 
 **type**：设置项类型，对应了在设置中的控件类型，具体取值见后。
 
-**default**：默认值，如果对应的控件是可输入的，那么默认值同时会作为该控件的 placeholder 属性。
+**default**：默认值，如果对应的控件是可输入的，那么默认值同时会作为该控件的 placeholder 属性。当设置被用户恢复默认值时，该设置项将被设置为此值。
 
 ### 7.2 类型
 
@@ -252,7 +252,7 @@ class HelloExtension {
 {
     "id": "option",
     "type": "number",
-    "default": false,
+    "default": 0,
     "max": 20,
     "min": 1,
     "precision": 0
@@ -274,11 +274,23 @@ class HelloExtension {
     "id": "option",
     "type": "selector",
     "default": "apple",
-    "items": ["apple", "boy", "cat", "dog"]
+    "items": [{
+        "id": "apple",
+        "message": "message.apple"
+    }, {
+        "id": "boy",
+        "message": "message.boy"
+    }, {
+        "id": "cat",
+        "message": "message.cat"
+    }, {
+        "id": "dog",
+        "message": "message.dog"
+    }]
 }
 ```
 
-**items**：设置选择器的全部选项。
+**items**：设置选择器的全部选项，每个选项应当以一个对象的形式说明，这个对象的 `id` 表示该选项的值，`message` 表示对应的翻译 ID。
 
 ### 7.3 翻译
 
@@ -291,7 +303,10 @@ class HelloExtension {
 }
 ```
 
-如上述内容所示，设置项翻译的键应当为 `your.extension.id.settings` 加上设置项 id 的形式，对应的帮助文本的键应在其后面添加 `.help`。
+如上述内容所示，设置项翻译的键应当为 `your.extension.id.settings` 加上设置项 ID 的形式，对应的帮助文本的键应在其后面添加 `.help`。
+
+### 7.4 获取设置项
+
 
 ## 8 接口和定义
 
