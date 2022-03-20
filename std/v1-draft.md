@@ -294,16 +294,16 @@ class HelloExtension {
 
 ### 7.3 翻译
 
-设置项应当有翻译文本以及（可选的）帮助文本。如果一个设置项没有设置帮助文本的翻译，那么不会显示其帮助文本。
+设置项应当有翻译文本以及（可选的）描述文本。如果一个设置项没有设置描述文本的翻译，那么不会显示其描述文本。
 
 ```json
 {
     "your.extension.id.settings.option1": "Option 1",
-    "your.extension.id.settings.option1.help": "Help message for option 1"
+    "your.extension.id.settings.option1.description": "Help message for option 1"
 }
 ```
 
-如上述内容所示，设置项翻译的键应当为 `your.extension.id.settings` 加上设置项 ID 的形式，对应的帮助文本的键应在其后面添加 `.help`。
+如上述内容所示，设置项翻译的键应当为 `your.extension.id.settings` 加上设置项 ID 的形式，对应的描述文本的键应在其后面添加 `.description`。
 
 ### 7.4 获取设置项
 
