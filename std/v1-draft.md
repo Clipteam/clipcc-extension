@@ -274,7 +274,7 @@ class HelloExtension {
     "id": "option",
     "type": "selector",
     "default": "apple",
-    "items": [{
+    "options": [{
         "id": "apple",
         "message": "message.apple"
     }, {
