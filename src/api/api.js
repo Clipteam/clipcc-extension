@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 let hasInit = false;
 let instance = null;
 
@@ -98,6 +99,13 @@ const removeBlock = blockOpcode => instance.vm.removeBlock(blockOpcode);
 const getPlaygroundData = () => instance.vm.getPlaygroundData();
 
 /**
+ * Get the value of a setting by id.
+ * @param {string} id
+ * @returns {string} value
+ */
+const getSettings = id => instance.gui.getSettings(id);
+
+/**
  * Load a Scratch project from a .sb, .sb2, .sb3 or json string.
  * @memberof api
  * @ignore
@@ -133,6 +141,7 @@ module.exports = {
     getPlaygroundData,
     loadProject,
     isDesktop,
+    getSettings,
     isEditorLoading,
     getVmInstance,
     getGuiDocument,

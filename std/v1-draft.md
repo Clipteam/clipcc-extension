@@ -307,6 +307,10 @@ class HelloExtension {
 
 ### 7.4 获取设置项
 
+```typescript
+function getSettings (id: string): any;
+```
+效果: 获取设置中某项的值
 
 ## 8 接口和定义
 
