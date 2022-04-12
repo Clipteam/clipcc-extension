@@ -131,6 +131,15 @@ const isDesktop = () => instance.gui.isDesktop();
  */
 const isEditorLoading = () => instance.gui.isEditorLoading();
 
+/**
+ * Return the settings value of given id.
+ * @memberof api
+ * @ignore
+ * @param {string} id The id of a settings item.
+ * @return {any}
+ */
+const getSettings = (id) => instance.gui.getSettings(id);
+
 module.exports = {
     registExtensionAPI,
     ...require('./util'),
@@ -149,5 +158,6 @@ module.exports = {
     getGuiInstance,
     getBlockInstance,
     getRenderInstance,
-    getStageCanvas
+    getStageCanvas,
+    getSettings
 };

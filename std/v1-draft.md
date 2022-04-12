@@ -307,10 +307,13 @@ class HelloExtension {
 
 ### 7.4 获取设置项
 
+获取设置项的 api 函数均被定义在 `api` 命名空间中。
+
 ```typescript
-function getSettings (id: string): any;
+function getSettings(id: string): any;
 ```
-效果: 获取设置中某项的值
+
+效果：获取设置项 ID 为 `id` 的值。
 
 ## 8 接口和定义
 

@@ -113,6 +113,7 @@ declare module 'clipcc-extension' {
         export declare function getGuiInstance(): Object;
         export declare function getBlockInstance(): Object;
         export declare function getStageCanvas(): HTMLCanvasElement;
+        export declare function getSettings(id: string): any;
         export declare function registerGlobalFunction(name: string, func: Function): void;
         export declare function unregisterGlobalFunction(name: string): void;
         export declare function callGlobalFunction(name: string, ...args: any[]): any;
