@@ -1,4 +1,4 @@
-// Typescript support
+// TypeScript Support for ClipCC Extension API v1
 
 export as namespace clipcc;
 
@@ -16,7 +16,6 @@ declare module 'clipcc-extension' {
             NUMBER = 1,
             STRING = 2,
             BOOLEAN = 3,
-            ANY = 4,
             COLOR = 5,
             MATRIX = 6,
             NOTE = 7,

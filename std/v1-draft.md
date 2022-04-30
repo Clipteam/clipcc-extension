@@ -345,7 +345,7 @@ class ParameterPrototype {
 }
 
 enum ParameterType {
-    NUMBER, STRING, BOOLEAN, ANY
+    NUMBER, STRING, BOOLEAN
 }
 
 class ShadowPrototype {
