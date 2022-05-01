@@ -71,14 +71,14 @@ declare module 'clipcc-extension' {
         export declare interface BlockPrototype {
             opcode: string;
             type: BlockType;
-            config?: BlockOption;
+            option?: BlockOption;
             param?: { [key: string]: ParameterPrototype };
             messageId: string;
             categoryId: string;
             function: Function;
         }
 
-        class BlockOption {
+        export declare interface BlockOption {
             terminal?: boolean;
             monitor?: boolean;
         }
@@ -86,7 +86,14 @@ declare module 'clipcc-extension' {
         export declare interface ParameterPrototype {
             type: ParameterType;
             default?: any;
+            menu?: MenuItemPrototype[];
+            field?: boolean;
             shadow?: ShadowPrototype;
+        }
+
+        export declare interface MenuItemPrototype {
+            messageId: string;
+            value: any;
         }
     
         export declare interface ShadowPrototype {

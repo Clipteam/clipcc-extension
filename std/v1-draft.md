@@ -6,7 +6,7 @@
 
 |标准版本|API 版本|更新日期|状态|备注|
 |:-:|:-:|:-:|:-:|:-:|
-|v1|0.x|2022/3/12|草案||
+|v1|0.x|2022/5/2|草案||
 
 标准版本为扩展 API 遵循的标准，API 版本为对应的 clipcc-extension 包版本。
 
@@ -327,35 +327,37 @@ Block 被定义为编辑器中的一个模块，原型如下所示：
 interface BlockPrototype {
     opcode: string;
     type: BlockType;
-    option: BlockOption;
+    option?: BlockOption;
+    param?: { [key: string]: ParameterPrototype };
     messageId: string;
     categoryId: string;
     function: Function;
-    param?: { [key: string]: ParameterPrototype };
+}
+
+interface BlockOption {
+    terminal?: boolean;
+    monitor?: boolean;
 }
 
 enum BlockType {
     COMMAND, REPORTER, BOOLEAN, BRANCH, HAT
 }
 
-class ParameterPrototype {
+interface ParameterPrototype {
     type: ParameterType;
-    default: any;
-    shadow: ShadowPrototype;
+    default?: any;
+    menu?: MenuItemPrototype[];
+    field?: boolean;
+    shadow?: ShadowPrototype;
 }
 
 enum ParameterType {
     NUMBER, STRING, BOOLEAN
 }
 
-class ShadowPrototype {
+interface ShadowPrototype {
     type: string;
     fieldName: string;
-}
-
-class BlockOption {
-    terminal?: boolean;
-    monitor?: boolean;
 }
 ```
 
@@ -376,7 +378,7 @@ function removeBlock(opcode: string): void;
 Category 被定义为编辑器中的一个模块分类，原型如下所示：
 
 ```typescript
-class CategoryPrototype {
+interface CategoryPrototype {
     categoryId: string;
     messageId: string;
     color: string;
@@ -474,7 +476,7 @@ function migrationFromVersion(srcVer: string, dstVer: string, projectData: Objec
 
 这是第一个标准版本。
 
-## 10 鸣谢
+## 10 致谢
 
 感谢下面的人为 ClipCC 扩展的设计给出的宝贵意见（排名按字母顺序）：
 - Alex Cui
