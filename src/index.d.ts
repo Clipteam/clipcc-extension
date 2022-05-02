@@ -113,7 +113,9 @@ declare module 'clipcc-extension' {
         export declare function addCategory(category: type.CategoryPrototype): void;
         export declare function removeCategory(categoryId: string): void;
         export declare function addBlock(block: type.BlockPrototype): void;
+        export declare function addBlocks(blocks: type.BlockPrototype[]): void;
         export declare function removeBlock(opcode: string): void;
+        export declare function removeBlocks(opcodes: string[]): void;
         export declare function getVmInstance(): Object;
         export declare function getGuiDocument(): Document;
         export declare function getGuiInstance(): Object;

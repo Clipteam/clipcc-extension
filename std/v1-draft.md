@@ -368,10 +368,22 @@ function addBlock(block: BlockPrototype): void;
 效果：将 `block` 添加到编辑器中。
 
 ```typescript
+function addBlocks(blocks: BlockPrototype[]): void;
+```
+
+效果：将多个 `block` 添加到编辑器中。
+
+```typescript
 function removeBlock(opcode: string): void;
 ```
 
 效果：从编辑器中删除 opcode 为 `opcode` 的 Block。
+
+```typescript
+function removeBlocks(opcodes: string[]): void;
+```
+
+效果：从编辑器中删除多个 Block。
 
 ### 8.2 Category
 
