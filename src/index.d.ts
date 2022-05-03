@@ -106,6 +106,10 @@ declare module 'clipcc-extension' {
             messageId: string;
             color: string;
         }
+
+        export type VmInstance = Object;
+        export type BlockInstance = Object;
+        export type GuiInstance = Object;
     }
 
     export namespace api {
@@ -116,10 +120,10 @@ declare module 'clipcc-extension' {
         export declare function addBlocks(blocks: type.BlockPrototype[]): void;
         export declare function removeBlock(opcode: string): void;
         export declare function removeBlocks(opcodes: string[]): void;
-        export declare function getVmInstance(): Object;
+        export declare function getVmInstance(): VmInstance;
         export declare function getGuiDocument(): Document;
-        export declare function getGuiInstance(): Object;
-        export declare function getBlockInstance(): Object;
+        export declare function getGuiInstance(): GuiInstance;
+        export declare function getBlockInstance(): BlockInstance;
         export declare function getStageCanvas(): HTMLCanvasElement;
         export declare function getSettings(id: string): any;
         export declare function registerGlobalFunction(name: string, func: Function): void;

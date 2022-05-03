@@ -84,11 +84,25 @@ const removeCategory = categoryId => instance.vm.removeCategory(categoryId);
 const addBlock = blockInfo => instance.vm.addBlock(blockInfo);
 
 /**
+ * Add several blocks from prototype.
+ * @memberof api
+ * @param {BlockPrototype[]} blockInfos - Block prototype.
+ */
+const addBlocks = blockInfos => instance.vm.addBlocks(blockInfos);
+
+/**
  * Remove a block by opcode.
  * @memberof api
  * @param {string} blockOpcode - Block opcode.
  */
 const removeBlock = blockOpcode => instance.vm.removeBlock(blockOpcode);
+
+/**
+ * Remove several blocks by opcode.
+ * @memberof api
+ * @param {string[]} blockOpcodes - Block opcode.
+ */
+const removeBlocks = blockOpcodes => instance.vm.removeBlocks(blockOpcodes);
 
 /**
  * Get data for playground.
@@ -138,7 +152,9 @@ module.exports = {
     addCategory,
     removeCategory,
     addBlock,
+    addBlocks,
     removeBlock,
+    removeBlocks,
     getPlaygroundData,
     loadProject,
     isDesktop,
