@@ -332,7 +332,7 @@ interface BlockPrototype {
     messageId: string;
     categoryId: string;
     function: Function;
-    compile?: Function;
+    compile?: (args: object[], isWarp: boolean) => string;
 }
 
 interface BlockOption {
