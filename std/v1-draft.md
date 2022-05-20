@@ -332,6 +332,7 @@ interface BlockPrototype {
     messageId: string;
     categoryId: string;
     function: Function;
+    compile?: Function;
 }
 
 interface BlockOption {
