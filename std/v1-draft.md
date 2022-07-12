@@ -6,7 +6,7 @@
 
 |标准版本|API 版本|更新日期|状态|备注|
 |:-:|:-:|:-:|:-:|:-:|
-|v1|0.x|2022/5/2|草案||
+|v1|0.x|2022/7/12|草案||
 
 标准版本为扩展 API 遵循的标准，API 版本为对应的 clipcc-extension 包版本。
 
@@ -123,6 +123,8 @@ module.exports = HelloExtension;
 **beforeProjectLoad(data, extensions)**：当编辑器在加载一个项目时，触发这个事件。参数 `data` 表示当前项目的数据,参数 `extensions` 表示当前项目所需要的扩展。在这个事件中，扩展应当完成对旧版本项目的替换，以保证其适合新版本。请注意，如果原项目和当前环境完全一致，这个事件依然会被触发，此时扩展不应当修改该项目。扩展中的这一事件应当提供判断，保证版本迁移的正确性。
 
 **beforeProjectSave(data)**：当编辑器在保存一个项目时，触发这个事件。参数 `data` 表示当前项目的数据。
+
+**onSettingChange(key, value)**: 当该扩展所附带的设置被修改时，触发这个事件。参数 `key` 表示被修改项的名称，参数`value`表示被修改设置的值。
 
 **onUninit()**：当插件被禁用时触发。在这个事件中，扩展应当完成对添加到编辑器的内容的删除。
 
@@ -265,7 +267,19 @@ class HelloExtension {
 
 **precision**：（可选）限定数字的小数点后位数，`0` 表示限定为整数。
 
-#### 7.2.3 selector
+#### 7.2.3 string
+
+这个设置项是一个字符串类型，对应的控件为 `Input`。
+
+```json
+{
+    "id": "option",
+    "type": "string",
+    "default": 0
+}
+```
+
+#### 7.2.4 selector
 
 这个设置项是一个字符串类型，对应的控件为 `Selector`
 
@@ -315,6 +329,14 @@ function getSettings(id: string): any;
 
 效果：获取设置项 ID 为 `id` 的值。
 
+### 7.5 删除设置项
+
+```typescript
+function removeSettings(id: string): any;
+```
+
+效果：删除 ID 为 `id` 的设置项。
+
 ## 8 接口和定义
 
 全部的 api 函数均被定义在 `api` 命名空间中。全部的类型均被定义在 `type` 命名空间中。
@@ -337,6 +359,9 @@ interface BlockPrototype {
 interface BlockOption {
     terminal?: boolean;
     monitor?: boolean;
+    hide?: boolean;
+    branchLength?: number;
+    passiveHatTrigger?: boolean;
 }
 
 enum BlockType {
@@ -352,7 +377,7 @@ interface ParameterPrototype {
 }
 
 enum ParameterType {
-    NUMBER, STRING, BOOLEAN
+    NUMBER, STRING, BOOLEAN, ANY, COLOR, MATRIX, NOTE, ANGLE, IMAGE
 }
 
 interface ShadowPrototype {
@@ -372,6 +397,11 @@ function addBlocks(blocks: BlockPrototype[]): void;
 ```
 
 效果：将多个 `block` 添加到编辑器中。
+```typescript
+function updateBlock(opcode: string, proto: BlockPrototype): void;
+```
+
+效果：修改 `block` 的原型定义。
 
 ```typescript
 function removeBlock(opcode: string): void;
