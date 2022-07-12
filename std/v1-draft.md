@@ -267,7 +267,7 @@ class HelloExtension {
 
 **precision**：（可选）限定数字的小数点后位数，`0` 表示限定为整数。
 
-#### 7.2.2 string
+#### 7.2.3 string
 
 这个设置项是一个字符串类型，对应的控件为 `Input`。
 
