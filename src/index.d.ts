@@ -1,18 +1,16 @@
 // TypeScript Support for ClipCC Extension API v1
 
-export as namespace clipcc;
-
 declare module 'clipcc-extension' {
     export namespace type {
-        export declare enum BlockType {
+        export enum BlockType {
             COMMAND = 1,
             REPORTER = 2,
             BOOLEAN = 3,
-            BRANCH = 4,
+            // BRANCH = 4, /* deleted */
             HAT = 5
         }
     
-        export declare enum ParameterType {
+        export enum ParameterType {
             NUMBER = 1,
             STRING = 2,
             BOOLEAN = 3,
@@ -20,20 +18,11 @@ declare module 'clipcc-extension' {
             MATRIX = 6,
             NOTE = 7,
             ANGLE = 8,
+            SCRIPT = 9,
             IMAGE = 99
         }
     
-        export declare enum ShadowType {
-            NO_SHADOW = false,
-            ANGLE =  { type: 'math_angle', fieldName: 'NUM' },
-            COLOR = { type: 'colour_picker', fieldName: 'COLOUR' },
-            NUMBER = { type: 'math_number', fieldName: 'NUM' },
-            STRING = { type: 'text', fieldName: 'TEXT' },
-            MATRIX = { type: 'matrix', fieldName: 'MATRIX' },
-            NOTE = { type: 'note', fieldName: 'NOTE' }
-        }
-    
-        export declare interface ExtensionInfo {
+        export interface ExtensionInfo {
             id: string;
             version: string;
             author: string | string[];
@@ -44,13 +33,13 @@ declare module 'clipcc-extension' {
             dependency: { [key: string]: string };
         }
 
-        export declare interface SettingsItemBoolean {
+        export interface SettingsItemBoolean {
             id: string;
             type: "boolean";
             default: boolean;
         }
 
-        export declare interface SettingsItemNumber {
+        export interface SettingsItemNumber {
             id: string;
             type: "number";
             default: number;
@@ -59,7 +48,7 @@ declare module 'clipcc-extension' {
             precision?: number;
         }
 
-        export declare interface SettingsItemSelector {
+        export interface SettingsItemSelector {
             id: string;
             type: "selector";
             default: string;
@@ -68,7 +57,7 @@ declare module 'clipcc-extension' {
 
         export type SettingsItem = SettingsItemBoolean | SettingsItemNumber | SettingsItemSelector;
 
-        export declare interface BlockPrototype {
+        export interface BlockPrototype {
             opcode: string;
             type: BlockType;
             option?: BlockOption;
@@ -78,12 +67,12 @@ declare module 'clipcc-extension' {
             function: Function;
         }
 
-        export declare interface BlockOption {
+        export interface BlockOption {
             terminal?: boolean;
             monitor?: boolean;
         }
     
-        export declare interface ParameterPrototype {
+        export interface ParameterPrototype {
             type: ParameterType;
             default?: any;
             menu?: MenuItemPrototype[];
@@ -91,17 +80,17 @@ declare module 'clipcc-extension' {
             shadow?: ShadowPrototype;
         }
 
-        export declare interface MenuItemPrototype {
+        export interface MenuItemPrototype {
             messageId: string;
             value: any;
         }
     
-        export declare interface ShadowPrototype {
+        export interface ShadowPrototype {
             type: string;
             fieldName: string;
         }
 
-        export declare interface CategoryPrototype {
+        export interface CategoryPrototype {
             categoryId: string;
             messageId: string;
             color: string;
@@ -110,51 +99,57 @@ declare module 'clipcc-extension' {
         export type VmInstance = Object;
         export type BlockInstance = Object;
         export type GuiInstance = Object;
+        export type Project = Object;
     }
 
     export namespace api {
-        export declare function registExtensionAPI(api: Object): void;
-        export declare function addCategory(category: type.CategoryPrototype): void;
-        export declare function removeCategory(categoryId: string): void;
-        export declare function addBlock(block: type.BlockPrototype): void;
-        export declare function addBlocks(blocks: type.BlockPrototype[]): void;
-        export declare function removeBlock(opcode: string): void;
-        export declare function removeBlocks(opcodes: string[]): void;
-        export declare function getVmInstance(): VmInstance;
-        export declare function getGuiDocument(): Document;
-        export declare function getGuiInstance(): GuiInstance;
-        export declare function getBlockInstance(): BlockInstance;
-        export declare function getStageCanvas(): HTMLCanvasElement;
-        export declare function getSettings(id: string): any;
-        export declare function registerGlobalFunction(name: string, func: Function): void;
-        export declare function unregisterGlobalFunction(name: string): void;
-        export declare function callGlobalFunction(name: string, ...args: any[]): any;
-        export declare function migrateChangeBlock(targets: Object, srcBlockId: string, dstBlockId: string): void;
+        export function registExtensionAPI(api: Object): void;
+
+        export function addCategory(category: type.CategoryPrototype): void;
+        export function removeCategory(categoryId: string): void;
+        export function addBlock(block: type.BlockPrototype): void;
+        export function addBlocks(blocks: type.BlockPrototype[]): void;
+        export function removeBlock(opcode: string): void;
+        export function removeBlocks(opcodes: string[]): void;
+        
+        export function getVmInstance(): type.VmInstance;
+        export function getGuiDocument(): Document;
+        export function getGuiInstance(): type.GuiInstance;
+        export function getBlockInstance(): type.BlockInstance;
+        export function getStageCanvas(): HTMLCanvasElement;
+
+        export function getSettings(id: string): any;
+
+        export function registerGlobalFunction(name: string, func: Function): void;
+        export function unregisterGlobalFunction(name: string): void;
+        export function callGlobalFunction(name: string, ...args: any[]): any;
+
+        export function migrateChangeBlock(targets: Object, srcBlockId: string, dstBlockId: string): void;
     }
 
     export namespace error {
-        declare const ERROR_UNAVAILABLE_EXTENSION = 0x90;
-        declare const ERROR_CIRCULAR_REQUIREMENT = 0x91;
+        const ERROR_UNAVAILABLE_EXTENSION = 0x90;
+        const ERROR_CIRCULAR_REQUIREMENT = 0x91;
     }
 
-    export declare class MigrationHelper {
+    export class MigrationHelper {
         constructor();
         addVersionMigration(srcVer: string, dstVer: string, migrationScript: Function): void;
-        migrationFromVersion(srcVer: string, dstVer: string, projectData: Object): void;
+        migrationFromVersion(srcVer: string, dstVer: string, projectData: type.Project): void;
     }
 
-    declare enum LoadMode {
+    enum LoadMode {
         UNLOAD = 0,
         INITIATIVE_LOAD = 1,
         PASSIVE_LOAD = 2
     }
 
-    declare interface ExtensionLoadInfo {
+    interface ExtensionLoadInfo {
         id: string;
         mode: LoadMode;
     }
 
-    export declare class ExtensionManager {
+    export class ExtensionManager {
         constructor();
         addInstance(id: string, info: type.ExtensionInfo, instance: Extension): void;
         removeInstance(id: string): void;
@@ -173,19 +168,19 @@ declare module 'clipcc-extension' {
         emitEvent(event: string, ...args: any[]): void;
     }
 
-    export declare const extensionManager: ExtensionManager;
+    export const extensionManager: ExtensionManager;
 
-    export declare class Extension {
+    export class Extension {
         constructor();
-        onInit(): void;
-        onUninit(): void;
-        beforeProjectLoad(data: any, extensions: any): void;
-        beforeProjectSave(data: any): void;
+        onInit?(): void;
+        onUninit?(): void;
+        beforeProjectLoad?(data: any, extensions: any): void;
+        beforeProjectSave?(data: any): void;
     }
 
-    export declare class CompatibleExtension extends Extension {
+    export class CompatibleExtension extends Extension {
         constructor();
-        onInit(): void;
+        onInit?(): void;
     }
 }
 

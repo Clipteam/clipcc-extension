@@ -340,7 +340,7 @@ interface BlockOption {
 }
 
 enum BlockType {
-    COMMAND, REPORTER, BOOLEAN, BRANCH, HAT
+    COMMAND, REPORTER, BOOLEAN, HAT
 }
 
 interface ParameterPrototype {
@@ -352,7 +352,7 @@ interface ParameterPrototype {
 }
 
 enum ParameterType {
-    NUMBER, STRING, BOOLEAN
+    NUMBER, STRING, BOOLEAN, SCRIPT
 }
 
 interface ShadowPrototype {

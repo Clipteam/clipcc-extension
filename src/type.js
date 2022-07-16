@@ -57,9 +57,9 @@ const BlockType = {
     REPORTER: 2,
     /** A block which returns a boolean value */
     BOOLEAN: 3,
-    /** [Unsupported] A block with branch(es) */
-    BRANCH: 4,
-    /** [Unsupported] A hat block */
+    /** [Unsupported/Deleted] A block with branch(es) */
+    // BRANCH: 4,
+    /** A hat block */
     HAT: 5
 };
 
@@ -86,6 +86,8 @@ const ParameterType = {
     NOTE: 7,
     /** [Unsupported] */
     ANGLE: 8,
+    /** Script */
+    SCRIPT: 9,
     /** [Unsupported] */
     IMAGE: 99
 };
