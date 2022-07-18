@@ -86,8 +86,6 @@ const ParameterType = {
     NOTE: 7,
     /** [Unsupported] */
     ANGLE: 8,
-    /** Script */
-    SCRIPT: 9,
     /** [Unsupported] */
     IMAGE: 99
 };

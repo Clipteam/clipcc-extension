@@ -352,7 +352,7 @@ interface ParameterPrototype {
 }
 
 enum ParameterType {
-    NUMBER, STRING, BOOLEAN, SCRIPT
+    NUMBER, STRING, BOOLEAN
 }
 
 interface ShadowPrototype {

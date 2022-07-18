@@ -18,7 +18,6 @@ declare module 'clipcc-extension' {
             MATRIX = 6,
             NOTE = 7,
             ANGLE = 8,
-            SCRIPT = 9,
             IMAGE = 99
         }
     
@@ -61,6 +60,7 @@ declare module 'clipcc-extension' {
             opcode: string;
             type: BlockType;
             option?: BlockOption;
+            branchCount?: number;
             param?: { [key: string]: ParameterPrototype };
             messageId: string;
             categoryId: string;
