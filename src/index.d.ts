@@ -76,6 +76,7 @@ declare module 'clipcc-extension' {
             type: ParameterType;
             default?: any;
             menu?: MenuItemPrototype[];
+            menuId?: string;
             field?: boolean;
             shadow?: ShadowPrototype;
         }

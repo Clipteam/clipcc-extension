@@ -77,7 +77,7 @@ const ParameterType = {
     /** Boolean value */
     BOOLEAN: 3,
     /** Any type */
-    ANY: 4,
+    ANY: 4, // @deprecated
     /** Color selector */
     COLOR: 5,
     /** [Unsupported] */

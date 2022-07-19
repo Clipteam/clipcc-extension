@@ -347,6 +347,7 @@ interface ParameterPrototype {
     type: ParameterType;
     default?: any;
     menu?: MenuItemPrototype[];
+    menuId: string;
     field?: boolean;
     shadow?: ShadowPrototype;
 }
