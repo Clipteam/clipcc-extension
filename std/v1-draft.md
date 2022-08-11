@@ -337,6 +337,11 @@ interface BlockPrototype {
 interface BlockOption {
     terminal?: boolean;
     monitor?: boolean;
+    filter?: [FilterType];
+}
+
+enum FilterType {
+    SPRITE, STAGE, ALL, HIDE
 }
 
 enum BlockType {
