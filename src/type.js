@@ -124,8 +124,26 @@ const ShadowType = {
     }
 };
 
+/**
+ * Filter types.
+ * @enum {[string]}
+ * @memberof type
+ * @readonly
+ */
+const FilterType = {
+    /* Sprite */
+    SPRITE: ['sprite'],
+    /* Stage */
+    STAGE: ['stage'],
+    /* All */
+    ALL: ['sprite', 'stage'],
+    /* Hide */
+    HIDE: []
+}
+
 module.exports = {
     BlockType,
     ParameterType,
-    ShadowType
+    ShadowType,
+    FilterType
 };
