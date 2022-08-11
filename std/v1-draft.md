@@ -351,7 +351,7 @@ enum BlockType {
 interface ParameterPrototype {
     type: ParameterType;
     default?: any;
-    menu?: MenuItemPrototype[];
+    menu?: (MenuItemPrototype[]|string|function);
     menuId: string;
     field?: boolean;
     shadow?: ShadowPrototype;
