@@ -337,6 +337,11 @@ interface BlockPrototype {
 interface BlockOption {
     terminal?: boolean;
     monitor?: boolean;
+    filter?: [FilterType];
+}
+
+enum FilterType {
+    SPRITE, STAGE, ALL, HIDE
 }
 
 enum BlockType {
@@ -346,7 +351,7 @@ enum BlockType {
 interface ParameterPrototype {
     type: ParameterType;
     default?: any;
-    menu?: MenuItemPrototype[];
+    menu?: (MenuItemPrototype[]|string|function);
     menuId: string;
     field?: boolean;
     shadow?: ShadowPrototype;
