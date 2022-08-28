@@ -139,7 +139,7 @@ const FilterType = {
     ALL: ['sprite', 'stage'],
     /* Hide */
     HIDE: []
-}
+};
 
 module.exports = {
     BlockType,
